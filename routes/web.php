@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ToDoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FullCalendarController;
+use App\Models\categorie_reclamation;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,4 +50,14 @@ Route::get('full-calender', [FullCalendarController::class, 'index']);
 
 Route::post('full-calender/action', [FullCalendarController::class, 'action']);
 
-route::get('/admindash',[adminController::class,'showAdmin'])->name('showadmin');
+route::get('/admindash1',[adminController::class,'showservices'])->name('showservices');
+
+route::get('/admindash2',[adminController::class,'showcategories'])->name('showcategories');
+
+route::get('/admindash3',[adminController::class,'showpersonnels'])->name('showpersonnels');
+
+route::get('/admindash2/createREC',[adminController::class,'createREC'])->name('createREC');
+
+route::post('/admindash2/storeREC',[adminController::class,'storeREC'])->name('storeREC');
+
+route::delete('/destroyREC/{categorie_reclamation}',[categorie_reclamation::class,'destroyREC'])->name('destroyREC');

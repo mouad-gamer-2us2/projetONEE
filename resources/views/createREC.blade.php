@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="container-scroller">
-      <div class="row p-0 m-0 proBanner" id="proBanner">
+      <div class="row p-0 m-0 " id="proBanner">
         <div class="col-md-12 p-0 m-0">
          
         </div>
@@ -16,116 +16,109 @@
              
             </li>
             
+            
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-title">Basic UI Elements</span>
-                <i class="menu-arrow"></i>
-                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-              </a>
-              <div class="collapse" id="ui-basic">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pages/icons/mdi.html">
-                <span class="menu-title">Icons</span>
-                <i class="mdi mdi-contacts menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pages/forms/basic_elements.html">
-                <span class="menu-title">Forms</span>
-                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pages/charts/chartjs.html">
-                <span class="menu-title">Charts</span>
-                <i class="mdi mdi-chart-bar menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pages/tables/basic-table.html">
-                <span class="menu-title">Tables</span>
-                <i class="mdi mdi-table-large menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
-                <span class="menu-title">Sample Pages</span>
-                <i class="menu-arrow"></i>
-                <i class="mdi mdi-medical-bag menu-icon"></i>
-              </a>
-              <div class="collapse" id="general-pages">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a></li>
-                  <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                  <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-                  <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-                  <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item sidebar-actions">
-              <span class="nav-link">
-                <div class="border-bottom">
-                  <h6 class="font-weight-normal mb-3">Projects</h6>
+              <div class="container-fluid">
+                <div class="row">
+                    <div class="col-auto">
+                        <a class="nav-link color1" href="{{ route('showservices') }}">
+                            <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                            <lord-icon
+                                src="https://cdn.lordicon.com/sbrtyqxj.json"
+                                trigger="hover"
+                                colors="primary:#0e46a3"
+                                style="width: 18px; height: 18px;">
+                            </lord-icon>
+                        </a>
+                    </div>
+                    <div class="col align-self-center">
+                        <a class="nav-link color1" href="{{ route('showservices') }}">
+                            <span class="menu-title color1">Services</span> 
+                        </a>
+                    </div>
                 </div>
-                <button class="btn btn-block btn-lg btn-gradient-primary mt-4">+ Add a project</button>
-                <div class="mt-4">
-                  <div class="border-bottom">
-                    <p class="text-secondary">Categories</p>
-                  </div>
-                  <ul class="gradient-bullet-list mt-4">
-                    <li>Free</li>
-                    <li>Pro</li>
-                  </ul>
-                </div>
-              </span>
+            </div>
+            
             </li>
+            <li class="nav-item">
+              <div class="container-fluid">
+                <div class="row">
+                    <div class="col-auto">
+                        <a class="nav-link color1" href="{{route('showcategories')}}">
+                            <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                            <lord-icon
+                                src="https://cdn.lordicon.com/keaiyjcx.json"
+                                trigger="hover"
+                                colors="primary:#0e46a3"
+                                style="width: 18px; height: 18px;">
+                            </lord-icon>
+                        </a>
+                    </div>
+                    <div class="col align-self-center">
+                        <a class="nav-link color1"href="{{route('showcategories')}}">
+                            <span class="menu-title color1">Catégories</span> 
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            </li>
+            <li class="nav-item">
+              <div class="container-fluid">
+                <div class="row">
+                    <div class="col-auto">
+                        <a class="nav-link color1" href="{{route('showpersonnels')}}">
+                            <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                            <lord-icon
+                                src="https://cdn.lordicon.com/iazmohzf.json"
+                                trigger="hover"
+                                colors="primary:#0e46a3"
+                                style="width: 18px; height: 18px;">
+                            </lord-icon>
+                        </a>
+                    </div>
+                    <div class="col align-self-center">
+                        <a class="nav-link color1" href="{{route('showpersonnels')}}">
+                            <span class="menu-title color1">Personnels</span> 
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            </li>
+            
           </ul>
         </nav>
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-            <div class="page-header">
-              <h3 class="page-title">
-                <span class="page-title-icon bg-gradient-primary text-white me-2">
-                  <i class="mdi mdi-home"></i>
-                </span> Dashboard
-              </h3>
-              <nav aria-label="breadcrumb">
-                <ul class="breadcrumb">
-                  <li class="breadcrumb-item active" aria-current="page">
-                    <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
-                  </li>
-                </ul>
-              </nav>
-            </div>
+            <div class="container d-flex justify-content-center align-items-center">
+              <div class="page-header text-center">
+                  <h3 class="page-title">Vos Catégories Réclamation </h3>
+                  
+              </div>
+          </div>
             
             <div class="row">
               <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Project Status</h4>
-                    <div class="table-responsive">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th> # </th>
-                            <th> Name </th>
-                            <th> Due Date </th>
-                            <th> Progress </th>
-                          </tr>
-                        </thead>
-                        <tbody>
+                    <h4 class="card-title">Ajouter des  Catégories  </h4>
+                    <form action="{{ route('storeREC') }}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Nom de la Catégorie de Réclamation </label>
+                          <input type="text" class="form-control" name="NOM_CATEGORIE" aria-describedby="emailHelp">
                           
-                        </tbody>
-                      </table>
-                    </div>
+                          @error('NOM_CATEGORIE')
+                          <div class="text-danger small">
+                            {{ $message }}
+                          </div>
+                          @enderror
+                        
+                        </div>
+                        <button type="submit" class="btn btn-success">Ajouter</button>
+                      </form>
                   </div>
                 </div>
               </div>
