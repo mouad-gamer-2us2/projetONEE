@@ -3465,7 +3465,7 @@ progress {
   border-color: #373b3e; }
 
 .table-responsive {
-  overflow-x: auto;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch; }
 
 @media (max-width: 575.98px) {

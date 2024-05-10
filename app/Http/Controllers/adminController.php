@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\categorie_reclamation;
 use Illuminate\Http\Request;
+use Termwind\Components\Dd;
 
 class adminController extends Controller
 {
@@ -25,7 +26,7 @@ class adminController extends Controller
     public function storeREC(Request $request)
     {
         //$categorie= $request->NOM_CATEGORIE;
-
+        
         //Validation :
 
         $request->validate([
@@ -38,9 +39,26 @@ class adminController extends Controller
         return redirect()->route('showcategories');
     }
 
-    public function destroyREC(categorie_reclamation $cat)
-    {$cat->delete();
-    return to_route('showcategories')->with('success','la categorie a ete supprimer');}
+    public function destroyREC(Request $request, $ID_CATEGORIE)
+    {
+        // Retrieve the category model instance based on the ID
+        $category = categorie_reclamation::find($ID_CATEGORIE);
+    
+        // Check if the category exists
+        if (!$category) {
+            // Handle the case where the category does not exist
+            return redirect()->route('showcategories')->with('error', 'Category not found.');
+        }
+    
+        // Delete the category
+        $category->delete();
+    
+        // Redirect back to the categories page
+        return redirect()->route('showcategories')->with('success', 'Category deleted successfully.');
+    }
+    
+    
+
 
 
 }

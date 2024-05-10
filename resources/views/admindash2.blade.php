@@ -137,9 +137,9 @@
                                         </div>
                                         <div class="col-auto">
                                             <form action="{{ route('destroyREC',$CR->ID_CATEGORIE) }}" method="POST">
-                                                
-                                            </form>
-                                            <form>
+                                                @method('DELETE')
+                                                @csrf
+                                        
                                             <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
                                             </form>
                                         </div>

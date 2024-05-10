@@ -9,6 +9,8 @@ class categorie_reclamation extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'ID_CATEGORIE';
+
     protected $fillable = [
         'NOM_CATEGORIE',
     ];

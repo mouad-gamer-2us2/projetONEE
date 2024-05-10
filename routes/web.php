@@ -60,4 +60,4 @@ route::get('/admindash2/createREC',[adminController::class,'createREC'])->name('
 
 route::post('/admindash2/storeREC',[adminController::class,'storeREC'])->name('storeREC');
 
-route::delete('/destroyREC/{categorie_reclamation}',[categorie_reclamation::class,'destroyREC'])->name('destroyREC');
+route::delete('/admindash2/{ID_CATEGORIE}',[adminController::class,'destroyREC'])->name('destroyREC');
