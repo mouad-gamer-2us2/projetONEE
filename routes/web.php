@@ -50,14 +50,34 @@ Route::get('full-calender', [FullCalendarController::class, 'index']);
 
 Route::post('full-calender/action', [FullCalendarController::class, 'action']);
 
+//--------------------------------------------------------------------------------------------------------------------------------
+
 route::get('/admindash1',[adminController::class,'showservices'])->name('showservices');
 
-route::get('/admindash2',[adminController::class,'showcategories'])->name('showcategories');
+route::get('/admindash1/createSER',[adminController::class,'createSER'])->name('createSER');
 
-route::get('/admindash3',[adminController::class,'showpersonnels'])->name('showpersonnels');
+route::post('/admindash1/storeSER',[adminController::class,'storeSER'])->name('storeSER');
+
+route::delete('/admindash1/{ID_SERVICE}',[adminController::class,'destroySER'])->name('destroySER');
+
+route::get('/admindash1/{ID_SERVICE}/editSER',[adminController::class,'editSER'])->name('editSER');
+
+route::put('/admindash1/{ID_SERVICE}',[adminController::class,'updateSER'])->name('updateSER');
+
+//--------------------------------------------------------------------------------------------------------------------------------
+
+route::get('/admindash2',[adminController::class,'showcategories'])->name('showcategories');
 
 route::get('/admindash2/createREC',[adminController::class,'createREC'])->name('createREC');
 
 route::post('/admindash2/storeREC',[adminController::class,'storeREC'])->name('storeREC');
 
 route::delete('/admindash2/{ID_CATEGORIE}',[adminController::class,'destroyREC'])->name('destroyREC');
+
+route::get('/admindash2/{ID_CATEGORIE}/editREC',[adminController::class,'editREC'])->name('editREC');
+
+route::put('/admindash2/{ID_CATEGORIE}',[adminController::class,'updateREC'])->name('updateREC');
+
+//-------------------------------------------------------------------------------------------------------------------------------
+
+route::get('/admindash3',[adminController::class,'showpersonnels'])->name('showpersonnels');

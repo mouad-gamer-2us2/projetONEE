@@ -55,7 +55,7 @@
                         </a>
                     </div>
                     <div class="col align-self-center">
-                        <a class="nav-link color1" href="{{route('showcategories')}}">
+                        <a class="nav-link color1"href="{{route('showcategories')}}">
                             <span class="menu-title color1">Catégories</span> 
                         </a>
                     </div>
@@ -94,7 +94,7 @@
           <div class="content-wrapper">
             <div class="container d-flex justify-content-center align-items-center">
               <div class="page-header text-center">
-                  <h3 class="page-title">Vos services</h3>
+                  <h3 class="page-title">Vos services ONEE </h3>
                   
               </div>
           </div>
@@ -103,63 +103,48 @@
               <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                            <!-- -->
-                            <h4 class="card-title">Les Services de l'ONEE</h4>
+                    <h4 class="card-title">Ajouter des services  </h4>
+                    <form action="{{ route('storeSER') }}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Nom du service </label>
+                          <input type="text" class="form-control" name="NOM_SERVICE" aria-describedby="emailHelp">
+                          @error('NOM_SERVICE')
+                          <div class="text-danger small">
+                            {{ $message }}
+                          </div>
+                          @enderror
+
+                          <label for="exampleInputEmail1" class="form-label">la Catégorie du service </label>
+                          <input type="text" class="form-control" name="CATEGORIE_SERVICE" aria-describedby="emailHelp">
+                          @error('CATEGORIE_SERVICE')
+                          <div class="text-danger small">
+                            {{ $message }}
+                          </div>
+                          @enderror
+
+                          <label for="exampleInputEmail1" class="form-label"> Description du service </label>
+                          
+                          <textarea class="form-control left-aligned-textarea" name="DESCRIPTION" rows="3" aria-describedby="emailHelp">
+
+                          </textarea>
+                          @error('DESCRIPTION')
+                          <div class="text-danger small">
+                            {{ $message }}
+                          </div>
+                          @enderror
+
+                          <label for="exampleInputEmail1" class="form-label">Appartenance du service</label>
+                          <input type="text" class="form-control" name="APPARTENANCE" aria-describedby="emailHelp">
+                          @error('APPARTENANCE')
+                          <div class="text-danger small">
+                            {{ $message }}
+                          </div>
+                          @enderror
+
                         </div>
-                        <div class="col-auto">
-                           
-                            <a href="{{ route('createSER') }}" class="btn btn-success">Ajouter une Service</a>
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th> # </th>
-                            <th> Nom Services </th>
-                            <th> Categories </th>
-                            <th> Description </th>
-                            <th> Appartenance </th>
-                            <th> Actions </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                            
-                            
-                            
-                            @foreach ($SERVICES as $S)
-                            <tr>
-                                <td>{{ $S->ID_SERVICE }}</td>
-                                <td>{{ $S->NOM_SERVICE }}</td>
-                                <td>{{ $S->CATEGORIE_SERVICE }}</td>
-                                <td>{{ $S->DESCRIPTION }}</td>
-                                <td>{{ $S->APPARTENANCE }}</td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-auto">
-                                            <form action="{{ route('editSER',$S->ID_SERVICE) }}" method="GET">
-                                               
-                                                
-                                            <button type="submit" class="btn btn-info btn-sm">Modifier</button>
-                                            </form>
-                                        </div>
-                                        <div class="col-auto">
-                                            <form action="{{ route('destroySER',$S->ID_SERVICE) }}" method="POST">
-                                                @method('DELETE')
-                                                @csrf
-                                        
-                                            <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                      </table>
-                    </div>
+                        <button type="submit" class="btn btn-success">Ajouter</button>
+                      </form>
                   </div>
                 </div>
               </div>

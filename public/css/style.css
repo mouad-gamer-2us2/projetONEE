@@ -3464,6 +3464,10 @@ progress {
   color: #fff;
   border-color: #373b3e; }
 
+  .left-aligned-textarea {
+    text-align: left;
+}
+
 .table-responsive {
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch; }

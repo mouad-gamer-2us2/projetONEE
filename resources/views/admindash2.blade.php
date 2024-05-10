@@ -131,7 +131,9 @@
                                 <td>
                                     <div class="row">
                                         <div class="col-auto">
-                                            <form action="" method="POST">
+                                            <form action="{{ route('editREC',$CR->ID_CATEGORIE) }}" method="GET">
+                                               
+                                                
                                             <button type="submit" class="btn btn-info btn-sm">Modifier</button>
                                             </form>
                                         </div>
