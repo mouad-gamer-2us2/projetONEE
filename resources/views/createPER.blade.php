@@ -55,7 +55,7 @@
                         </a>
                     </div>
                     <div class="col align-self-center">
-                        <a class="nav-link color1" href="{{route('showcategories')}}">
+                        <a class="nav-link color1"href="{{route('showcategories')}}">
                             <span class="menu-title color1">Catégories</span> 
                         </a>
                     </div>
@@ -94,7 +94,7 @@
           <div class="content-wrapper">
             <div class="container d-flex justify-content-center align-items-center">
               <div class="page-header text-center">
-                  <h3 class="page-title">Personnels</h3>
+                  <h3 class="page-title">Vos agents ONEE </h3>
                   
               </div>
           </div>
@@ -103,81 +103,54 @@
               <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                            <!-- -->
-                            <h4 class="card-title">Le Personnels de l'ONEE</h4>
+                    <h4 class="card-title">Ajouter des agents  </h4>
+                    <form action="{{ route('storePER') }}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+
+                          <label for="exampleInputEmail1" class="form-label">Nom complet de l'agent </label>
+                          <input type="text" class="form-control" name="name">
+                          @error('name')
+                          <div class="text-danger small">
+                            {{ $message }}
+                          </div>
+                          @enderror
+
+                          <label for="exampleInputEmail1" class="form-label">Email de l'agent </label>
+                          <input type="mail" class="form-control" name="email">
+                          @error('email')
+                          <div class="text-danger small">
+                            {{ $message }}
+                          </div>
+                          @enderror
+
+
+                          <label for="exampleInputEmail1" class="form-label">Mots de passe de l'agent</label>
+                          <input type="password" class="form-control" name="password" >
+                          @error('password')
+                          <div class="text-danger small">
+                            {{ $message }}
+                          </div>
+                          @enderror
+
+                          <label for="exampleInputEmail1" class="form-label">Confirmer le mots de passe</label>
+                          <input type="password" class="form-control" name="password_confirmation" >
+                          
+                          <label for="exampleInputEmail1" class="form-label">Role de l'agent</label>
+                          <select class="form-select" name="ROLE" aria-label="Default select example">
+                            <option selected>Choisissez un role !</option>
+                            <option value="agent ONEE">agent ONEE</option>
+                            <option value="agent Centre">agent Centre</option>
+                          </select>
+                          @error('ROLE')
+                          <div class="text-danger small">
+                            {{ $message }}
+                          </div>
+                          @enderror
+
                         </div>
-                        <div class="col-auto">
-                           
-                            <a href="{{ route('createPER') }}" class="btn btn-success">Ajouter une Personne</a>
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th  class="text-center"> # </th>
-                            <th class="text-center"> Nom Complet </th>
-                            <th class="text-center"> Email </th>
-                            <th class="text-center"> mots de passe </th>
-                            <th class="text-center"> role </th>
-                            <th class="text-center"> Actions </th>
-                            <th class="text-center"> Services</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                           @foreach ( $personnels as $personne )
-                               <tr>
-                                <td  class="text-center">{{ $personne->id }}</td>
-                                <td class="text-center">{{ $personne->name }}</td>
-                                <td class="text-center">{{ $personne->email }}</td>
-                                <td class="text-center">{{ $personne->info->PWD }}</td>
-                                <td class="text-center">{{ $personne->info->ROLE }}</td>
-                                <td class="text-center"><div class="row">
-                                    <div class="col-auto">
-                                        <form action="" method="POST">
-                                    
-                                        <button type="submit" class="btn btn-secondary btn-sm">+</button>
-                                        </form>
-                                    </div> 
-                                    <div class="col-auto">
-                                        <form action="{{ route('editPER',$personne->id ) }}" method="GET">
-                                           
-                                            
-                                        <button type="submit" class="btn btn-info btn-sm">Modifier</button>
-                                        </form>
-                                    </div>
-                                    <div class="col-auto">
-                                        <form action="{{ route('destroyPER', $personne->id ) }}" method="POST">
-                                            @method('DELETE')
-                                            @csrf
-                                    
-                                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-                                        </form>
-                                    </div>
-                                   
-                                    
-                                </div></td>
-
-                                <td>
-
-                                    @if ($personne->info->ROLE == 'agent ONEE')
-                                    <div class="col-auto">
-                                        <form action="" method="POST">
-                                    
-                                        <button type="submit" class="btn btn-dark btn-sm">Affecter</button>
-                                        </form>
-                                    </div> 
-                                    @endif
-
-                                </td>
-                               </tr>
-                           @endforeach
-                        </tbody>
-                      </table>
-                      {{ $personnels->links() }}
-                    </div>
+                        <button type="submit" class="btn btn-success">Ajouter</button>
+                      </form>
                   </div>
                 </div>
               </div>

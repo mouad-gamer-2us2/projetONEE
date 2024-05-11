@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\agent_centre;
 use App\Models\categorie_reclamation;
 use App\Models\services;
+use App\Models\User;
+use App\Models\info;
 use Illuminate\Http\Request;
 use Termwind\Components\Dd;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\informationEmail;
+use App\Mail\updateEmail;
+use Illuminate\Console\View\Components\Info as ComponentsInfo;
+use Illuminate\Foundation\Auth\User as AuthUser;
 
 class adminController extends Controller
 {//---------------------------------------------------------------------------------------------------------------------------------------
@@ -160,7 +169,129 @@ class adminController extends Controller
 
 //---------------------------------------------------------------------------------------------------------------------------
 
+
     public function showpersonnels()
-    {return view('admindash3');}
+    {
+       // Retrieve users along with their associated info
+         $personnels = User::with('info:ID_INFO,ID_USER,ROLE,PWD')->paginate(6);
+
+        // Pass the data to the view
+        return view('admindash3', compact('personnels'));}
+
+    public function createPER()
+    {return view('createPER');}
+    
+    public function storePER(Request $request)
+    {
+        $nom= $request->name;
+        $mail=$request->email;
+        $passwd=$request->password;
+        $role=$request->ROLE;
+        $passwdh=Hash::make($passwd);
+        
+        //Validation :
+
+        $request->validate([
+            'name' =>'required|unique:Users|min:3|max:40',
+            'email' =>'required|unique:Users|email|min:3|max:40',
+            'password'=>'required|min:9|max:40|confirmed',
+            'ROLE'=>'required',
+
+        ]);
+
+        $newUser = User::create([
+            'name' => $nom,
+            'email' => $mail,
+            'password' => $passwdh,
+        ]);
+
+        $userID = $newUser->id;
+
+        info::create([
+            'PWD' => $passwd, 
+            'ROLE' => $role,
+            'ID_USER' => $userID,
+         ]);
+
+         if($role =='agent Centre')
+         {
+            agent_centre::create([
+                'ID_ACENTRE'=>$userID,
+            ]);
+         }
+
+         Mail::to($mail)->send(new informationEmail($mail, $passwd));
+
+         return redirect()->route('showpersonnels');
+    }
+
+    public function destroyPER(Request $request, $id)
+    {
+        
+        $personne = User::find($id);
+    
+        
+        if (!$personne) {
+            
+            return redirect()->route('showpersonnels')->with('error', 'person not found.');
+        }
+    
+        
+        $personne->delete();
+    
+        
+        return redirect()->route('showpersonnels')->with('success', 'person deleted successfully.');
+    }
+
+    public function editPER(Request $request,$ID_USER)
+    {
+        
+        $personne = User::join('infos', 'users.id', '=', 'infos.ID_USER')
+                ->where('users.id', $ID_USER)
+                ->first();
+
+
+        return view('editPER',compact('personne'));
+    }
+    
+    public function updatePER(Request $request)
+    {   $id=$request->id;
+        $nom= $request->name;
+        $mail=$request->email;
+        $passwd=$request->password;
+        $passwdh=Hash::make($passwd);
+        
+
+        $request->validate([
+            'name' =>'required|min:3|max:40',
+            'email' =>'required|email|min:3|max:40',
+            'password'=>'required|min:9|max:40|confirmed',
+        ]);
+
+        $updatedUser  = User::find($id);
+
+        
+
+        $updatedUser->fill([
+            'name' => $nom,
+            'email' => $mail,
+            'password' => $passwdh,
+        ])->save();
+
+        
+
+        $updatedInfo = info::where('ID_USER',$id )->first();
+        
+
+        $updatedInfo->fill([
+            'PWD' => $passwd, 
+        ])->save();
+
+        Mail::to($mail)->send(new updateEmail($mail, $passwd));
+
+        return redirect()->route('showpersonnels')->with('success', 'person updated successfully.');
+    }
 
 }
+
+

@@ -144,7 +144,7 @@
                           @enderror
 
                         </div>
-                        <button type="submit" class="btn btn-success">Ajouter</button>
+                        <button type="submit" class="btn btn-success">Modifier</button>
                       </form>
                   </div>
                 </div>

@@ -117,12 +117,12 @@
                       <table class="table">
                         <thead>
                           <tr>
-                            <th> # </th>
-                            <th> Nom Services </th>
-                            <th> Categories </th>
-                            <th> Description </th>
-                            <th> Appartenance </th>
-                            <th> Actions </th>
+                            <th class="text-center"> # </th>
+                            <th class="text-center"> Nom Services </th>
+                            <th class="text-center"> Categories </th>
+                            <th class="text-center"> Description </th>
+                            <th class="text-center"> Appartenance </th>
+                            <th class="text-center"> Actions </th>
                           </tr>
                         </thead>
                         <tbody>
@@ -131,12 +131,12 @@
                             
                             @foreach ($SERVICES as $S)
                             <tr>
-                                <td>{{ $S->ID_SERVICE }}</td>
-                                <td>{{ $S->NOM_SERVICE }}</td>
-                                <td>{{ $S->CATEGORIE_SERVICE }}</td>
-                                <td>{{ $S->DESCRIPTION }}</td>
-                                <td>{{ $S->APPARTENANCE }}</td>
-                                <td>
+                                <td class="text-center">{{ $S->ID_SERVICE }}</td>
+                                <td class="text-center">{{ $S->NOM_SERVICE }}</td>
+                                <td class="text-center">{{ $S->CATEGORIE_SERVICE }}</td>
+                                <td class="text-center">{{ $S->DESCRIPTION }}</td>
+                                <td class="text-center">{{ $S->APPARTENANCE }}</td>
+                                <td class="text-center">
                                     <div class="row">
                                         <div class="col-auto">
                                             <form action="{{ route('editSER',$S->ID_SERVICE) }}" method="GET">
@@ -159,6 +159,7 @@
                             @endforeach
                         </tbody>
                       </table>
+                      {{ $SERVICES->links() }}
                     </div>
                   </div>
                 </div>

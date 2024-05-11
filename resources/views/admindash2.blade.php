@@ -118,17 +118,17 @@
                       <table class="table">
                         <thead>
                           <tr>
-                            <th> # </th>
-                            <th> Categories Réclamation </th>
-                            <th> Actions </th>
+                            <th class="text-center"> # </th>
+                            <th class="text-center"> Categories Réclamation </th>
+                            <th class="text-center"> Actions </th>
                           </tr>
                         </thead>
                         <tbody>
                             @foreach ($CAT_REC as $CR)
                             <tr>
-                                <td>{{ $CR->ID_CATEGORIE }}</td>
-                                <td>{{ $CR->NOM_CATEGORIE }}</td>
-                                <td>
+                                <td class="text-center">{{ $CR->ID_CATEGORIE }}</td>
+                                <td class="text-center">{{ $CR->NOM_CATEGORIE }}</td>
+                                <td class="text-center">
                                     <div class="row">
                                         <div class="col-auto">
                                             <form action="{{ route('editREC',$CR->ID_CATEGORIE) }}" method="GET">
