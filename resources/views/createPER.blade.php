@@ -138,7 +138,7 @@
                           
                           <label for="exampleInputEmail1" class="form-label">Role de l'agent</label>
                           <select class="form-select" name="ROLE" aria-label="Default select example">
-                            <option selected>Choisissez un role !</option>
+                            
                             <option value="agent ONEE">agent ONEE</option>
                             <option value="agent Centre">agent Centre</option>
                           </select>

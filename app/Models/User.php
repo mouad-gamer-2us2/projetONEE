@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(agent_centre::class, 'ID_ACENTRE');
     }
+
+    public function agent_onee()
+    {
+        return $this->hasOne(agent_onee::class, 'ID_AONEE');
+    }
 }

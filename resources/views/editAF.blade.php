@@ -55,7 +55,7 @@
                         </a>
                     </div>
                     <div class="col align-self-center">
-                        <a class="nav-link color1" href="{{route('showcategories')}}">
+                        <a class="nav-link color1"href="{{route('showcategories')}}">
                             <span class="menu-title color1">Catégories</span> 
                         </a>
                     </div>
@@ -93,98 +93,33 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="container d-flex justify-content-center align-items-center">
-              <div class="page-header text-center">
-                  <h3 class="page-title">Personnels</h3>
-                  
-              </div>
+              
           </div>
             
             <div class="row">
               <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                            <!-- -->
-                            <h4 class="card-title">Le Personnels de l'ONEE</h4>
+                    <h4 class="card-title">Modifier l'affectation de cet agent </h4>
+                    <form action="{{ route('updateAF',$id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">les services de l'ONEE</label>
+                          <select class="form-select" name="ID_SER" aria-label="Default select example">
+                            
+                            @foreach ( $affectation as $service)
+                            <option value="{{ $service->ID_SERVICE }}">{{ $service->NOM_SERVICE }}</option> 
+                            @endforeach 
+                          </select>
+                          @error('ID_SER')
+                              {{ $message }}
+                          @enderror
+                          <input type="text" name="ID_AONEE"class="form-control d-none" id="hiddenInput" value="{{ $id }}">
+                        
                         </div>
-                        <div class="col-auto">
-                           
-                            <a href="{{ route('createPER') }}" class="btn btn-success">Ajouter une Personne</a>
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th  class="text-center"> # </th>
-                            <th class="text-center"> Nom Complet </th>
-                            <th class="text-center"> Email </th>
-                            <th class="text-center"> mots de passe </th>
-                            <th class="text-center"> role </th>
-                            <th class="text-center"> Actions </th>
-                            <th class="text-center"> Services</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                           @foreach ( $personnels as $personne )
-                               <tr>
-                                <td  class="text-center">{{ $personne->id }}</td>
-                                <td class="text-center">{{ $personne->name }}</td>
-                                <td class="text-center">{{ $personne->email }}</td>
-                                <td class="text-center">{{ $personne->info->PWD }}</td>
-                                <td class="text-center">{{ $personne->info->ROLE }}</td>
-                                <td class="text-center"><div class="row">
-                                    <div class="col-auto">
-                                        <form action="{{ route('editPER',$personne->id ) }}" method="GET">
-                                           
-                                            
-                                        <button type="submit" class="btn btn-info btn-sm">Modifier</button>
-                                        </form>
-                                    </div>
-                                    <div class="col-auto">
-                                        <form action="{{ route('destroyPER', $personne->id ) }}" method="POST">
-                                            @method('DELETE')
-                                            @csrf
-                                    
-                                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-                                        </form>
-                                    </div>
-                                   
-                                    
-                                </div></td>
-
-                                <td class="text-center">
-
-                                    @if ($personne->info->ROLE == 'agent ONEE')
-                                        @if ($personne->agent_onee)
-                                        <div class="row align-items-center">
-                                            <div class="col-auto">
-                                                <form action="{{ route('editAF',$personne->id) }}" method="GET">
-                                                    <button type="submit" class="btn btn-info btn-sm">{{ $personne->agent_onee->service->NOM_SERVICE }}</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        @else
-                                        <div class="row align-items-center"> 
-                                            <div class="col-auto">
-                                                <form action="{{ route('createAF',$personne->id) }}" method="GET">
-                                                  
-                                                <button type="submit" class="btn btn-success btn-sm">Affecter</button>
-                                                
-                                                </form>
-                                            </div> 
-                                        </div>
-                                        @endif
-                                    @endif
-
-                                </td>
-                               </tr>
-                           @endforeach
-                        </tbody>
-                      </table>
-                      {{ $personnels->links() }}
-                    </div>
+                        <button type="submit" class="btn btn-success">Modifier</button>
+                      </form>
                   </div>
                 </div>
               </div>

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\informationEmail;
 use App\Mail\updateEmail;
+use App\Models\agent_onee;
 use Illuminate\Console\View\Components\Info as ComponentsInfo;
 use Illuminate\Foundation\Auth\User as AuthUser;
 
@@ -33,10 +34,10 @@ class adminController extends Controller
         //Validation :
 
         $request->validate([
-            'NOM_SERVICE'=>'required|unique:SERVICES|min:3|max:10',
-            'CATEGORIE_SERVICE'=>'required|min:3|max:10',
+            'NOM_SERVICE'=>'required|unique:SERVICES|min:3|max:40',
+            'CATEGORIE_SERVICE'=>'required|min:3|max:40',
             'DESCRIPTION'=>'required',
-            'APPARTENANCE'=>'required|min:3|max:10',
+            'APPARTENANCE'=>'required|min:3|max:40',
         ]);
 
         services::create($request->post()
@@ -73,10 +74,10 @@ class adminController extends Controller
     public function updateSER(Request $request)
     {
         $request->validate([
-            'NOM_SERVICE'=>'required|min:3|max:10',
-            'CATEGORIE_SERVICE'=>'required|min:3|max:10',
+            'NOM_SERVICE'=>'required|min:3|max:40',
+            'CATEGORIE_SERVICE'=>'required|min:3|max:40',
             'DESCRIPTION'=>'required',
-            'APPARTENANCE'=>'required|min:3|max:10',
+            'APPARTENANCE'=>'required|min:3|max:40',
         ]);
         $id= $request->ID_SERVICE;
         $newNOM=$request->NOM_SERVICE;
@@ -291,6 +292,61 @@ class adminController extends Controller
 
         return redirect()->route('showpersonnels')->with('success', 'person updated successfully.');
     }
+
+
+    public function createAF(Request $request,$id)
+    {
+        $affectation = services::all();
+        
+        return view('createAF',compact('affectation','id'));
+    }
+
+    public function storeAF(Request $request)
+    {
+        $ID_AONEE= $request->ID_AONEE;
+        $ID_SER=$request->ID_SER;
+        
+        //Validation :
+
+        $request->validate([
+            'ID_SER' =>'required',
+        ]);
+
+        agent_onee::create([
+            'ID_AONEE'=>$ID_AONEE,
+            'ID_SER'=>$ID_SER,
+        ]);
+
+        return redirect()->route('showpersonnels');
+    }
+
+    public function editAF(Request $request,$id)
+    {
+        $affectation = services::all();
+        
+        return view('editAF',compact('affectation','id'));
+    }
+
+    public function updateAF(Request $request)
+    {
+        $request->validate([
+            'ID_SER' =>'required',
+        ]);
+        $ID_SER= $request->ID_SER;
+        $ID_AONEE=$request->ID_AONEE;
+
+        
+
+        $affectation = agent_onee::find($ID_AONEE);
+
+        $affectation->fill([
+            'ID_SER'=>$ID_SER,
+        ])->save();
+        return redirect()->route('showpersonnels')->with('success', 'Category updated successfully.');
+    }
+
+
+
 
 }
 

@@ -88,6 +88,14 @@ route::post('/admindash3/storePER',[adminController::class,'storePER'])->name('s
 
 route::delete('/admindash3/{id}',[adminController::class,'destroyPER'])->name('destroyPER');
 
-route::get('/admindash3/{id}/editREC',[adminController::class,'editPER'])->name('editPER');
+route::get('/admindash3/{id}/editPER',[adminController::class,'editPER'])->name('editPER');
 
 route::put('/admindash3/{id}',[adminController::class,'updatePER'])->name('updatePER');
+
+route::get('/admindash3/{id}/createAF',[adminController::class,'createAF'])->name('createAF');
+
+route::post('/admindash3/storeAF',[adminController::class,'storeAF'])->name('storeAF');
+
+route::get('/admindash3/{id}/editAF',[adminController::class,'editAF'])->name('editAF');
+
+route::put('/admindash3/{id}',[adminController::class,'updateAF'])->name('updateAF');
