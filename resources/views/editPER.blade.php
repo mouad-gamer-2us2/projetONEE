@@ -104,7 +104,7 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">modifier les informations de l'agents  </h4>
-                    <form action="{{ route('updatePER',$personne->ID_USER) }}" method="POST">
+                    <form action="{{ route('modifypersonne',  $personne->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">

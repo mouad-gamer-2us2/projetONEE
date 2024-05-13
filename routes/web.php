@@ -80,6 +80,8 @@ route::put('/admindash2/{ID_CATEGORIE}',[adminController::class,'updateREC'])->n
 
 //-------------------------------------------------------------------------------------------------------------------------------
 
+route::put('/admindash3/editPER/{id}',[adminController::class,'updatePER'])->name('modifypersonne');
+
 route::get('/admindash3',[adminController::class,'showpersonnels'])->name('showpersonnels');
 
 route::get('/admindash3/createPER',[adminController::class,'createPER'])->name('createPER');
@@ -90,7 +92,7 @@ route::delete('/admindash3/{id}',[adminController::class,'destroyPER'])->name('d
 
 route::get('/admindash3/{id}/editPER',[adminController::class,'editPER'])->name('editPER');
 
-route::put('/admindash3/{id}',[adminController::class,'updatePER'])->name('updatePER');
+
 
 route::get('/admindash3/{id}/createAF',[adminController::class,'createAF'])->name('createAF');
 
