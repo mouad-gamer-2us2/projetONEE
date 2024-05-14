@@ -122,7 +122,7 @@
                             <th class="text-center"> Email </th>
                             <th class="text-center"> mots de passe </th>
                             <th class="text-center"> role </th>
-                            <th class="text-center"> Actions </th>
+                            <th class="text-center" colspan="2">Action</th>
                             <th class="text-center"> Services</th>
                           </tr>
                         </thead>
@@ -134,25 +134,26 @@
                                 <td class="text-center">{{ $personne->email }}</td>
                                 <td class="text-center">{{ $personne->info->PWD }}</td>
                                 <td class="text-center">{{ $personne->info->ROLE }}</td>
-                                <td class="text-center"><div class="row">
-                                    <div class="col-auto">
-                                        <form action="{{ route('editPER',$personne->id ) }}" method="GET">
-                                           
-                                            
-                                        <button type="submit" class="btn btn-info btn-sm">Modifier</button>
-                                        </form>
-                                    </div>
-                                    <div class="col-auto">
-                                        <form action="{{ route('destroyPER', $personne->id ) }}" method="POST">
-                                            @method('DELETE')
-                                            @csrf
-                                    
-                                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-                                        </form>
-                                    </div>
+                                         <td >
                                    
-                                    
-                                </div></td>
+                                       
+                                            <form action="{{ route('editPER',$personne->id ) }}" method="GET">
+                                            
+                                                
+                                            <button type="submit" class="btn btn-info btn-sm ">Modifier</button>
+                                            </form>
+                                        </td>
+                                        <td>       
+                                            <form action="{{ route('destroyPER', $personne->id ) }}" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                        
+                                            <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                            </form>
+                                   
+                                        
+                                  
+                                         </td>
 
                                 <td class="text-center">
 
