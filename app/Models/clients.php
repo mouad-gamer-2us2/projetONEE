@@ -19,7 +19,11 @@ class clients extends Model
         'EMAIL',
     ];
 
-    
+    public function demande()
+    {
+        return $this->hasMany(demande_rendez_vous::class, 'ID_CLI');
+    }
+
 
     
 }

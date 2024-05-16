@@ -16,5 +16,11 @@ class agent_centre extends Model
     {
         return $this->belongsTo(User::class, 'ID_ACENTRE', 'id');
     }
+
+    public function demande()
+    {
+        return $this->hasMany(demande_rendez_vous::class, 'ID_A_CENTRE');
+    }
+
     
 }
