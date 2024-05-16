@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TODO;
 use App\Models\Reclamation;
+use App\Models\reclamations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +15,7 @@ class ToDoController extends Controller
      $todos = TODO::select('todo.*')
             ->where('todo.client_id', $user->id)
             ->get();
-    $reclamations = Reclamation::select('reclamations.*')
+    $reclamations = reclamations::select('reclamations.*')
             ->get();
     return view( "dashboard",['todos' => $todos,'reclamations' => $reclamations]);
    }

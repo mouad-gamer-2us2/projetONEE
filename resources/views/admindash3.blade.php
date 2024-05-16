@@ -128,6 +128,7 @@
                         </thead>
                         <tbody>
                            @foreach ( $personnels as $personne )
+                           @if($personne->info->ROLE != 'Admin')
                                <tr>
                                 <td  class="text-center">{{ $personne->id }}</td>
                                 <td class="text-center">{{ $personne->name }}</td>
@@ -181,6 +182,7 @@
 
                                 </td>
                                </tr>
+                               @endif
                            @endforeach
                         </tbody>
                       </table>
