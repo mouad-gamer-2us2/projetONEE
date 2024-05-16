@@ -110,7 +110,15 @@
                         </div>
                         <div class="col-auto">
                            
-                            <a href="{{ route('createSER') }}" class="btn btn-success">Ajouter une Service</a>
+                            <a href="{{ route('createSER') }}" class="btn btn-success" title="Ajouter un service">
+                                <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                <lord-icon
+                                    src="https://cdn.lordicon.com/hqymfzvj.json"
+                                    trigger="hover"
+                                    colors="primary:#ffffff"
+                                    style="width:20px;height:20px">
+                                </lord-icon>
+                            </a>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -122,7 +130,7 @@
                             <th class="text-center"> Categories </th>
                             <th class="text-center"> Description </th>
                             <th class="text-center"> Appartenance </th>
-                            <th class="text-center"> Actions </th>
+                            <th class="text-center" colspan="2"> Actions </th>
                           </tr>
                         </thead>
                         <tbody>
@@ -142,19 +150,41 @@
                                             <form action="{{ route('editSER',$S->ID_SERVICE) }}" method="GET">
                                                
                                                 
-                                            <button type="submit" class="btn btn-info btn-sm">Modifier</button>
+                                            <button type="submit" class="btn btn-info btn-sm" title="Modifier">
+                                                <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                                <lord-icon
+                                                    src="https://cdn.lordicon.com/pflszboa.json"
+                                                    trigger="hover"
+                                                    colors="primary:#ffffff"
+                                                    style="width:18px;height:18px">
+                                                </lord-icon>
+                                            </button>
                                             </form>
                                         </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
                                         <div class="col-auto">
                                             <form action="{{ route('destroySER',$S->ID_SERVICE) }}" method="POST">
                                                 @method('DELETE')
                                                 @csrf
                                         
-                                            <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Supprimer">
+                                                <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                                <lord-icon
+                                                    src="https://cdn.lordicon.com/wpyrrmcq.json"
+                                                    trigger="hover"
+                                                    colors="primary:#ffffff"
+                                                    style="width:18px;height:18px">
+                                                </lord-icon>
+                                            </button>
                                             </form>
                                         </div>
-                                    </div>
+                                </div>
                                 </td>
+                               
+                                
                             </tr>
                             @endforeach
                         </tbody>
@@ -175,6 +205,18 @@
       </div>
    
     </div>
+    @if(Session::has('message'))
+    <script>
+       Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "{{ Session::get('message') }}",
+            showConfirmButton: false,
+            timer: 1500
+        });
+
+      </script>
+    @endif
  
 
    

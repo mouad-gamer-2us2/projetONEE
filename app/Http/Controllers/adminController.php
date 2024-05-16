@@ -34,8 +34,8 @@ class adminController extends Controller
         //Validation :
 
         $request->validate([
-            'NOM_SERVICE'=>'required|unique:SERVICES|min:3|max:40',
-            'CATEGORIE_SERVICE'=>'required|min:3|max:40',
+            'NOM_SERVICE'=>'required|unique:SERVICES|min:3',
+            'CATEGORIE_SERVICE'=>'required|min:3',
             'DESCRIPTION'=>'required',
             'APPARTENANCE'=>'required|min:3|max:40',
         ]);
@@ -43,7 +43,7 @@ class adminController extends Controller
         services::create($request->post()
         );
 
-        return redirect()->route('showservices');
+        return redirect()->route('showservices')->with('message','le service a été ajouté');
     }
 
     public function destroySER(Request $request, $ID_SERVICE)
@@ -61,7 +61,7 @@ class adminController extends Controller
         $service->delete();
     
         
-        return redirect()->route('showservices')->with('success', 'Category deleted successfully.');
+        return redirect()->route('showservices')->with('message','le service a été suprimé');
     }
 
     public function editSER(Request $request,$ID_SERVICE)
@@ -74,8 +74,8 @@ class adminController extends Controller
     public function updateSER(Request $request)
     {
         $request->validate([
-            'NOM_SERVICE'=>'required|min:3|max:40',
-            'CATEGORIE_SERVICE'=>'required|min:3|max:40',
+            'NOM_SERVICE'=>'required|min:3',
+            'CATEGORIE_SERVICE'=>'required|min:3',
             'DESCRIPTION'=>'required',
             'APPARTENANCE'=>'required|min:3|max:40',
         ]);
@@ -92,7 +92,7 @@ class adminController extends Controller
             'DESCRIPTION'=>$newDES,
             'APPARTENANCE'=>$newAPP,
         ])->save();
-        return redirect()->route('showservices')->with('success', 'service updated successfully.');
+        return redirect()->route('showservices')->with('message','le service a été modifié');
     }
 
 
@@ -122,7 +122,7 @@ class adminController extends Controller
         categorie_reclamation::create($request->post()
         );
 
-        return redirect()->route('showcategories');
+        return redirect()->route('showcategories')->with('message','la categorie été ajoutée');
     }
 
     public function destroyREC(Request $request, $ID_CATEGORIE)
@@ -140,7 +140,7 @@ class adminController extends Controller
         $category->delete();
     
         
-        return redirect()->route('showcategories')->with('success', 'Category deleted successfully.');
+        return redirect()->route('showcategories')->with('message','la categorie été supprimée');
     }
     
     public function editREC(Request $request,$ID_CATEGORIE)
@@ -165,7 +165,7 @@ class adminController extends Controller
         $category->fill([
             'NOM_CATEGORIE'=>$new,
         ])->save();
-        return redirect()->route('showcategories')->with('success', 'Category updated successfully.');
+        return redirect()->route('showcategories')->with('message','la categorie été modifiée');
     }
 
 //---------------------------------------------------------------------------------------------------------------------------
@@ -180,7 +180,8 @@ class adminController extends Controller
         return view('admindash3', compact('personnels'));}
 
     public function createPER()
-    {return view('createPER');}
+    {  
+        return view('createPER');}
     
     public function storePER(Request $request)
     {
@@ -223,7 +224,7 @@ class adminController extends Controller
 
          Mail::to($mail)->send(new informationEmail($mail, $passwd));
 
-         return redirect()->route('showpersonnels');
+         return redirect()->route('showpersonnels')->with('message','l\'agent a été ajoutée');
     }
 
     public function destroyPER(Request $request, $id)
@@ -241,7 +242,7 @@ class adminController extends Controller
         $personne->delete();
     
         
-        return redirect()->route('showpersonnels')->with('success', 'person deleted successfully.');
+        return redirect()->route('showpersonnels')->with('message','l\'agent a été supprimée');
     }
 
     public function editPER(Request $request,$ID_USER)
@@ -290,7 +291,7 @@ class adminController extends Controller
 
         Mail::to($mail)->send(new updateEmail($mail, $passwd));
 
-        return redirect()->route('showpersonnels')->with('success', 'person updated successfully.');
+        return redirect()->route('showpersonnels')->with('message','l\'agent a été modifiée');
     }
 
 
@@ -317,7 +318,7 @@ class adminController extends Controller
             'ID_SER'=>$ID_SER,
         ]);
 
-        return redirect()->route('showpersonnels');
+        return redirect()->route('showpersonnels')->with('message','l\'agent a été affectée');
     }
 
     public function editAF(Request $request,$id)
@@ -342,7 +343,7 @@ class adminController extends Controller
         $affectation->fill([
             'ID_SER'=>$ID_SER,
         ])->save();
-        return redirect()->route('showpersonnels')->with('success', 'Category updated successfully.');
+        return redirect()->route('showpersonnels')->with('message','l\'affectation a été modifiée');
     }
 
 

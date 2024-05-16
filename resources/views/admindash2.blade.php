@@ -110,48 +110,69 @@
                         </div>
                         <div class="col-auto">
                            
-                            <a href="{{ route('createREC') }}" class="btn btn-success">Ajouter une Catégorie</a>
+                            <a href="{{ route('createREC') }}" class="btn btn-success" title="Ajouter une categorie">
+                                <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                <lord-icon
+                                    src="https://cdn.lordicon.com/hqymfzvj.json"
+                                    trigger="hover"
+                                    colors="primary:#ffffff"
+                                    style="width:20px;height:20px">
+                                </lord-icon>
+                            </a>
                         </div>
                     </div>
                     
                     <div class="table-responsive">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th class="text-center"> # </th>
-                            <th class="text-center"> Categories Réclamation </th>
-                            <th class="text-center"> Actions </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($CAT_REC as $CR)
-                            <tr>
-                                <td class="text-center">{{ $CR->ID_CATEGORIE }}</td>
-                                <td class="text-center">{{ $CR->NOM_CATEGORIE }}</td>
-                                <td class="text-center">
-                                    <div class="row">
-                                        <div class="col-auto">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center"> # </th>
+                                    <th class="text-center" style="width: 60%;"> Categories Réclamation </th>
+                                    <th class="text-center" colspan="2"> Actions </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($CAT_REC as $CR)
+                                <tr>
+                                    <td class="text-center">{{ $CR->ID_CATEGORIE }}</td>
+                                    <td class="text-center">{{ $CR->NOM_CATEGORIE }}</td>
+                                    <td>
+                                        <div class="text-end">
                                             <form action="{{ route('editREC',$CR->ID_CATEGORIE) }}" method="GET">
-                                               
-                                                
-                                            <button type="submit" class="btn btn-info btn-sm">Modifier</button>
+                                                <button type="submit" class="btn btn-info btn-sm" title="Modifier">
+                                                    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                                    <lord-icon
+                                                        src="https://cdn.lordicon.com/pflszboa.json"
+                                                        trigger="hover"
+                                                        colors="primary:#ffffff"
+                                                        style="width:18px;height:18px">
+                                                    </lord-icon>
+                                                </button>
                                             </form>
                                         </div>
-                                        <div class="col-auto">
+                                    </td>
+                                    <td>
+                                        <div class="text-start">
                                             <form action="{{ route('destroyREC',$CR->ID_CATEGORIE) }}" method="POST">
                                                 @method('DELETE')
                                                 @csrf
-                                        
-                                            <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                                <button type="submit" class="btn btn-danger btn-sm" title="Supprimer">
+                                                    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                                    <lord-icon
+                                                        src="https://cdn.lordicon.com/wpyrrmcq.json"
+                                                        trigger="hover"
+                                                        colors="primary:#ffffff"
+                                                        style="width:18px;height:18px">
+                                                    </lord-icon>
+                                                </button>
                                             </form>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                         
-                      </table>
                       {{ $CAT_REC->links() }}
                     </div>
                   </div>
@@ -168,6 +189,18 @@
       </div>
    
     </div>
+    @if(Session::has('message'))
+    <script>
+       Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "{{ Session::get('message') }}",
+            showConfirmButton: false,
+            timer: 2000
+        });
+
+      </script>
+    @endif
  
 
    

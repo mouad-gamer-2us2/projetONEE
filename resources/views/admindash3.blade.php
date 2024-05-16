@@ -110,7 +110,15 @@
                         </div>
                         <div class="col-auto">
                            
-                            <a href="{{ route('createPER') }}" class="btn btn-success">Ajouter une Personne</a>
+                            <a href="{{ route('createPER') }}" class="btn btn-success" title="Ajouter un agent">
+                                <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                <lord-icon
+                                    src="https://cdn.lordicon.com/spukaklw.json"
+                                    trigger="hover"
+                                    colors="primary:#ffffff"
+                                    style="width:20px;height:20px">
+                                </lord-icon>
+                            </a>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -141,7 +149,15 @@
                                             <form action="{{ route('editPER',$personne->id ) }}" method="GET">
                                             
                                                 
-                                            <button type="submit" class="btn btn-info btn-sm ">Modifier</button>
+                                                <button type="submit" class="btn btn-info btn-sm" title="Modifier">
+                                                    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                                    <lord-icon
+                                                        src="https://cdn.lordicon.com/pflszboa.json"
+                                                        trigger="hover"
+                                                        colors="primary:#ffffff"
+                                                        style="width:18px;height:18px">
+                                                    </lord-icon>
+                                                </button>
                                             </form>
                                         </td>
                                         <td>       
@@ -149,7 +165,15 @@
                                                 @method('DELETE')
                                                 @csrf
                                         
-                                            <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                                <button type="submit" class="btn btn-danger btn-sm" title="Supprimer">
+                                                    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                                    <lord-icon
+                                                        src="https://cdn.lordicon.com/wpyrrmcq.json"
+                                                        trigger="hover"
+                                                        colors="primary:#ffffff"
+                                                        style="width:18px;height:18px">
+                                                    </lord-icon>
+                                                </button>
                                             </form>
                                    
                                         
@@ -172,7 +196,15 @@
                                             <div class="col-auto">
                                                 <form action="{{ route('createAF',$personne->id) }}" method="GET">
                                                   
-                                                <button type="submit" class="btn btn-success btn-sm">Affecter</button>
+                                                <button type="submit" class="btn btn-success btn-sm" title="Affecter">
+                                                    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                                        <lord-icon
+                                                            src="https://cdn.lordicon.com/gfgzffjw.json"
+                                                            trigger="hover"
+                                                            colors="primary:#ffffff"
+                                                            style="width:18px;height:18px">
+                                                        </lord-icon>
+                                                </button>
                                                 
                                                 </form>
                                             </div> 
@@ -203,6 +235,19 @@
    
     </div>
  
+    @if(Session::has('message'))
+    <script>
+       Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "{{ Session::get('message') }}",
+            showConfirmButton: false,
+            timer: 2000
+        });
+
+      </script>
+    @endif
+
 
    
 </x-app-layout>
