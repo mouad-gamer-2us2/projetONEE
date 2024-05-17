@@ -50,6 +50,8 @@ Route::get('full-calender', [FullCalendarController::class, 'index']);
 
 Route::post('full-calender/action', [FullCalendarController::class, 'action']);
 
+
+
 //--------------------------------------------------------------------------------------------------------------------------------
 
 route::get('/admindash1',[adminController::class,'showservices'])->name('showservices');
@@ -101,3 +103,4 @@ route::post('/admindash3/storeAF',[adminController::class,'storeAF'])->name('sto
 route::get('/admindash3/{id}/editAF',[adminController::class,'editAF'])->name('editAF');
 
 route::put('/admindash3/{id}',[adminController::class,'updateAF'])->name('updateAF');
+

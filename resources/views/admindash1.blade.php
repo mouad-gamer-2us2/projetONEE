@@ -139,11 +139,11 @@
                             
                             @foreach ($SERVICES as $S)
                             <tr>
-                                <td class="text-center">{{ $S->ID_SERVICE }}</td>
-                                <td class="text-center">{{ $S->NOM_SERVICE }}</td>
-                                <td class="text-center">{{ $S->CATEGORIE_SERVICE }}</td>
-                                <td class="text-center">{{ $S->DESCRIPTION }}</td>
-                                <td class="text-center">{{ $S->APPARTENANCE }}</td>
+                                <td class="text-center text-wrap">{{ $S->ID_SERVICE }}</td>
+                                <td class="text-center text-wrap">{{ $S->NOM_SERVICE }}</td>
+                                <td class="text-center text-wrap">{{ $S->CATEGORIE_SERVICE }}</td>
+                                <td class="text-center text-wrap">{{ $S->DESCRIPTION }}</td>
+                                <td class="text-center text-wrap">{{ $S->APPARTENANCE }}</td>
                                 <td class="text-center">
                                     <div class="row">
                                         <div class="col-auto">
