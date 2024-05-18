@@ -218,6 +218,7 @@
                            @endforeach
                         </tbody>
                       </table>
+                      <br>
                       {{ $personnels->links() }}
                     </div>
                   </div>

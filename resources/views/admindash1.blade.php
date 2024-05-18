@@ -189,6 +189,7 @@
                             @endforeach
                         </tbody>
                       </table>
+                      <br>
                       {{ $SERVICES->links() }}
                     </div>
                   </div>
