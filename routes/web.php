@@ -132,6 +132,8 @@ Route::middleware(['auth', 'role:agent Centre'])->group(function () {
     //-----------------------------------------------------------------------------------------------
 
     route::get('/reclamation',[CenterController::class,'showreclamation'])->name('showreclamation');
+
+    route::get('/historique',[CenterController::class,'showhistorique'])->name('showhistorique');
 });
 
 

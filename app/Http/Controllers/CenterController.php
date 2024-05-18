@@ -89,4 +89,9 @@ class CenterController extends Controller
             ])->save();
             return redirect()->route('showclients')->with('message','le client a été modifié');
         }
+
+        public function showhistorique()
+        {
+            return view('historique');
+        }
 }

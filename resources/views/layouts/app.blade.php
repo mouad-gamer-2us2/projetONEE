@@ -49,6 +49,7 @@
 
         @stack('modals')
 
+      
         @livewireScripts
            <script src="{{asset('vendors/js/vendor.bundle.base.js')}}"></script>
     <!-- endinject -->
@@ -66,5 +67,23 @@
     <script src="{{asset('js/todolist.js')}}"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Navigation-blocking script here
+        (function() {
+            // Disable back and forward navigation
+            window.addEventListener('popstate', function(event) {
+                // This prevents the default behavior of the back and forward buttons
+                history.pushState(null, null, window.location.href);
+            });
+    
+            // Disable hashchange navigation
+            window.addEventListener('hashchange', function(event) {
+                // This prevents the default behavior of the hashchange event
+                history.replaceState(null, null, window.location.href);
+            });
+        })();
+    });
+    </script>
     </body>
 </html>
