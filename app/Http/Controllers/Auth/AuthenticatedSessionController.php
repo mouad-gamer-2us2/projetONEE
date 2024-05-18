@@ -27,26 +27,28 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
+    
         $request->session()->regenerate();
-
+    
         $user = Auth::user();
-
+    
         $userInfo = info::where('ID_USER', $user->id)->first();
-
+        
         if ($userInfo) {
             // Check the user's role
             if ($userInfo->ROLE === 'Admin') {
                 return redirect()->route('showservices');
             } elseif ($userInfo->ROLE === 'agent ONEE') {
                 return redirect()->intended(RouteServiceProvider::HOME);
+            } elseif($userInfo->ROLE === 'agent Centre'){
+                return redirect()->route('showclients');
             }
         }
-    
-        // Default redirection if user's role is not Admin or agent ONEE
+        
+        // If the user's role is not recognized, redirect to the login page with an error message
         return redirect()->route('login')->with('error', 'Invalid role');
     }
-
+    
     
 
     /**

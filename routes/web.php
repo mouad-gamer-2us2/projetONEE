@@ -35,11 +35,10 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-
-
 Route::middleware(['auth', 'role:agent ONEE'])->group(function () {
-    
-});
+
+
+
 
 Route::get ('/dashboard', [ToDoController:: class, 'index'])->name('dashboard');
 
@@ -52,6 +51,8 @@ Route::get('/tasks/{id}/edit', [ToDoController::class, 'edit'])->name('tasks.edi
 Route::get('full-calender', [FullCalendarController::class, 'index']);
 
 Route::post('full-calender/action', [FullCalendarController::class, 'action']);
+
+});
 
 
 
@@ -109,29 +110,30 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
 
     route::get('/admindash3/{id}/editAF',[adminController::class,'editAF'])->name('editAF');
 
-    route::put('/admindash3/{id}',[adminController::class,'updateAF'])->name('updateAF');
-<<<<<<< HEAD
-//------------------------------------------------------------------------------------------------------------------
+    route::put('/admindash3/{id}',[adminController::class,'updateAF'])->name('updateAF');});
 
-route::get('/clients',[CenterController::class,'showclients'])->name('showclients');
+//--------------------------------------------------------------------------------------------------------
 
-route::get('/clients/createcl',[CenterController::class,'createcl'])->name('createcl');
+Route::middleware(['auth', 'role:agent Centre'])->group(function () {
+    route::get('/clients',[CenterController::class,'showclients'])->name('showclients');
 
-route::post('/clients/storecl',[CenterController::class,'storecl'])->name('storecl');
+    route::get('/clients/createcl',[CenterController::class,'createcl'])->name('createcl');
 
-route::delete('/clients/{id}',[CenterController::class,'destroycl'])->name('destroycl');
+    route::post('/clients/storecl',[CenterController::class,'storecl'])->name('storecl');
 
-route::get('/clients/{id}/editcl',[CenterController::class,'editcl'])->name('editcl');
+    route::delete('/clients/{id}',[CenterController::class,'destroycl'])->name('destroycl');
 
-route::put('/clients/{NUM_CONTRAT}',[CenterController::class,'updatecl'])->name('updatecl');
+    route::get('/clients/{id}/editcl',[CenterController::class,'editcl'])->name('editcl');
 
-route::put('/clients/{id}',[CenterController::class,'voirpluscl'])->name('voirpluscl');
+    route::put('/clients/{NUM_CONTRAT}',[CenterController::class,'updatecl'])->name('updatecl');
 
-//-----------------------------------------------------------------------------------------------
+    route::put('/clients/{id}',[CenterController::class,'voirpluscl'])->name('voirpluscl');
 
-route::get('/reclamation',[CenterController::class,'showreclamation'])->name('showreclamation');
-=======
+    //-----------------------------------------------------------------------------------------------
 
->>>>>>> da45ad675852cf46636840c1822acd1490fc53cf});
+    route::get('/reclamation',[CenterController::class,'showreclamation'])->name('showreclamation');
+});
+
+
 
 
