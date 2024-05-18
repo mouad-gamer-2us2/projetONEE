@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\agent_centre;
 use App\Models\categorie_reclamation;
 use App\Models\services;

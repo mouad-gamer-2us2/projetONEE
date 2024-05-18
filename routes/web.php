@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\CenterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ToDoController;
 use App\Http\Controllers\ProfileController;
@@ -109,6 +110,28 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     route::get('/admindash3/{id}/editAF',[adminController::class,'editAF'])->name('editAF');
 
     route::put('/admindash3/{id}',[adminController::class,'updateAF'])->name('updateAF');
-});
+<<<<<<< HEAD
+//------------------------------------------------------------------------------------------------------------------
+
+route::get('/clients',[CenterController::class,'showclients'])->name('showclients');
+
+route::get('/clients/createcl',[CenterController::class,'createcl'])->name('createcl');
+
+route::post('/clients/storecl',[CenterController::class,'storecl'])->name('storecl');
+
+route::delete('/clients/{id}',[CenterController::class,'destroycl'])->name('destroycl');
+
+route::get('/clients/{id}/editcl',[CenterController::class,'editcl'])->name('editcl');
+
+route::put('/clients/{NUM_CONTRAT}',[CenterController::class,'updatecl'])->name('updatecl');
+
+route::put('/clients/{id}',[CenterController::class,'voirpluscl'])->name('voirpluscl');
+
+//-----------------------------------------------------------------------------------------------
+
+route::get('/reclamation',[CenterController::class,'showreclamation'])->name('showreclamation');
+=======
+
+>>>>>>> da45ad675852cf46636840c1822acd1490fc53cf});
 
 
