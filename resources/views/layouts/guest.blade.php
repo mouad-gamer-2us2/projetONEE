@@ -13,6 +13,33 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <script>
+            window.addEventListener('load', function() {
+                // Check if the user is already logged in
+                if ({{ Auth::check() ? 'true' : 'false' }}) {
+                    // If the user navigates to the login page using back or forward buttons,
+                    // log them out and reload the page to reflect the logout
+                    window.addEventListener('popstate', function(event) {
+                        fetch('{{ route("logout") }}', {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                            },
+                        })
+                        .then(response => {
+                            // Reload the page to reflect the logout
+                            window.location.reload();
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                    });
+                }
+            });
+        </script>
+        
 
        
     </head>
@@ -24,4 +51,5 @@
             </div>
         </div>
     </body>
+   
 </html>

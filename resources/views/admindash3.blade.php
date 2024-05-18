@@ -187,7 +187,7 @@
                                         <div class="row align-items-center">
                                             <div class="col-auto">
                                                 <form action="{{ route('editAF',$personne->id) }}" method="GET">
-                                                    <button type="submit" class="btn btn-info btn-sm">{{ $personne->agent_onee->service->NOM_SERVICE }}</button>
+                                                    <button type="submit" class="btn btn-info btn-sm text-wrap">{{ $personne->agent_onee->service->NOM_SERVICE }}</button>
                                                 </form>
                                             </div>
                                         </div>
