@@ -95,6 +95,11 @@ class CenterController extends Controller
             return redirect()->route('showclients')->with('message','le client a été modifié');
         }
 
+        public function showhistorique()
+        {
+            return view('historique');
+        }
+
         public function voirpluscl(Request $request)
         {
 

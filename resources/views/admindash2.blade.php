@@ -172,7 +172,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        
+                        <br>
                       {{ $CAT_REC->links() }}
                     </div>
                   </div>

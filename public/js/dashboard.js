@@ -560,9 +560,9 @@ const renderCalendar = () => {
     liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`
   }
   currentDate.innerText = `${months[currMonth]} ${currYear}`; // passing current mon and yr as currentDate text
-  daysTag.innerHTML = liTag;
+ 
 }
-renderCalendar();
+
 
 prevNextIcon.forEach(icon => { // getting prev and next icons
   icon.addEventListener("click", () => { // adding click event on both icons
