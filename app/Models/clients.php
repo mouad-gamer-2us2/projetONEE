@@ -24,6 +24,9 @@ class clients extends Model
         return $this->hasMany(demande_rendez_vous::class, 'ID_CLI');
     }
 
+    public function reclamations()
+    {
+        return $this->hasMany(reclamations::class, 'ID_CLI', 'NUM_CONTRAT');}
 
     
 }

@@ -14,4 +14,10 @@ class categorie_reclamation extends Model
     protected $fillable = [
         'NOM_CATEGORIE',
     ];
+
+    public function reclamations()
+    {
+        return $this->hasMany(reclamations::class, 'ID_CAT', 'ID_CATEGORIE');
+    }
+
 }

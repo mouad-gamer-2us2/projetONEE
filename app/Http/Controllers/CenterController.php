@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\clients;
+use App\Models\categorie_reclamation;
+use App\Models\agent_centre;
+use App\Models\reclamations;
+use App\Models\services;
+use Illuminate\Support\Facades\Auth;
 
 class CenterController extends Controller
 {//-------------------------------------------------------------------------------
@@ -88,5 +93,59 @@ class CenterController extends Controller
                 'EMAIL'=>$newEMAIL,
             ])->save();
             return redirect()->route('showclients')->with('message','le client a été modifié');
+        }
+
+        public function voirpluscl(Request $request)
+        {
+
+            $NUM_CONTRAT=$request->NUM_CONTRAT;
+            $client = clients::find($NUM_CONTRAT);
+            return view('voirpluscl', compact('client'));
+        }
+
+//------------------------------Partie Réclamation---------------------------
+
+    public function showrecla()
+    {
+    $reclamation = reclamations::with(['clients:NUM_CONTRAT,NOM_CLIENT', 'services:ID_SERVICE,NOM_SERVICE',
+    'categorie_reclamation:ID_CATEGORIE,NOM_CATEGORIE'])->paginate(6);
+    return view('reclamations',compact('reclamation'));}
+
+        public function createrecla(Request $request){
+
+            $NUM_CONTRAT=$request->NUM_CONTRAT;
+            $categories = categorie_reclamation::all();
+            $user=Auth::user();
+            $id=$user->id;
+            $services = services::all();
+            return view('createrecla', compact('categories', 'id','services','NUM_CONTRAT'));}   
+        
+        public function storerecla(Request $request)
+        {
+            //Validation :
+    
+            $request->validate([
+                'id_cli' => 'required',
+                'id_cat' => 'required',
+                'id_A_centre' => 'required',
+                'id_serv' => 'required',
+                'description' => 'required',
+                'urgence' => 'required',
+                'etat' => 'required'
+            ]);
+    
+            reclamations::create([
+                'DESCRIPTION'=> $request->description,
+                'URGENCE'=> $request->urgence,
+                'ETAT'=> $request->etat,
+                'ID_CLI'=> $request->id_cli,
+                'ID_CAT' => $request->id_cat,
+                'ID_A_CENTRE' => $request->id_A_centre,
+                'ID_SERV'=> $request->id_serv
+            ]
+            );
+             
+            
+            return redirect()->route('showrecla')->with('message','la réclamation a été ajoutée');
         }
 }

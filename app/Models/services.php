@@ -23,4 +23,9 @@ class services extends Model
         return $this->hasMany(demande_rendez_vous::class, 'ID_SER');
     }
 
+    public function reclamations()
+    {
+        return $this->hasMany(reclamations::class, 'ID_SERV', 'ID_SERVICE');
+    }
+
 }

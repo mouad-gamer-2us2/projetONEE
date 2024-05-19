@@ -20,10 +20,10 @@ class reclamations extends Model
         'ID_A_CENTRE',
         'ID_SERV',
     ];
+
     public function client()
     {
-        return $this->belongsTo(clients::class, 'ID_CLI', 'NUM_CONTRAT');
-    }
+        return $this->belongsTo(clients::class, 'ID_CLI', 'NUM_CONTRAT');}
 
     public function service()
     {
