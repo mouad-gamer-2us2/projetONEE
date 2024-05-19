@@ -2001,6 +2001,30 @@ th {
   border-style: solid;
   border-width: 0; }
 
+.normal{
+background-color:#fcba03 !important ;
+color:white;
+}
+
+.bad{
+background-color: #ff7161 !important ;
+color:white;
+}
+
+.verybad{
+background-color:#c0392b  !important ;
+color:white;
+}
+
+.low{
+background-color:#85ffb8  !important ;
+color:white;
+}
+
+.verylow{
+background-color: #27ae60 !important ;
+color:white;
+}
 label {
   display: inline-block; }
 

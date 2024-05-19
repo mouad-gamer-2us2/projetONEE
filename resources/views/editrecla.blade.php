@@ -139,7 +139,7 @@
         <div class="content-wrapper">
           <div class="container d-flex justify-content-center align-items-center">
             <div class="page-header text-center">
-                <h3 class="page-title">Saisie de réclamations </h3>
+                <h3 class="page-title">modifier la réclamations </h3>
                 
             </div>
           </div>
@@ -148,11 +148,14 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Ajouter des clients  </h4>
-                  <form action="{{ route('storerecla') }}" method="POST">
+                  <form action="{{ route('updaterecla') }}" method="POST">
                       @csrf
+                      @method('PUT')
+                      <input type="text" class="form-control d-none" name="ID_RECLAMATION"  value="{{ $ID_RECLAMATION }}" aria-describedby="emailHelp">
                       <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Description </label>
                         <textarea type="text" class="form-control" name="description" aria-describedby="emailHelp">
+                          {{ $reclamations->DESCRIPTION }} 
                         </textarea>
                         @error('description')
                         <div class="text-danger small">
@@ -160,7 +163,7 @@
                         </div>
                         @enderror
 
-                        <label for="exampleInputEmail1" class="form-label">Urgence </label>
+                        <label for="exampleInputEmail1" class="form-label">Urgence : actuellement {{ $reclamations->URGENCE }}  </label>
                         <select class="form-control" name="urgence" aria-describedby="emailHelp">
                         <option value="Très élevé">très élevé</option>
                         <option value="élevé">élevé</option>
@@ -176,9 +179,9 @@
 
                         <input type="text" class="form-control d-none" name="etat"  value="pas encore traitée" aria-describedby="emailHelp">
                       
-                        <input type="text" class="form-control d-none" name="id_cli"  value="{{ $NUM_CONTRAT }}" aria-describedby="emailHelp">
+                        <input type="text" class="form-control d-none" name="id_cli"  value="{{ $reclamations->ID_CLI }} " aria-describedby="emailHelp">
 
-                        <label for="exampleInputEmail1" class="form-label">Catégorie </label>
+                        <label for="exampleInputEmail1" class="form-label">Catégorie : actuellement {{ $reclamations->categorie_reclamation->NOM_CATEGORIE }}  </label>
                         <select class="form-control" name="id_cat" aria-describedby="emailHelp">
                         @foreach ( $categories as $cat)
                         <option value="{{ $cat->ID_CATEGORIE }}" >{{ $cat->NOM_CATEGORIE }}</option>
@@ -190,9 +193,9 @@
                         </div>
                         @enderror
 
-                        <input type="text" class="form-control d-none" name="id_A_centre"  value="{{ $id }}" aria-describedby="emailHelp">
+                        <input type="text" class="form-control d-none" name="id_A_centre"  value="{{ $reclamations->ID_A_CENTRE }} " aria-describedby="emailHelp">
 
-                        <label for="exampleInputEmail1" class="form-label">Services </label>
+                        <label for="exampleInputEmail1" class="form-label">Services : actuellement {{ $reclamations->service->NOM_SERVICE }}</label>
                         <select class="form-control" name="id_serv" aria-describedby="emailHelp">
                         @foreach ( $services as $ser)
                         <option value="{{ $ser->ID_SERVICE }}" >{{ $ser->NOM_SERVICE }}</option>
@@ -206,7 +209,7 @@
 
 
                       </div>
-                      <button type="submit" class="btn btn-success">Ajouter</button>
+                      <button type="submit" class="btn btn-success">modifier</button>
                     </form>
                 </div>
               </div>

@@ -115,38 +115,41 @@ route::put('/admindash1/{ID_SERVICE}',[adminController::class,'updateSER'])->nam
 //--------------------------------------------------------------------------------------------------------
 
 Route::middleware(['auth', 'role:agent Centre'])->group(function () {
+    
     route::get('/clients',[CenterController::class,'showclients'])->name('showclients');
-route::put('/admindash3/{id}',[adminController::class,'updateAF'])->name('updateAF');
-//------------------------------------------------------------------------------------------------------------------
-
-route::get('/clients',[CenterController::class,'showclients'])->name('showclients');
 
     route::get('/clients/createcl',[CenterController::class,'createcl'])->name('createcl');
 
     route::post('/clients/storecl',[CenterController::class,'storecl'])->name('storecl');
-
-    route::delete('/clients/{id}',[CenterController::class,'destroycl'])->name('destroycl');
-route::delete('/clients/{NUM_CONTRAT}',[CenterController::class,'destroycl'])->name('destroycl');
-
-    route::get('/clients/{id}/editcl',[CenterController::class,'editcl'])->name('editcl');
-route::get('/clients/{NUM_CONTRAT}/editcl',[CenterController::class,'editcl'])->name('editcl');
+   
+    route::delete('/clients/{NUM_CONTRAT}',[CenterController::class,'destroycl'])->name('destroycl');
+  
+    route::get('/clients/{NUM_CONTRAT}/editcl',[CenterController::class,'editcl'])->name('editcl');
 
     route::put('/clients/{NUM_CONTRAT}',[CenterController::class,'updatecl'])->name('updatecl');
 
-    route::put('/clients/{id}',[CenterController::class,'voirpluscl'])->name('voirpluscl');
-route::get('/clients/voirpluscl/{NUM_CONTRAT}',[CenterController::class,'voirpluscl'])->name('voirpluscl');
+    route::get('/clients/voirpluscl/{NUM_CONTRAT}',[CenterController::class,'voirpluscl'])->name('voirpluscl');
 
     //-----------------------------------------------------------------------------------------------
 
-route::get('/reclamations',[CenterController::class,'showrecla'])->name('showrecla');
+    route::get('/reclamations',[CenterController::class,'showrecla'])->name('showrecla');
 
-route::post('/clients/createrecla/{NUM_CONTRAT}',[CenterController::class,'createrecla'])->name('createrecla');
+    route::post('/clients/createrecla/{NUM_CONTRAT}',[CenterController::class,'createrecla'])->name('createrecla');
 
-route::post('/clients/storerecla',[CenterController::class,'storerecla'])->name('storerecla');
-
-    route::get('/reclamation',[CenterController::class,'showreclamation'])->name('showreclamation');
+    route::post('/clients/storerecla',[CenterController::class,'storerecla'])->name('storerecla');
 
     route::get('/historique',[CenterController::class,'showhistorique'])->name('showhistorique');
+
+    route::delete('/reclamations/destrorecla/{ID_RECLAMATION}',[CenterController::class,'destroyrecla'])->name('destroyrecla');
+
+    route::get('/reclamations/{ID_RECLAMATION}/editrecla',[CenterController::class,'editrecla'])->name('editrecla');
+
+    route::put('/reclamations/updaterecla',[CenterController::class,'updaterecla'])->name('updaterecla');
+
+    route::post('/reclamations/searchrecla',[CenterController::class,'searchrecla'])->name('searchrecla');
+
+    route::post('/clients/searchcli',[CenterController::class,'searchcli'])->name('searchcli');
+
 });
 
 

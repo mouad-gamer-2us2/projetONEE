@@ -149,41 +149,114 @@
               <div class="card">
                 <div class="card-body">
                   <div class="row">
-                      <div class="col">
-                          <!-- -->
-                          <h4 class="card-title">Informations Sur les réclamations </h4>
+                    <div class="col-md-4">
+                      <h4 class="card-title">Informations Sur les réclamations </h4>
+                  </div>
+                  <div class="col-md-8">
+                    <form method="POST" action="{{ route('searchrecla') }}" class="form-inline">
+                      @csrf
+                      <input class="form-control mr-sm-2" type="search" name="ID_RECLAMATION"placeholder="Search" aria-label="Search">
+                      <button class="btn btn-dark btn-sm" type="submit"> 
+                        <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                        <lord-icon
+                            src="https://cdn.lordicon.com/kkvxgpti.json"
+                            trigger="hover"
+                            colors="primary:#ffffff"
+                            style="width:18px;height:18px">
+                        </lord-icon></button>
+                    </form>
+                  </div>
                       </div>
 
-                  </div>
+                  
                   <div class="table-responsive">
                     <table class="table">
                       <thead>
                         <tr>
                           <th class="text-center"> ID </th>
-                          <th class="text-center"> ID Client </th>
-                          <th class="text-center"> ID Categorie </th>
-                          <th class="text-center"> ID Agent Centre </th>
-                          <th class="text-center"> ID Service </th>
+                          <th class="text-center"> Client </th>
+                          <th class="text-center"> Categorie </th>
+                          <th class="text-center"> Agent Centre </th>
+                          <th class="text-center"> Service responsable</th>
                           <th class="text-center"> Description </th>
                           <th class="text-center"> URGENCE </th>
                           <th class="text-center"> Etat </th>
+                          <th class="text-center" colspan="2"> Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        @foreach ($reclamation as $recla)
+                        
+                        @foreach ($reclamations as $recla)
                         <tr>
-                            <td class="text-center">{{ $recla->ID_RECLAMATION }}</td>
-                            <td class="text-center">{{ $recla->clients->NOM_CLIENT}}</td>
-                            <td class="text-center">{{ $recla->categorie_reclamation->NOM_CATEGORIE }}</td>
-                            <td class="text-center">{{ $recla->ID_A_CENTRE}}</td>
-                            <td class="text-center">{{ $recla->services->NOM_SERVICE }}</td>
-                            <td class="text-center">{{ $recla->DESCRIPTION }}</td>
-                            <td class="text-center">{{ $recla->URGENCE }}</td>
-                            <td class="text-center">{{ $recla->ETAT}}</td>
+                            <td class="text-center text-wrap">{{ $recla->ID_RECLAMATION }}</td>
+                            <td class="text-center text-wrap">{{ $recla->client->NOM_CLIENT}}</td>
+                            <td class="text-center text-wrap">{{ $recla->categorie_reclamation->NOM_CATEGORIE }}</td>
+                            <td class="text-center text-wrap">{{ $recla->agent_centre->user->name }}</td>
+                            <td class="text-center text-wrap">{{ $recla->service->NOM_SERVICE }}</td>
+                            <td class="text-center text-wrap">{{ $recla->DESCRIPTION }}</td>
+                            <td class="text-center text-wrap @switch($recla->URGENCE)
+                              @case('Très élevé')
+                                  verybad
+                                  @break
+                              @case('élevé')
+                                  bad
+                                  @break
+                              @case('moyenne')
+                                  normal
+                                  @break
+                              @case('faible')
+                                  low
+                                  @break
+                              @default
+                                  verylow
+                          @endswitch">
+                              {{ $recla->URGENCE }}
+                          </td>
+                              <td class="text-center text-wrap">{{ $recla->ETAT}}</td>
+                              <td >
+                                   
+                                       
+                                <form action="{{ route('editrecla',$recla->ID_RECLAMATION) }}" method="GET">
+                                
+                                    
+                                    <button type="submit" class="btn btn-info btn-sm" title="Modifier">
+                                        <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                        <lord-icon
+                                            src="https://cdn.lordicon.com/pflszboa.json"
+                                            trigger="hover"
+                                            colors="primary:#ffffff"
+                                            style="width:18px;height:18px">
+                                        </lord-icon>
+                                    </button>
+                                </form>
+                            </td>
+                            <td>       
+                                <form action="{{ route('destroyrecla',$recla->ID_RECLAMATION) }}" method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                            
+                                    <button type="submit" class="btn btn-danger btn-sm" title="Supprimer">
+                                        <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                        <lord-icon
+                                            src="https://cdn.lordicon.com/wpyrrmcq.json"
+                                            trigger="hover"
+                                            colors="primary:#ffffff"
+                                            style="width:18px;height:18px">
+                                        </lord-icon>
+                                    </button>
+                                </form>
+                       
+                            
+                      
+                             </td>
                         @endforeach
  
                       </tbody>
+
                     </table>
+                    <br>
+                    {{ $reclamations->links() }}
+                  </div>
                   </div>
                 </div>
               </div>
@@ -211,6 +284,19 @@
 
     </script>
   @endif
+
+  @if(Session::has('error'))
+  <script>
+    Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text: "{{ Session::get('error') }}",
+  
+});
+
+    </script>
+  @endif
+ 
 
 
  

@@ -149,24 +149,39 @@
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <div class="row">
-                      <div class="col">
-                          <!-- -->
-                          <h4 class="card-title">Informations Sur les clients </h4>
-                      </div>
-                      <div class="col-auto">
-                         
-                          <a href="{{ route('createcl') }}" class="btn btn-success" title="Ajouter un client">
-                              <script src="https://cdn.lordicon.com/lordicon.js"></script>
-                              <lord-icon
-                                  src="https://cdn.lordicon.com/hqymfzvj.json"
-                                  trigger="hover"
-                                  colors="primary:#ffffff"
-                                  style="width:20px;height:20px">
-                              </lord-icon>
-                          </a>
-                      </div>
-                  </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h4 class="card-title">Informations Sur les clients</h4>
+                        </div>
+                        <div class="col-md-5 d-flex justify-content-center">
+                            <form method="POST" action="{{ route('searchcli') }}" class="form-inline">
+                                @csrf
+                                <input class="form-control mr-sm-2" type="search" name="NUM_CONTRAT" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-dark btn-sm" type="submit"> 
+                                    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                    <lord-icon
+                                        src="https://cdn.lordicon.com/kkvxgpti.json"
+                                        trigger="hover"
+                                        colors="primary:#ffffff"
+                                        style="width:18px;height:18px">
+                                    </lord-icon>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <a href="{{ route('createcl') }}" class="btn btn-success" title="Ajouter un client">
+                                <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                <lord-icon
+                                    src="https://cdn.lordicon.com/hqymfzvj.json"
+                                    trigger="hover"
+                                    colors="primary:#ffffff"
+                                    style="width:20px;height:20px">
+                                </lord-icon>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    
                   <div class="table-responsive">
                     <table class="table">
                       <thead>
@@ -287,7 +302,10 @@
                          
                                  
                       </tbody>
+                     
                     </table>
+                    <br>
+                    {{ $clients->links() }}
                   </div>
                 </div>
               </div>
@@ -312,6 +330,18 @@
           showConfirmButton: false,
           timer: 1500
       });
+
+    </script>
+  @endif
+
+  @if(Session::has('error'))
+  <script>
+    Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text: "{{ Session::get('error') }}",
+  
+});
 
     </script>
   @endif

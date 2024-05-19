@@ -8,13 +8,15 @@ use App\Models\categorie_reclamation;
 use App\Models\agent_centre;
 use App\Models\reclamations;
 use App\Models\services;
+use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 
 class CenterController extends Controller
 {//-------------------------------------------------------------------------------
     public function showclients()
     {
-        $clients=clients::paginate(6);
+        $clients=clients::paginate(5);
         return view('clients',compact('clients'));}
 
         public function createcl()
@@ -110,11 +112,18 @@ class CenterController extends Controller
 
 //------------------------------Partie Réclamation---------------------------
 
-    public function showrecla()
-    {
-    $reclamation = reclamations::with(['clients:NUM_CONTRAT,NOM_CLIENT', 'services:ID_SERVICE,NOM_SERVICE',
-    'categorie_reclamation:ID_CATEGORIE,NOM_CATEGORIE'])->paginate(6);
-    return view('reclamations',compact('reclamation'));}
+public function showrecla()
+{
+    $reclamations = reclamations::with([
+        'client:NUM_CONTRAT,NOM_CLIENT', 
+        'service:ID_SERVICE,NOM_SERVICE',
+        'categorie_reclamation:ID_CATEGORIE,NOM_CATEGORIE',
+        'agent_centre.user:id,name' 
+    ])->paginate(5);
+
+    return view('reclamations', compact('reclamations'));
+}
+
 
         public function createrecla(Request $request){
 
@@ -153,4 +162,119 @@ class CenterController extends Controller
             
             return redirect()->route('showrecla')->with('message','la réclamation a été ajoutée');
         }
+
+        public function destroyrecla(Request $request, $ID_RECLAMATION)
+    {
+        
+        $reclamations = reclamations::find($ID_RECLAMATION);
+    
+        
+        if (!$reclamations) {
+            
+            return redirect()->route('showrecla')->with('error', 'reclamation not found.');
+        }
+    
+        
+        $reclamations->delete();
+    
+        
+        return redirect()->route('showrecla')->with('message','la reclamation a été suprimée');
+    }
+
+    public function editrecla(Request $request,$ID_RECLAMATION)
+    {
+        $reclamations = reclamations::with([
+            'client:NUM_CONTRAT,NOM_CLIENT', 
+            'service:ID_SERVICE,NOM_SERVICE',
+            'categorie_reclamation:ID_CATEGORIE,NOM_CATEGORIE',
+            'agent_centre.user:id,name' 
+        ])->find($ID_RECLAMATION);
+
+        $categories = categorie_reclamation::all();
+        $services=services::all();
+
+
+        return view('editrecla',compact('reclamations','categories','services','ID_RECLAMATION'));}
+
+        public function updaterecla(Request $request)
+        {
+            //Validation :
+    
+            $request->validate([
+                'id_cli' => 'required',
+                'id_cat' => 'required',
+                'id_A_centre' => 'required',
+                'id_serv' => 'required',
+                'description' => 'required',
+                'urgence' => 'required',
+                'etat' => 'required'
+            ]);
+    
+            $reclamation = reclamations::findOrFail($request->ID_RECLAMATION);
+
+            $reclamation->fill([
+                'DESCRIPTION' => $request->description,
+                'URGENCE' => $request->urgence,
+                'ETAT' => $request->etat,
+                'ID_CLI' => $request->id_cli,
+                'ID_CAT' => $request->id_cat,
+                'ID_A_CENTRE' => $request->id_A_centre,
+                'ID_SERV' => $request->id_serv 
+            ]);
+
+            $reclamation->save();
+
+             
+            
+            return redirect()->route('showrecla')->with('message','la réclamation a été modifiée');
+        }
+
+       
+        public function searchrecla(Request $request)
+        {
+            $ID_RECLAMATION = $request->ID_RECLAMATION;
+        
+            if (empty($ID_RECLAMATION)) {
+                return redirect()->route('showrecla');
+            }
+        
+            $reclamations = reclamations::with([
+                'client:NUM_CONTRAT,NOM_CLIENT', 
+                'service:ID_SERVICE,NOM_SERVICE',
+                'categorie_reclamation:ID_CATEGORIE,NOM_CATEGORIE',
+                'agent_centre.user:id,name' 
+            ])->where('ID_RECLAMATION', $ID_RECLAMATION)->paginate(1);
+        
+            if ($reclamations->isEmpty()) {
+                return redirect()->route('showrecla')->with('error', 'La réclamation n a pas été trouvée');
+            }
+        
+            return view('reclamations', compact('reclamations'));
+        }
+
+        public function searchcli(Request $request)
+        {
+            $NUM_CONTRAT = $request->NUM_CONTRAT;
+        
+            if (empty($NUM_CONTRAT)) {
+                return redirect()->route('showclients');
+            }
+        
+            $clients = clients::where('NUM_CONTRAT', $NUM_CONTRAT)->paginate(1);
+        
+            if ($clients->isEmpty()) {
+                return redirect()->route('showclients')->with('error', 'Le client n a pas été trouvé');
+            }
+        
+            return view('clients', compact('clients'));
+        }
+        
+        
+        
+        
+        
+
+
+
+
 }
