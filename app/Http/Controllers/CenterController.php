@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\clients;
 use App\Models\categorie_reclamation;
 use App\Models\agent_centre;
+use App\Models\demande_rendez_vous;
 use App\Models\reclamations;
 use App\Models\services;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
-
 class CenterController extends Controller
 {//-------------------------------------------------------------------------------
     public function showclients()
@@ -269,12 +269,112 @@ public function showrecla()
             return view('clients', compact('clients'));
         }
         
-        
-        
-        
+    //---------------------------Partie Rendezvous--------------------------------------------
+
+    public function showrendezvous()
+    {
+        $rendezvous = demande_rendez_vous::with([
+            'client:NUM_CONTRAT,NOM_CLIENT', 
+            'service:ID_SERVICE,NOM_SERVICE',
+            'agent_centre.user:id,name' 
+        ])->select('demande_rendez_vous.*') 
+        ->paginate(5);
+    
+        return view('rendezvous', compact('rendezvous'));
+    }
+
+    public function createrendezvous(Request $request){
+
+        $NUM_CONTRAT=$request->NUM_CONTRAT;
+        $user=Auth::user();
+        $id=$user->id;
+        $services = services::all();
+        return view('createrendezvous', compact( 'id','services','NUM_CONTRAT'));
+    }   
+    
+    public function storerendezvous(Request $request)
+        {
+            //Validation :
+    
+            $request->validate([
+                'info_rendez_vous' => 'required',
+                'id_A_centre' => 'required',
+                'id_ser' => 'required',
+                'id_cli' => 'required'
+                
+            ]);
+    
+            demande_rendez_vous::create([
+                'INFORMATION_RENDEZ_VOUS'=> $request->info_rendez_vous,
+                'ID_A_CENTRE' => $request->id_A_centre,
+                'ID_SER'=> $request->id_ser,
+                'ID_CLI'=> $request->id_cli
+            ]
+            );
+             
+            
+            return redirect()->route('showrendezvous')->with('message','le rendez-vous a été ajouté');
         
 
+}
+
+        public function destroyrendezvous(Request $request, $ID_RENDEZ_VOUS)
+        {
+            
+            $rendezvous = demande_rendez_vous::find($ID_RENDEZ_VOUS);
+
+            
+            if (!$rendezvous) {
+                
+                return redirect()->route('showrendezvous')->with('error', 'rendez-vous not found.');
+            }
+
+            
+            $rendezvous->delete();
+
+            
+            return redirect()->route('showrendezvous')->with('message','le rendez-vous a été suprimé');
+        }
 
 
+        public function editrendezvous(Request $request,$ID_RENDEZ_VOUS)
+    {
+        $rendezvous = demande_rendez_vous::with([
+            'client:NUM_CONTRAT,NOM_CLIENT', 
+            'service:ID_SERVICE,NOM_SERVICE',
+            'agent_centre.user:id,name' 
+        ])->find($ID_RENDEZ_VOUS);
 
+        $services=services::all();
+
+
+        return view('editrendezvous',compact('rendezvous','services','ID_RENDEZ_VOUS'));}
+
+        public function updaterendezvous(Request $request)
+        {
+            //Validation :
+    
+            $request->validate([
+                'info_rendez_vous' => 'required',
+                'id_cli' => 'required',
+                'id_A_centre' => 'required',
+                'id_ser' => 'required',
+            ]);
+    
+            $rendezvous = demande_rendez_vous::findOrFail($request->ID_RENDEZ_VOUS);
+
+            $rendezvous->fill([
+                'INFORMATION_RENDEZ_VOUS'=> $request->info_rendez_vous,
+                'ID_A_CENTRE' => $request->id_A_centre,
+                'ID_SER'=> $request->id_ser,
+                'ID_CLI'=> $request->id_cli
+            ]);
+
+            $rendezvous->save();
+
+             
+            
+            return redirect()->route('showrendezvous')->with('message','le rendez-vous a été modifié');
+        }
+        
 }

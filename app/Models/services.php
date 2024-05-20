@@ -20,7 +20,7 @@ class services extends Model
 
     public function demande()
     {
-        return $this->hasMany(demande_rendez_vous::class, 'ID_SER');
+        return $this->hasMany(demande_rendez_vous::class, 'ID_SER','ID_SERVICE');
     }
 
     public function reclamations()

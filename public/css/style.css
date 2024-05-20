@@ -3489,7 +3489,7 @@ progress {
   border-color: #373b3e; }
 
 .table-responsive {
-  overflow-x: hidden;
+  overflow-x: auto;
   -webkit-overflow-scrolling: touch; }
 
 @media (max-width: 575.98px) {
@@ -3516,6 +3516,19 @@ progress {
   .table-responsive-xxl {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch; } }
+
+  
+    @media (max-width: 1366px) {
+      .table th, .table td {
+        white-space: nowrap; /* Prevent text from wrapping */
+        max-width: 100px; /* Adjust maximum width to fit smaller screens */
+        overflow: hidden; /* Hide text that overflows the cell width */
+        text-overflow: ellipsis; /* Show ellipsis (...) for overflowed text */
+}
+    }
+
+
+
 
 .form-label {
   margin-bottom: 0.5rem; }

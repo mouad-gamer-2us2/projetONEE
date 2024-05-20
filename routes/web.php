@@ -150,6 +150,23 @@ Route::middleware(['auth', 'role:agent Centre'])->group(function () {
 
     route::post('/clients/searchcli',[CenterController::class,'searchcli'])->name('searchcli');
 
+    //--------------------------------------Rendez-vous---------------------------------------------------------
+
+    route::get('/rendezvous',[CenterController::class,'showrendezvous'])->name('showrendezvous');
+
+    route::post('/rendezvous/createrendezvous/{ID_RENDEZ_VOUS}',[CenterController::class,'createrendezvous'])
+    ->name('createrendezvous');
+
+    route::post('/rendezvous/storerendezvous',[CenterController::class,'storerendezvous'])->name('storerendezvous');
+
+    route::delete('/rendezvous/destrorendezvous/{ID_RENDEZ_VOUS}',[CenterController::class,'destroyrendezvous'])
+    ->name('destroyrecla');
+
+    route::get('/rendezvous/{ID_RENDEZ_VOUS}/editrendezvous',[CenterController::class,'editrendezvous'])
+    ->name('editrendezvous');
+
+    route::put('/rendezvous/updaterendezvous',[CenterController::class,'updaterendezvous'])
+    ->name('updaterendezvous');
 });
 
 

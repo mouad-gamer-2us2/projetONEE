@@ -56,7 +56,7 @@
                   </div>
                   <div class="col align-self-center">
                       <a class="nav-link color1" href="{{ route('showrecla') }}">
-                          <span class="menu-title color1">Réclamations</span> 
+                          <span class="menu-title color1">réclamations</span> 
                       </a>
                   </div>
               </div>
@@ -90,7 +90,7 @@
             <div class="container-fluid">
               <div class="row">
                   <div class="col-auto">
-                      <a class="nav-link color1" href="">
+                      <a class="nav-link color1" href="{{ route('showrendezvous') }}">
                         <script src="https://cdn.lordicon.com/lordicon.js"></script>
                         <lord-icon
                             src="https://cdn.lordicon.com/wmlleaaf.json"
@@ -101,7 +101,7 @@
                       </a>
                   </div>
                   <div class="col align-self-center">
-                      <a class="nav-link color1" href="">
+                      <a class="nav-link color1" href="{{ route('showrendezvous') }}">
                           <span class="menu-title color1">Les rendez-vous</span> 
                       </a>
                   </div>
@@ -139,7 +139,7 @@
         <div class="content-wrapper">
           <div class="container d-flex justify-content-center align-items-center">
             <div class="page-header text-center">
-                <h3 class="page-title">Les Réclamations</h3>
+                <h3 class="page-title">Les Rendez-Vous</h3>
                 
             </div>
         </div>
@@ -150,7 +150,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-4">
-                      <h4 class="card-title">Informations Sur les réclamations </h4>
+                      <h4 class="card-title">Informations Sur les Rendez-Vous </h4>
                   </div>
                   <div class="col-md-8">
                     <form method="POST" action="{{ route('searchrecla') }}" class="form-inline">
@@ -174,49 +174,28 @@
                       <thead>
                         <tr>
                           <th class="text-center"> ID </th>
-                          <th class="text-center"> Client </th>
-                          <th class="text-center"> Categorie </th>
+                          <th class="text-center"> Info Rendez-Vous </th>
                           <th class="text-center"> Agent Centre </th>
                           <th class="text-center"> Service responsable</th>
-                          <th class="text-center"> Description </th>
-                          <th class="text-center"> URGENCE </th>
-                          <th class="text-center"> Etat </th>
+                          <th class="text-center"> Client </th>
+                          <th class="text-center"> Date Rendez-vous </th>
                           <th class="text-center" colspan="2"> Action</th>
                         </tr>
                       </thead>
                       <tbody>
                         
-                        @foreach ($reclamations as $recla)
+                        @foreach ($rendezvous as $R)
                         <tr>
-                            <td class="text-center text-wrap">{{ $recla->ID_RECLAMATION }}</td>
-                            <td class="text-center text-wrap">{{ $recla->client->NOM_CLIENT}}</td>
-                            <td class="text-center text-wrap">{{ $recla->categorie_reclamation->NOM_CATEGORIE }}</td>
-                            <td class="text-center text-wrap">{{ $recla->agent_centre->user->name }}</td>
-                            <td class="text-center text-wrap">{{ $recla->service->NOM_SERVICE }}</td>
-                            <td class="text-center text-wrap">{{ $recla->DESCRIPTION }}</td>
-                            <td class="text-center text-wrap @switch($recla->URGENCE)
-                              @case('Très élevé')
-                                  verybad
-                                  @break
-                              @case('élevé')
-                                  bad
-                                  @break
-                              @case('moyenne')
-                                  normal
-                                  @break
-                              @case('faible')
-                                  low
-                                  @break
-                              @default
-                                  verylow
-                          @endswitch">
-                              {{ $recla->URGENCE }}
-                          </td>
-                              <td class="text-center text-wrap">{{ $recla->ETAT}}</td>
-                              <td >
+                            <td class="text-center text-wrap">{{ $R->$ID_RENDEZ_VOUS }}</td>
+                            <td class="text-center text-wrap">{{ $R->$INFORMATION_RENDEZ_VOUS}}</td>
+                            <td class="text-center text-wrap">{{ $R->agent_centre->user->name }}</td>
+                            <td class="text-center text-wrap">{{ $R->service->NOM_SERVICE }}</td>
+                            <td class="text-center text-wrap">{{ $R->client->NOM_CLIENT}}</td>
+                            <td class="text-center text-wrap">{{ $R->$created_at}}</td>
+
                                    
-                                       
-                                <form action="{{ route('editrecla',$recla->ID_RECLAMATION) }}" method="GET">
+                            <td>
+                                <form action="{{ route('editrendezvous',$R->ID_RENDEZ_VOUS) }}" method="GET">
                                 
                                     
                                     <button type="submit" class="btn btn-info btn-sm" title="Modifier">
@@ -231,7 +210,7 @@
                                 </form>
                             </td>
                             <td>       
-                                <form action="{{ route('destroyrecla',$recla->ID_RECLAMATION) }}" method="POST">
+                                <form action="{{ route('destroyrendezvous',$R->ID_RENDEZ_VOUS) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
                             
@@ -246,9 +225,7 @@
                                     </button>
                                 </form>
                        
-                            
-                      
-                             </td>
+                            </td>
                         @endforeach
  
                       </tbody>
