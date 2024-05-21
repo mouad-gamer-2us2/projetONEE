@@ -260,7 +260,7 @@
                                                 <td class="text-center  text-wrap">{{ $rdv->service->NOM_SERVICE }}</td>
                                                 <td class="text-center  ">{{ $rdv->created_at }}</td>
                                                 <td>
-                                                    <form action="" method="GET">
+                                                    <form action="{{ route('editrendezvous',$rdv->ID_RENDEZ_VOUS ) }}" method="GET">
                                                     
                                                         
                                                         <button type="submit" class="btn blue btn-sm" title="Modifier">
