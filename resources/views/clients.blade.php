@@ -68,7 +68,7 @@
             <div class="container-fluid">
               <div class="row">
                   <div class="col-auto">
-                      <a class="nav-link color1" href="">
+                      <a class="nav-link color1" href="{{ route('showhistorique') }}">
                         <script src="https://cdn.lordicon.com/lordicon.js"></script>
                         <lord-icon
                             src="https://cdn.lordicon.com/dafdkyyt.json"
@@ -91,7 +91,7 @@
             <div class="container-fluid">
               <div class="row">
                   <div class="col-auto">
-                      <a class="nav-link color1" href="{{ route('showhistorique') }}">
+                      <a class="nav-link color1" href="{{ route('showrendezvous') }}">
                         <script src="https://cdn.lordicon.com/lordicon.js"></script>
                         <lord-icon
                             src="https://cdn.lordicon.com/wmlleaaf.json"
@@ -102,7 +102,7 @@
                       </a>
                   </div>
                   <div class="col align-self-center">
-                      <a class="nav-link color1" href="">
+                      <a class="nav-link color1" href="{{ route('showrendezvous') }}">
                           <span class="menu-title color1">Les rendez-vous</span> 
                       </a>
                   </div>
@@ -189,7 +189,7 @@
                           <th class="text-center"> Num de Contract </th>
                           <th class="text-center"> Nom du client </th>
                           <th class="text-center"> Telephone</th>
-                          <th class="text-center" colspan="2"> Actions </th>
+                          <th class="text-center" colspan="4"> Actions </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -225,7 +225,7 @@
                                           @method('DELETE')
                                           @csrf
                                   
-                                      <button type="submit" class="btn btn-danger btn-sm" title="Supprimer Le client">
+                                      <button type="submit" class="btn verybad btn-sm" title="Supprimer Le client">
                                           <script src="https://cdn.lordicon.com/lordicon.js"></script>
                                           <lord-icon
                                               src="https://cdn.lordicon.com/wpyrrmcq.json"
@@ -247,7 +247,7 @@
                                         <button type="submit" class="btn btn-dark btn-sm" title="Voir plus d'info">
                                             <script src="https://cdn.lordicon.com/lordicon.js"></script>
                                             <lord-icon
-                                                src="https://cdn.lordicon.com/kkvxgpti.json"
+                                                src="https://cdn.lordicon.com/yxczfiyc.json"
                                                 trigger="hover"
                                                 colors="primary:#ffffff"
                                                 style="width:18px;height:18px">
@@ -261,12 +261,12 @@
                             <td>
                                 <div class="row">
                                     <div class="col-auto">
-                                        <form action="{{ route('createrecla', $client->NUM_CONTRAT) }}" method="POST">
+                                        <form action="{{ route('showrecla_rdv',$client->NUM_CONTRAT) }}" method="GET">
                                         @csrf
                                         <button type="submit" class="btn btn-warning btn-sm" title="Saisir une reclamation">
                                             <script src="https://cdn.lordicon.com/lordicon.js"></script>
                                             <lord-icon
-                                                src="https://cdn.lordicon.com/vihyezfv.json"
+                                                src="https://cdn.lordicon.com/eouimtlu.json"
                                                 trigger="hover"
                                                 colors="primary:#ffffff"
                                                 style="width:18px;height:18px">
@@ -277,24 +277,7 @@
                                 </div>
                             </td>
 
-                            <td>
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <form action="" method="POST">
-                                        
-                                        <button type="submit" class="btn btn-secondary btn-sm" title="prendre un rendez-vous">
-                                            <script src="https://cdn.lordicon.com/lordicon.js"></script>
-                                            <lord-icon
-                                                src="https://cdn.lordicon.com/abfverha.json"
-                                                trigger="hover"
-                                                colors="primary:#ffffff"
-                                                style="width:18px;height:18px">
-                                            </lord-icon>
-                                        </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </td>
+                           
                         </tr>
                         @endforeach
                           

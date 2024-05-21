@@ -44,7 +44,7 @@
               <div class="container-fluid">
                 <div class="row">
                     <div class="col-auto">
-                        <a class="nav-link color1" href="{{ route('showrecla') }}">
+                        <a class="nav-link color1" href="">
                           <script src="https://cdn.lordicon.com/lordicon.js"></script>
                           <lord-icon
                               src="https://cdn.lordicon.com/abvsilxn.json"
@@ -55,7 +55,7 @@
                         </a>
                     </div>
                     <div class="col align-self-center">
-                        <a class="nav-link color1" href="{{ route('showrecla') }}">
+                        <a class="nav-link color1" href="">
                             <span class="menu-title color1">réclamations</span> 
                         </a>
                     </div>
@@ -134,140 +134,82 @@
             </li>
           </ul>
         </nav>
-        <!-- partial -->
+        <!------partials--------->
         <div class="main-panel">
-          <div class="content-wrapper">
-            <div class="container d-flex justify-content-center align-items-center">
-              <div class="page-header text-center">
-                  <h3 class="page-title"> Rendez-Vous</h3>
-                  
-              </div>
-          </div>
-            
-            <div class="row">
-              <div class="col-md-12 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <h4 class="card-title">Informations Sur les Rendez-Vous </h4>
-                    </div>
-                   
-                        </div>
-  
+            <div class="content-wrapper">
+                <div class="container">
                     
-                    <div class="table-responsive">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th class="text-center"> ID </th>
-                            <th class="text-center"> Informations Rendez-Vous </th>
-                            <th class="text-center"> Agent Centre </th>
-                            <th class="text-center"> Service responsable</th>
-                            <th class="text-center"> Client </th>
-                            <th class="text-center"> N° contrat </th>
-                            <th class="text-center"> Date de demande </th>
-                            <th class="text-center" colspan="2"> Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          
-                          @foreach ($rendezvous as $R)
-                          <tr>
-                              <td class="text-center text-wrap">{{ $R->ID_RENDEZ_VOUS }}</td>
-                              <td class="text-center text-wrap">{{ $R->INFORMATION_RENDEZ_VOUS}}</td>
-                              <td class="text-center text-wrap">{{ $R->agent_centre->user->name }}</td>
-                              <td class="text-center text-wrap">{{ $R->service->NOM_SERVICE }}</td>
-                              <td class="text-center text-wrap">{{ $R->client->NOM_CLIENT}}</td>
-                              <td class="text-center text-wrap">{{ $R->ID_CLI}}</td>
-                              <td class="text-center text-wrap">{{ $R->created_at}}</td>
-  
-                                     
-                              <td>
-                                  <form action="{{ route('editrendezvous',$R->ID_RENDEZ_VOUS ) }}" method="GET">
-                                  
-                                      
-                                      <button type="submit" class="btn blue btn-sm" title="Modifier">
-                                          <script src="https://cdn.lordicon.com/lordicon.js"></script>
-                                          <lord-icon
-                                              src="https://cdn.lordicon.com/pflszboa.json"
-                                              trigger="hover"
-                                              colors="primary:#ffffff"
-                                              style="width:18px;height:18px">
-                                          </lord-icon>
-                                      </button>
-                                  </form>
-                              </td>
-                              <td>       
-                                  <form action="{{ route('destroyrendezvous',$R->ID_RENDEZ_VOUS ) }}" method="POST">
-                                      @method('DELETE')
-                                      @csrf
-                              
-                                      <button type="submit" class="btn verybad btn-sm" title="Supprimer">
-                                          <script src="https://cdn.lordicon.com/lordicon.js"></script>
-                                          <lord-icon
-                                              src="https://cdn.lordicon.com/wpyrrmcq.json"
-                                              trigger="hover"
-                                              colors="primary:#ffffff"
-                                              style="width:18px;height:18px">
-                                          </lord-icon>
-                                      </button>
-                                  </form>
-                         
-                              </td>
-                          @endforeach
-   
-                        </tbody>
-  
-                      </table>
-                      <br>
-                      {{ $rendezvous->links() }}
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10">
+                            <div class="card">
+                                <div class="card-body" style="margin-top: 20px; min-height: 300px;">
+                                    <h4 class="card-title">Veuillez choisir réclamation, rendez-vous :</h4>
+                                    <br>
+                                    <br>
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-4">
+                                            <form action="{{ route('createrecla', $NUM_CONTRAT) }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn btn-dark btn-block">Réclamation</button>
+                                            </form>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <form action="{{ route('createrendezvous',$NUM_CONTRAT) }}" method="GET">
+                                                @csrf
+                                                <button type="submit" class="btn btn-dark btn-block">Rendez-vous</button>
+                                            </form>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a href="{{ URL::previous() }}" class="btn btn-dark btn-block">Retour</a>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    </div>
-                  </div>
                 </div>
-              </div>
-  
-  
             </div>
-          </div>
-        
+            
+            
+            
+            
+            
+            
+            
   
         </div>
       
       </div>
    
     </div>
-    @if(Session::has('message'))
-    <script>
-       Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "{{ Session::get('message') }}",
-            showConfirmButton: false,
-            timer: 1500
-        });
-  
-      </script>
-    @endif
-  
-    @if(Session::has('error'))
-    <script>
-      Swal.fire({
-    icon: "error",
-    title: "Oops...",
-    text: "{{ Session::get('error') }}",
-    
-  });
-  
-      </script>
-    @endif
-   
-  
-  
-   
   </x-app-layout>
   
   
+  @if(Session::has('message'))
+  <script>
+     Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "{{ Session::get('message') }}",
+          showConfirmButton: false,
+          timer: 1500
+      });
+
+    </script>
+  @endif
+
+  @if(Session::has('error'))
+  <script>
+    Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text: "{{ Session::get('error') }}",
   
+});
+
+    </script>
+  @endif
+  
+   
   

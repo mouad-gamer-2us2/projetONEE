@@ -147,45 +147,46 @@
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Ajouter Un rendez-vous </h4>
+                  <h4 class="card-title">Ajouter Un rendez-vous</h4>
                   <form action="{{ route('storerendezvous') }}" method="POST">
                       @csrf
+              
                       <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Info Rendez-vous </label>
-                        <textarea type="text" class="form-control" name="info_rendezvous" aria-describedby="emailHelp">
-                        </textarea>
-                        @error('info_rendezvous')
-                        <div class="text-danger small">
-                          {{ $message }}
-                        </div>
-                        @enderror
-
-                        <input type="text" class="form-control d-none" name="id_A_centre"  value="{{ $id }}" aria-describedby="emailHelp">
-
-
-                        
-                        <label for="exampleInputEmail1" class="form-label">Services </label>
-                        <select class="form-control" name="id_serv" aria-describedby="emailHelp">
-                        @foreach ( $services as $ser)
-                        <option value="{{ $ser->ID_SERVICE }}" >{{ $ser->NOM_SERVICE }}</option>
-                        @endforeach
-                        </select>
-                        @error('id_serv')
-                        <div class="text-danger small">
-                          {{ $message }}
-                        </div>
-                        @enderror
-
-                        <input type="text" class="form-control d-none" name="id_cli"  value="{{ $NUM_CONTRAT }}" aria-describedby="emailHelp">
-
-                        @foreach ($rendezvous as $rendezvousItem)
-                        <input type="text" class="form-control d-none" name="id_cli"  value="{{ $rendezvousItem->created_at->format('d/m/Y H:i:s')CONTRAT }}" aria-describedby="emailHelp">
-                        @endforeach
-
+                          <label for="exampleInputEmail1" class="form-label">Info Rendez-vous</label>
+                          <textarea type="text" class="form-control" name="info_rendezvous" aria-describedby="emailHelp"></textarea>
+                          @error('info_rendezvous')
+                              <div class="text-danger small">{{ $message }}</div>
+                          @enderror
+              
+                          <input type="text" class="form-control d-none" name="id_A_centre"  value="{{ $id }}" aria-describedby="emailHelp">
+              
+                          <label for="exampleInputEmail1" class="form-label">Services</label>
+                          <select class="form-control" name="id_serv" aria-describedby="emailHelp">
+                              @foreach ( $services as $ser)
+                                  <option value="{{ $ser->ID_SERVICE }}">{{ $ser->NOM_SERVICE }}</option>
+                              @endforeach
+                          </select>
+                          @error('id_serv')
+                              <div class="text-danger small">{{ $message }}</div>
+                          @enderror
+              
+                          <input type="text" class="form-control d-none" name="id_cli"  value="{{ $NUM_CONTRAT }}" aria-describedby="emailHelp">
                       </div>
-                      <button type="submit" class="btn btn-success">Ajouter</button>
+              
+                      <button type="submit" class="btn btn-success mr-2">Ajouter</button>  
+                  </form>
+
+                  <br>
+                  <div class="d-flex justify-content-start">
+                    
+                    <form action="{{ route('choix',$NUM_CONTRAT) }}" method="GET">
+                        @csrf
+                        <button type="submit" class="btn btn-dark">Retour</button>
                     </form>
                 </div>
+              </div>
+              
+              
               </div>
             </div>
 

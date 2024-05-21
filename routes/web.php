@@ -130,6 +130,9 @@ Route::middleware(['auth', 'role:agent Centre'])->group(function () {
 
     route::get('/clients/voirpluscl/{NUM_CONTRAT}',[CenterController::class,'voirpluscl'])->name('voirpluscl');
 
+    route::get('/clients/storecl/choix/{NUM_CONTRAT}',[CenterController::class,'choix'])->name('choix');
+
+
     //-----------------------------------------------------------------------------------------------
 
     route::get('/reclamations',[CenterController::class,'showrecla'])->name('showrecla');
@@ -150,17 +153,20 @@ Route::middleware(['auth', 'role:agent Centre'])->group(function () {
 
     route::post('/clients/searchcli',[CenterController::class,'searchcli'])->name('searchcli');
 
+    
+
     //--------------------------------------Rendez-vous---------------------------------------------------------
 
-    route::get('/rendezvous',[CenterController::class,'showrendezvous'])->name('showrendezvous');
+    route::get('/rendezvous', [CenterController::class, 'showrendezvous'])->name('showrendezvous');
 
-    route::post('/rendezvous/createrendezvous/{ID_RENDEZ_VOUS}',[CenterController::class,'createrendezvous'])
-    ->name('createrendezvous');
+    route::post('/rendezvous/storerendezvous', [CenterController::class, 'storerendezvous'])->name('storerendezvous');
 
-    route::post('/rendezvous/storerendezvous',[CenterController::class,'storerendezvous'])->name('storerendezvous');
+    route::get('/rendezvous/create/{NUM_CONTRAT}', [CenterController::class, 'createrendezvous'])->name('createrendezvous');
+
+    route::get('/client/showrecla-rdv/{NUM_CONTRAT}', [CenterController::class, 'showrecla_rdv'])->name('showrecla_rdv');
 
     route::delete('/rendezvous/destrorendezvous/{ID_RENDEZ_VOUS}',[CenterController::class,'destroyrendezvous'])
-    ->name('destroyrecla');
+    ->name('destroyrendezvous');
 
     route::get('/rendezvous/{ID_RENDEZ_VOUS}/editrendezvous',[CenterController::class,'editrendezvous'])
     ->name('editrendezvous');
@@ -168,7 +174,6 @@ Route::middleware(['auth', 'role:agent Centre'])->group(function () {
     route::put('/rendezvous/updaterendezvous',[CenterController::class,'updaterendezvous'])
     ->name('updaterendezvous');
 });
-
 
 
 

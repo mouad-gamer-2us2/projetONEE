@@ -237,17 +237,29 @@
     </div>
  
     @if(Session::has('message'))
-    <script>
-       Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "{{ Session::get('message') }}",
-            showConfirmButton: false,
-            timer: 2000
-        });
+  <script>
+     Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "{{ Session::get('message') }}",
+          showConfirmButton: false,
+          timer: 1500
+      });
 
-      </script>
-    @endif
+    </script>
+  @endif
+
+  @if(Session::has('error'))
+  <script>
+    Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text: "{{ Session::get('error') }}",
+  
+});
+
+    </script>
+  @endif
 
 
    

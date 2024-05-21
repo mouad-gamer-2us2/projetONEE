@@ -90,7 +90,7 @@
             <div class="container-fluid">
               <div class="row">
                   <div class="col-auto">
-                      <a class="nav-link color1" href="">
+                      <a class="nav-link color1" href="{{ route('showrendezvous') }}">
                         <script src="https://cdn.lordicon.com/lordicon.js"></script>
                         <lord-icon
                             src="https://cdn.lordicon.com/wmlleaaf.json"
@@ -101,7 +101,7 @@
                       </a>
                   </div>
                   <div class="col align-self-center">
-                      <a class="nav-link color1" href="">
+                      <a class="nav-link color1" href="{{ route('showrendezvous') }}">
                           <span class="menu-title color1">Les rendez-vous</span> 
                       </a>
                   </div>
@@ -206,8 +206,18 @@
 
 
                       </div>
+                      
                       <button type="submit" class="btn btn-success">Ajouter</button>
                     </form>
+                    <br>
+                  <div class="d-flex justify-content-start">
+                    
+                    <form action="{{ route('choix',$NUM_CONTRAT) }}" method="GET">
+                        @csrf
+                        <button type="submit" class="btn btn-dark">Retour</button>
+                    </form>
+                </div>
+                    
                 </div>
               </div>
             </div>

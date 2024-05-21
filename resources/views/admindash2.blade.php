@@ -196,9 +196,21 @@
             icon: "success",
             title: "{{ Session::get('message') }}",
             showConfirmButton: false,
-            timer: 2000
+            timer: 1500
         });
-
+  
+      </script>
+    @endif
+  
+    @if(Session::has('error'))
+    <script>
+      Swal.fire({
+    icon: "error",
+    title: "Oops...",
+    text: "{{ Session::get('error') }}",
+    
+  });
+  
       </script>
     @endif
  

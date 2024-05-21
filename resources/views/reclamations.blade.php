@@ -67,7 +67,7 @@
             <div class="container-fluid">
               <div class="row">
                   <div class="col-auto">
-                      <a class="nav-link color1" href="">
+                      <a class="nav-link color1" href="{{ route('showhistorique') }}">
                         <script src="https://cdn.lordicon.com/lordicon.js"></script>
                         <lord-icon
                             src="https://cdn.lordicon.com/dafdkyyt.json"
@@ -78,7 +78,7 @@
                       </a>
                   </div>
                   <div class="col align-self-center">
-                      <a class="nav-link color1" href="">
+                      <a class="nav-link color1" href="{{ route('showhistorique') }}">
                           <span class="menu-title color1">Historique</span> 
                       </a>
                   </div>
@@ -90,7 +90,7 @@
             <div class="container-fluid">
               <div class="row">
                   <div class="col-auto">
-                      <a class="nav-link color1" href="">
+                      <a class="nav-link color1" href="{{ route('showrendezvous') }}">
                         <script src="https://cdn.lordicon.com/lordicon.js"></script>
                         <lord-icon
                             src="https://cdn.lordicon.com/wmlleaaf.json"
@@ -101,7 +101,7 @@
                       </a>
                   </div>
                   <div class="col align-self-center">
-                      <a class="nav-link color1" href="">
+                      <a class="nav-link color1" href="{{ route('showrendezvous') }}">
                           <span class="menu-title color1">Les rendez-vous</span> 
                       </a>
                   </div>
@@ -219,7 +219,7 @@
                                 <form action="{{ route('editrecla',$recla->ID_RECLAMATION) }}" method="GET">
                                 
                                     
-                                    <button type="submit" class="btn btn-info btn-sm" title="Modifier">
+                                    <button type="submit" class="btn blue btn-sm" title="Modifier">
                                         <script src="https://cdn.lordicon.com/lordicon.js"></script>
                                         <lord-icon
                                             src="https://cdn.lordicon.com/pflszboa.json"
@@ -235,7 +235,7 @@
                                     @method('DELETE')
                                     @csrf
                             
-                                    <button type="submit" class="btn btn-danger btn-sm" title="Supprimer">
+                                    <button type="submit" class="btn verybad btn-sm" title="Supprimer">
                                         <script src="https://cdn.lordicon.com/lordicon.js"></script>
                                         <lord-icon
                                             src="https://cdn.lordicon.com/wpyrrmcq.json"

@@ -24,10 +24,7 @@ class CenterController extends Controller
         
         public function storecl(Request $request)
         {
-            
-            
-            //Validation :
-    
+            // Validation :
             $request->validate([
                 'NUM_CONTRAT'=>'required|unique:clients|min:3',
                 'NOM_CLIENT'=>'required|min:3',
@@ -36,11 +33,20 @@ class CenterController extends Controller
                 'TEL'=>'required|min:10|max:10',
                 'EMAIL'=>'required',
             ]);
-    
-            clients::create($request->post()
-            );
-    
-            return redirect()->route('showclients')->with('message','le client a été ajouté');
+        
+            clients::create($request->post());
+        
+            $NUM_CONTRAT = $request->NUM_CONTRAT;
+        
+            return redirect()->route('choix', ['NUM_CONTRAT' => $NUM_CONTRAT])->with('message', 'le client a été ajouté');
+        }
+        
+        public function choix(Request $request)
+        {
+            $NUM_CONTRAT = $request->NUM_CONTRAT;
+            
+            
+            return view('choix', compact('NUM_CONTRAT'));
         }
 
         public function destroycl(Request $request, $NUM_CONTRAT)
@@ -160,7 +166,7 @@ public function showrecla()
             );
              
             
-            return redirect()->route('showrecla')->with('message','la réclamation a été ajoutée');
+            return redirect()->route('showclients')->with('message','la réclamation a été ajoutée');
         }
 
         public function destroyrecla(Request $request, $ID_RECLAMATION)
@@ -277,7 +283,7 @@ public function showrecla()
             'client:NUM_CONTRAT,NOM_CLIENT', 
             'service:ID_SERVICE,NOM_SERVICE',
             'agent_centre.user:id,name' 
-        ])->select('demande_rendez_vous.*') 
+        ])->select('demande_rendez_vouses.*') 
         ->paginate(5);
     
         return view('rendezvous', compact('rendezvous'));
@@ -293,31 +299,20 @@ public function showrecla()
     }   
     
     public function storerendezvous(Request $request)
-        {
-            //Validation :
-    
-            $request->validate([
-                'info_rendez_vous' => 'required',
-                'id_A_centre' => 'required',
-                'id_ser' => 'required',
-                'id_cli' => 'required'
-                
-            ]);
-    
-            demande_rendez_vous::create([
-                'INFORMATION_RENDEZ_VOUS'=> $request->info_rendez_vous,
-                'ID_A_CENTRE' => $request->id_A_centre,
-                'ID_SER'=> $request->id_ser,
-                'ID_CLI'=> $request->id_cli
-            ]
-            );
-             
-            
-            return redirect()->route('showrendezvous')->with('message','le rendez-vous a été ajouté');
+    {
         
-
-}
-
+        demande_rendez_vous::create([
+            'INFORMATION_RENDEZ_VOUS' => $request->info_rendezvous,
+            'ID_A_CENTRE' => $request->id_A_centre,
+            'ID_SER' => $request->id_serv,
+            'ID_CLI' => $request->id_cli
+        ]);
+    
+        // Redirect back with a success message
+        return redirect()->route('showclients')->with('message', 'Le rendez-vous a été ajouté');
+    }
+    
+    
         public function destroyrendezvous(Request $request, $ID_RENDEZ_VOUS)
         {
             
@@ -337,44 +332,77 @@ public function showrecla()
         }
 
 
-        public function editrendezvous(Request $request,$ID_RENDEZ_VOUS)
+        public function editrendezvous(Request $request)
     {
+        $ID_RENDEZ_VOUS=$request->ID_RENDEZ_VOUS;
+        
         $rendezvous = demande_rendez_vous::with([
             'client:NUM_CONTRAT,NOM_CLIENT', 
             'service:ID_SERVICE,NOM_SERVICE',
             'agent_centre.user:id,name' 
         ])->find($ID_RENDEZ_VOUS);
-
+            
         $services=services::all();
+        $user=Auth::user();
+        $id=$user->id;
 
-
-        return view('editrendezvous',compact('rendezvous','services','ID_RENDEZ_VOUS'));}
-
+            
+        return view('editrendezvous',compact('rendezvous','services','ID_RENDEZ_VOUS','id'));}
+       
         public function updaterendezvous(Request $request)
         {
-            //Validation :
-    
+            // Validation
             $request->validate([
                 'info_rendez_vous' => 'required',
                 'id_cli' => 'required',
                 'id_A_centre' => 'required',
-                'id_ser' => 'required',
+                'id_serv' => 'required', 
             ]);
-    
-            $rendezvous = demande_rendez_vous::findOrFail($request->ID_RENDEZ_VOUS);
-
-            $rendezvous->fill([
-                'INFORMATION_RENDEZ_VOUS'=> $request->info_rendez_vous,
-                'ID_A_CENTRE' => $request->id_A_centre,
-                'ID_SER'=> $request->id_ser,
-                'ID_CLI'=> $request->id_cli
-            ]);
-
-            $rendezvous->save();
-
-             
+        
+           
+            $rendezvous = demande_rendez_vous::findOrFail($request->id_rendez_vous);
+        
             
-            return redirect()->route('showrendezvous')->with('message','le rendez-vous a été modifié');
+            $rendezvous->fill([
+                'INFORMATION_RENDEZ_VOUS' => $request->info_rendez_vous,
+                'ID_A_CENTRE' => $request->id_A_centre,
+                'ID_SER' => $request->id_serv, 
+                'ID_CLI' => $request->id_cli,
+            ]);
+        
+            // Save changes
+            $rendezvous->save();
+        
+            
+            return redirect()->route('showrendezvous')->with('message', 'Le rendez-vous a été modifié avec succès');
         }
+        
+        public function showrecla_rdv(Request $request)
+        {
+            $NUM_CONTRAT = $request->NUM_CONTRAT;
+        
+            $NOM_CLIENT = clients::where('NUM_CONTRAT', $NUM_CONTRAT)->value('NOM_CLIENT');
+
+        
+            // Retrieve reclamations with related data
+            $reclamations = reclamations::with([
+                'client:NUM_CONTRAT,NOM_CLIENT',
+                'service:ID_SERVICE,NOM_SERVICE',
+                'agent_centre.user:id,name'
+            ])->where('ID_CLI', $NUM_CONTRAT)->paginate(3);
+        
+            // Retrieve rendez-vous with related client, service, and agent data
+            $rendezvous = demande_rendez_vous::with([
+                'client:NUM_CONTRAT,NOM_CLIENT',
+                'service:ID_SERVICE,NOM_SERVICE',
+                'agent_centre.user:id,name'
+            ])->where('ID_CLI', $NUM_CONTRAT)->paginate(3);
+                
+            
+            return view('showrecla-rdv', compact('reclamations', 'rendezvous','NOM_CLIENT','NUM_CONTRAT'));
+        }
+        
+        
+        
         
 }
