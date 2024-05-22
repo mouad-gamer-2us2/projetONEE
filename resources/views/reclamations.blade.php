@@ -33,7 +33,7 @@
                   </div>
                   <div class="col align-self-center">
                       <a class="nav-link color1" href="{{ route('showclients') }}">
-                          <span class="menu-title color1">Clients</span> 
+                          <span class="menu-title color1">Espace clients</span> 
                       </a>
                   </div>
               </div>
@@ -102,7 +102,7 @@
                   </div>
                   <div class="col align-self-center">
                       <a class="nav-link color1" href="{{ route('showrendezvous') }}">
-                          <span class="menu-title color1">Les rendez-vous</span> 
+                          <span class="menu-title color1">rendez-vous</span> 
                       </a>
                   </div>
               </div>
@@ -113,7 +113,7 @@
             <div class="container-fluid">
               <div class="row">
                   <div class="col-auto">
-                      <a class="nav-link color1" href="">
+                      <a class="nav-link color1" href="/chatify">
                         <script src="https://cdn.lordicon.com/lordicon.js"></script>
                         <lord-icon
                             src="https://cdn.lordicon.com/ayhtotha.json"
@@ -124,7 +124,7 @@
                       </a>
                   </div>
                   <div class="col align-self-center">
-                      <a class="nav-link color1" href="">
+                      <a class="nav-link color1" href="/chatify">
                           <span class="menu-title color1">Chat</span> 
                       </a>
                   </div>
