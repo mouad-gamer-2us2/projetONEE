@@ -178,6 +178,31 @@ class adminController extends Controller
         // Pass the data to the view
         return view('admindash3', compact('personnels'));}
 
+    public function searchPER(Request $request)
+    {
+        $email = $request->email;
+        if (empty($email)) {
+            return redirect()->route('showpersonnels');
+        }
+
+        $personnels = User::with(['info' => function ($query) {
+            $query->select('ID_INFO', 'ID_USER', 'ROLE', 'PWD');
+        }])
+        ->whereHas('info', function ($query) use ($email) {
+            $query->where('email', $email);
+        })
+        ->paginate(1);
+
+        if ($personnels->isEmpty()) {
+            
+            return redirect()->route('showpersonnels')->with('error', 'la personne n a pas été trouvée');
+        }
+
+        return view('admindash3', compact('personnels'));
+
+
+    }
+
     public function createPER()
     {  
         return view('createPER');}

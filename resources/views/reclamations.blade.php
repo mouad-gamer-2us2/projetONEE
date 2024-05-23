@@ -155,7 +155,7 @@
                   <div class="col-md-8">
                     <form method="POST" action="{{ route('searchrecla') }}" class="form-inline">
                       @csrf
-                      <input class="form-control mr-sm-2" type="search" name="ID_RECLAMATION"placeholder="Search" aria-label="Search">
+                      <input class="form-control mr-sm-2" type="search" name="ID_RECLAMATION"placeholder="chercher par ID de reclamation" aria-label="Search">
                       <button class="btn btn-dark btn-sm" type="submit"> 
                         <script src="https://cdn.lordicon.com/lordicon.js"></script>
                         <lord-icon

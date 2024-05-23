@@ -86,6 +86,29 @@
             </div>
             
             </li>
+            <li class="nav-item">
+                <div class="container-fluid">
+                  <div class="row">
+                      <div class="col-auto">
+                          <a class="nav-link color1" href="/chatify">
+                            <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                            <lord-icon
+                                src="https://cdn.lordicon.com/ayhtotha.json"
+                                trigger="hover"
+                                colors="primary:#0e46a3"
+                                style="width:18px;height:18px">
+                            </lord-icon>
+                          </a>
+                      </div>
+                      <div class="col align-self-center">
+                          <a class="nav-link color1" href="/chatify">
+                              <span class="menu-title color1">Chat</span> 
+                          </a>
+                      </div>
+                  </div>
+              </div>
+              
+              </li>
             
           </ul>
         </nav>
@@ -100,12 +123,14 @@
               <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Modifier l'affectation de cet agent </h4>
+                    <h4 class="card-title text-center"  style="font-size: 24px; font-family: monospace, sans-serif;">Modifier l'affectation de cet agent </h4>
+                    <br>
                     <form action="{{ route('updateAF',$id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">
-                          <label for="exampleInputEmail1" class="form-label">les services de l'ONEE</label>
+                          <label for="exampleInputEmail1" class="form-label">les services de l'ONEE :</label>
+                          <br>
                           <select class="form-select" name="ID_SER" aria-label="Default select example">
                             
                             @foreach ( $affectation as $service)
@@ -118,6 +143,7 @@
                           <input type="text" name="ID_AONEE"class="form-control d-none" id="hiddenInput" value="{{ $id }}">
                         
                         </div>
+                        <br>
                         <button type="submit" class="btn btn-success">Modifier</button>
                       </form>
                   </div>

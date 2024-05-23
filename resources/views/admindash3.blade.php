@@ -117,7 +117,7 @@
           <div class="content-wrapper">
             <div class="container d-flex justify-content-center align-items-center">
               <div class="page-header text-center">
-                  <h3 class="page-title">Personnels</h3>
+                  <h3 class="page-title" style="font-size: 24px; font-family: monospace, sans-serif;">Personnels</h3>
                   
               </div>
           </div>
@@ -127,11 +127,27 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="row">
-                        <div class="col">
+                        <div class="col-md-4">
                             <!-- -->
-                            <h4 class="card-title">Le Personnels de l'ONEE</h4>
+                            <h4 class="card-title"> Personnels de l'ONEE :</h4>
+                            
                         </div>
-                        <div class="col-auto">
+                        <div class="col-md-6">
+                            <form method="GET" action="{{ route('searchPER') }}" class="form-inline">
+                              @csrf
+                              <input class="form-control mr-sm-2" type="search" name="email"placeholder="chercher par email" aria-label="Search">
+                              <button class="btn btn-dark btn-sm" type="submit"> 
+                                <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                <lord-icon
+                                    src="https://cdn.lordicon.com/kkvxgpti.json"
+                                    trigger="hover"
+                                    colors="primary:#ffffff"
+                                    style="width:18px;height:18px">
+                                </lord-icon></button>
+                            </form>
+                          </div>
+                        <div class="col-md-2">
+                            
                            
                             <a href="{{ route('createPER') }}" class="btn btn-success" title="Ajouter un agent">
                                 <script src="https://cdn.lordicon.com/lordicon.js"></script>
@@ -148,24 +164,24 @@
                       <table class="table">
                         <thead>
                           <tr>
-                            <th  class="text-center"> # </th>
-                            <th class="text-center"> Nom Complet </th>
-                            <th class="text-center"> Email </th>
-                            <th class="text-center"> mots de passe </th>
-                            <th class="text-center"> role </th>
-                            <th class="text-center" colspan="2">Action</th>
-                            <th class="text-center"> Services</th>
+                            <th  class="text-center col-1"> # </th>
+                            <th class="text-center col-2"> Nom Complet </th>
+                            <th class="text-center col-2"> Email </th>
+                            <th class="text-center col-2"> mots de passe </th>
+                            <th class="text-center col-2"> role </th>
+                            <th class="text-center col-1" colspan="2">Action</th>
+                            <th class="text-center col-2"> Services</th>
                           </tr>
                         </thead>
                         <tbody>
                            @foreach ( $personnels as $personne )
                            @if($personne->info->ROLE != 'Admin')
                                <tr>
-                                <td  class="text-center">{{ $personne->id }}</td>
-                                <td class="text-center">{{ $personne->name }}</td>
-                                <td class="text-center">{{ $personne->email }}</td>
-                                <td class="text-center">{{ $personne->info->PWD }}</td>
-                                <td class="text-center">{{ $personne->info->ROLE }}</td>
+                                <td class="text-center text-wrap">{{ $personne->id }}</td>
+                                <td class="text-center text-wrap">{{ $personne->name }}</td>
+                                <td class="text-center text-wrap">{{ $personne->email }}</td>
+                                <td class="text-center text-wrap">{{ $personne->info->PWD }}</td>
+                                <td class="text-center text-wrap">{{ $personne->info->ROLE }}</td>
                                          <td >
                                    
                                        
@@ -291,124 +307,3 @@
 
 
 
-<script>
-
-$(document).ready(function () {
-
-    $.ajaxSetup({
-        headers:{
-            'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    var calendar = $('#calendar').fullCalendar({
-        editable:true,
-        header:{
-            left:'prev,next today',
-            center:'title',
-            right:'month,agendaWeek,agendaDay'
-        },
-        events:'/full-calender',
-        selectable:true,
-        selectHelper: true,
-        select:function(start, end, allDay)
-        {
-            var title = prompt('Event Title:');
-
-            if(title)
-            {
-                var start = $.fullCalendar.formatDate(start, 'Y-MM-DD HH:mm:ss');
-
-                var end = $.fullCalendar.formatDate(end, 'Y-MM-DD HH:mm:ss');
-
-                $.ajax({
-                    url:"/full-calender/action",
-                    type:"POST",
-                    data:{
-                        title: title,
-                        start: start,
-                        end: end,
-                        type: 'add'
-                    },
-                    success:function(data)
-                    {
-                        calendar.fullCalendar('refetchEvents');
-                        alert("Event Created Successfully");
-                    }
-                })
-            }
-        },
-        editable:true,
-        eventResize: function(event, delta)
-        {
-            var start = $.fullCalendar.formatDate(event.start, 'Y-MM-DD HH:mm:ss');
-            var end = $.fullCalendar.formatDate(event.end, 'Y-MM-DD HH:mm:ss');
-            var title = event.title;
-            var id = event.id;
-            $.ajax({
-                url:"/full-calender/action",
-                type:"POST",
-                data:{
-                    title: title,
-                    start: start,
-                    end: end,
-                    id: id,
-                    type: 'update'
-                },
-                success:function(response)
-                {
-                    calendar.fullCalendar('refetchEvents');
-                    alert("Event Updated Successfully");
-                }
-            })
-        },
-        eventDrop: function(event, delta)
-        {
-            var start = $.fullCalendar.formatDate(event.start, 'Y-MM-DD HH:mm:ss');
-            var end = $.fullCalendar.formatDate(event.end, 'Y-MM-DD HH:mm:ss');
-            var title = event.title;
-            var id = event.id;
-            $.ajax({
-                url:"/full-calender/action",
-                type:"POST",
-                data:{
-                    title: title,
-                    start: start,
-                    end: end,
-                    id: id,
-                    type: 'update'
-                },
-                success:function(response)
-                {
-                    calendar.fullCalendar('refetchEvents');
-                    alert("Event Updated Successfully");
-                }
-            })
-        },
-
-        eventClick:function(event)
-        {
-            if(confirm("Are you sure you want to remove it?"))
-            {
-                var id = event.id;
-                $.ajax({
-                    url:"/full-calender/action",
-                    type:"POST",
-                    data:{
-                        id:id,
-                        type:"delete"
-                    },
-                    success:function(response)
-                    {
-                        calendar.fullCalendar('refetchEvents');
-                        alert("Event Deleted Successfully");
-                    }
-                })
-            }
-        }
-    });
-
-});
-  
-</script>
-  

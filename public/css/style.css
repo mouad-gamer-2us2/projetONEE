@@ -3492,7 +3492,7 @@ progress {
   border-color: #373b3e; }
 
 .table-responsive {
-  overflow-x: auto;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch; }
 
 @media (max-width: 575.98px) {
@@ -3658,6 +3658,7 @@ progress {
         transition: none; } }
   .form-control:hover:not(:disabled):not([readonly])::-webkit-file-upload-button {
     background-color: #dde0e3; }
+
 
 .form-control-plaintext {
   display: block;
