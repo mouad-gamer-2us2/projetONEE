@@ -57,6 +57,6 @@ class User extends Authenticatable
 
     public function agent_onee()
     {
-        return $this->hasOne(agent_onee::class, 'ID_AONEE');
+        return $this->hasOne(agentonee::class, 'ID_AONEE');
     }
 }
