@@ -33,7 +33,7 @@
                     </div>
                     <div class="col align-self-center">
                         <a class="nav-link color1" href="{{ route('showclients') }}">
-                            <span class="menu-title color1">Espace clients</span> 
+                            <span class="menu-title color1"> Espace Clients</span> 
                         </a>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
               <div class="container-fluid">
                 <div class="row">
                     <div class="col-auto">
-                        <a class="nav-link color1" href="">
+                        <a class="nav-link color1" href="{{ route('showhistorique') }}">
                           <script src="https://cdn.lordicon.com/lordicon.js"></script>
                           <lord-icon
                               src="https://cdn.lordicon.com/dafdkyyt.json"
@@ -78,7 +78,7 @@
                         </a>
                     </div>
                     <div class="col align-self-center">
-                        <a class="nav-link color1" href="">
+                        <a class="nav-link color1" href="{{ route('showhistorique') }}">
                             <span class="menu-title color1">Historique</span> 
                         </a>
                     </div>

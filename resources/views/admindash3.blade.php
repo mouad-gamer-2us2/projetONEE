@@ -117,7 +117,7 @@
           <div class="content-wrapper">
             <div class="container d-flex justify-content-center align-items-center">
               <div class="page-header text-center">
-                  <h3 class="page-title" style="font-size: 24px; font-family: monospace, sans-serif;">Personnels</h3>
+                
                   
               </div>
           </div>

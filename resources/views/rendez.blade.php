@@ -16,6 +16,27 @@
            
           </li>
           
+          <li class="nav-item">
+            <div class="container-fluid">
+              <div class="row">
+                  <div class="col-auto">
+                      <a class="nav-link color1" href="recla">
+                        <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                        <lord-icon
+                            src="https://cdn.lordicon.com/abvsilxn.json"
+                            trigger="hover"
+                            colors="primary:#0e46a3"
+                            style="width:18px;height:18px">
+                        </lord-icon>
+                      </a>
+                  </div>
+                  <div class="col align-self-center">
+                      <a class="nav-link color1" href="recla">
+                          <span class="menu-title color1">Réclamations</span> 
+                      </a>
+                  </div>
+              </div>
+          </div>
           
           <li class="nav-item">
             <div class="container-fluid">
@@ -40,27 +61,7 @@
             </div>
           
           </li>
-          <li class="nav-item">
-            <div class="container-fluid">
-              <div class="row">
-                  <div class="col-auto">
-                      <a class="nav-link color1" href="recla">
-                        <script src="https://cdn.lordicon.com/lordicon.js"></script>
-                        <lord-icon
-                            src="https://cdn.lordicon.com/abvsilxn.json"
-                            trigger="hover"
-                            colors="primary:#0e46a3"
-                            style="width:18px;height:18px">
-                        </lord-icon>
-                      </a>
-                  </div>
-                  <div class="col align-self-center">
-                      <a class="nav-link color1" href="recla">
-                          <span class="menu-title color1">Réclamations</span> 
-                      </a>
-                  </div>
-              </div>
-          </div>
+          
           
           </li>
           <li class="nav-item">

@@ -33,7 +33,7 @@
                   </div>
                   <div class="col align-self-center">
                       <a class="nav-link color1" href="{{ route('showclients') }}">
-                          <span class="menu-title color1">Espace clients</span> 
+                          <span class="menu-title color1"> Espace Clients</span> 
                       </a>
                   </div>
               </div>
@@ -67,7 +67,7 @@
             <div class="container-fluid">
               <div class="row">
                   <div class="col-auto">
-                      <a class="nav-link color1" href="">
+                      <a class="nav-link color1" href="{{ route('showhistorique') }}">
                         <script src="https://cdn.lordicon.com/lordicon.js"></script>
                         <lord-icon
                             src="https://cdn.lordicon.com/dafdkyyt.json"
@@ -78,7 +78,7 @@
                       </a>
                   </div>
                   <div class="col align-self-center">
-                      <a class="nav-link color1" href="">
+                      <a class="nav-link color1" href="{{ route('showhistorique') }}">
                           <span class="menu-title color1">Historique</span> 
                       </a>
                   </div>
@@ -113,7 +113,7 @@
             <div class="container-fluid">
               <div class="row">
                   <div class="col-auto">
-                      <a class="nav-link color1" href="">
+                      <a class="nav-link color1" href="/chatify">
                         <script src="https://cdn.lordicon.com/lordicon.js"></script>
                         <lord-icon
                             src="https://cdn.lordicon.com/ayhtotha.json"
@@ -124,7 +124,7 @@
                       </a>
                   </div>
                   <div class="col align-self-center">
-                      <a class="nav-link color1" href="">
+                      <a class="nav-link color1" href="/chatify">
                           <span class="menu-title color1">Chat</span> 
                       </a>
                   </div>
@@ -139,7 +139,7 @@
         <div class="content-wrapper">
           <div class="container d-flex justify-content-center align-items-center">
             <div class="page-header text-center">
-                <h3 class="page-title">modifier la réclamations </h3>
+                
                 
             </div>
           </div>
@@ -147,7 +147,8 @@
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Ajouter des clients  </h4>
+                  <h4 class="card-title text-center" style="font-size: 24px; font-family: monospace, sans-serif;"> modifier la réclamations  </h4>
+                  <br>
                   <form action="{{ route('updaterecla') }}" method="POST">
                       @csrf
                       @method('PUT')
@@ -162,8 +163,9 @@
                           {{ $message }}
                         </div>
                         @enderror
+                        <br>
 
-                        <label for="exampleInputEmail1" class="form-label">Urgence : actuellement {{ $reclamations->URGENCE }}  </label>
+                        <label for="exampleInputEmail1" class="form-label">Urgence : actuellement :{{ $reclamations->URGENCE }}  </label>
                         <select class="form-control" name="urgence" aria-describedby="emailHelp">
                         <option value="Très élevé">très élevé</option>
                         <option value="élevé">élevé</option>
@@ -176,12 +178,13 @@
                           {{ $message }}
                         </div>
                         @enderror
+                        <br>
 
                         <input type="text" class="form-control d-none" name="etat"  value="pas encore traitée" aria-describedby="emailHelp">
                       
                         <input type="text" class="form-control d-none" name="id_cli"  value="{{ $reclamations->ID_CLI }} " aria-describedby="emailHelp">
 
-                        <label for="exampleInputEmail1" class="form-label">Catégorie : actuellement {{ $reclamations->categorie_reclamation->NOM_CATEGORIE }}  </label>
+                        <label for="exampleInputEmail1" class="form-label">Catégorie : actuellement :{{ $reclamations->categorie_reclamation->NOM_CATEGORIE }}  </label>
                         <select class="form-control" name="id_cat" aria-describedby="emailHelp">
                         @foreach ( $categories as $cat)
                         <option value="{{ $cat->ID_CATEGORIE }}" >{{ $cat->NOM_CATEGORIE }}</option>
@@ -192,10 +195,11 @@
                           {{ $message }}
                         </div>
                         @enderror
+                        <br>
 
                         <input type="text" class="form-control d-none" name="id_A_centre"  value="{{ $reclamations->ID_A_CENTRE }} " aria-describedby="emailHelp">
 
-                        <label for="exampleInputEmail1" class="form-label">Services : actuellement {{ $reclamations->service->NOM_SERVICE }}</label>
+                        <label for="exampleInputEmail1" class="form-label">Services : actuellement :{{ $reclamations->service->NOM_SERVICE }}</label>
                         <select class="form-control" name="id_serv" aria-describedby="emailHelp">
                         @foreach ( $services as $ser)
                         <option value="{{ $ser->ID_SERVICE }}" >{{ $ser->NOM_SERVICE }}</option>
@@ -206,6 +210,7 @@
                           {{ $message }}
                         </div>
                         @enderror
+                        <br>
 
 
                       </div>

@@ -1,4 +1,5 @@
 <x-app-layout>
+    
     <div class="container-scroller">
       <div class="row p-0 m-0 " id="proBanner">
         <div class="col-md-12 p-0 m-0">
@@ -148,82 +149,36 @@
               <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <h4 class="card-title">Informations Sur les Rendez-Vous :</h4>
-                    </div>
-                   
-                        </div>
-                        <br>
-  
-                    
+                      <div class="row justify-content-center align-items-center">
+                          <div class="col-md-3 ">
+                              <h4 class="card-title">Informations Sur les clients :</h4>
+                          </div>
+                          
+                      </div>
+                      <br>
+                      
+                      
                     <div class="table-responsive">
                       <table class="table">
                         <thead>
                           <tr>
-                            <th class="text-center col-1"> ID </th>
-                            <th class="text-center col-2"> Informations Rendez-Vous </th>
-                            <th class="text-center col-2"> Agent Centre </th>
-                            <th class="text-center col-2"> Service responsable</th>
-                            <th class="text-center col-2"> Client </th>
-                            <th class="text-center col-1"> N° contrat </th>
-                            <th class="text-center col-1"> Date de demande </th>
-                            <th class="text-center col-1" colspan="2"> Action</th>
+                            <th class="text-center col-2"> Num de Contract </th>
+                            <th class="text-center col-4"> Nom du client </th>
+                            <th class="text-center col-4"> Telephone</th>
+                            <th class="text-center col-2" colspan="4"> Actions </th>
                           </tr>
                         </thead>
                         <tbody>
                           
-                          @foreach ($rendezvous as $R)
-                          <tr>
-                              <td class="text-center text-wrap">{{ $R->ID_RENDEZ_VOUS }}</td>
-                              <td class="text-center text-wrap">{{ $R->INFORMATION_RENDEZ_VOUS}}</td>
-                              <td class="text-center text-wrap">{{ $R->agent_centre->user->name }}</td>
-                              <td class="text-center text-wrap">{{ $R->service->NOM_SERVICE }}</td>
-                              <td class="text-center text-wrap">{{ $R->client->NOM_CLIENT}}</td>
-                              <td class="text-center text-wrap">{{ $R->ID_CLI}}</td>
-                              <td class="text-center text-wrap">{{ $R->created_at}}</td>
-  
-                                     
-                              <td>
-                                  <form action="{{ route('editrendezvous',$R->ID_RENDEZ_VOUS ) }}" method="GET">
-                                  
-                                      
-                                      <button type="submit" class="btn blue btn-sm" title="Modifier">
-                                          <script src="https://cdn.lordicon.com/lordicon.js"></script>
-                                          <lord-icon
-                                              src="https://cdn.lordicon.com/pflszboa.json"
-                                              trigger="hover"
-                                              colors="primary:#ffffff"
-                                              style="width:18px;height:18px">
-                                          </lord-icon>
-                                      </button>
-                                  </form>
-                              </td>
-                              <td>       
-                                  <form action="{{ route('destroyrendezvous',$R->ID_RENDEZ_VOUS ) }}" method="POST">
-                                      @method('DELETE')
-                                      @csrf
-                              
-                                      <button type="submit" class="btn verybad btn-sm" title="Supprimer">
-                                          <script src="https://cdn.lordicon.com/lordicon.js"></script>
-                                          <lord-icon
-                                              src="https://cdn.lordicon.com/wpyrrmcq.json"
-                                              trigger="hover"
-                                              colors="primary:#ffffff"
-                                              style="width:18px;height:18px">
-                                          </lord-icon>
-                                      </button>
-                                  </form>
-                         
-                              </td>
-                          @endforeach
-   
+                            
+                            
+                           
+                                   
                         </tbody>
-  
+                       
                       </table>
                       <br>
-                      {{ $rendezvous->links() }}
-                    </div>
+                      
                     </div>
                   </div>
                 </div>
@@ -263,11 +218,26 @@
   
       </script>
     @endif
-   
+  
+    @if(Session::has('new'))
+    <script>
+       Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "{{ Session::get('new') }}",
+            showConfirmButton: true,
+            
+        });
+  
+      </script>
+    @endif
+  
   
   
    
   </x-app-layout>
+  
+  
   
   
   

@@ -37,17 +37,28 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::middleware(['auth', 'role:agent ONEE'])->group(function () {
-Route::delete('/events/{id}',  [OneeController::class, 'destroy'])->name('destroyrendez');  
-route::post('/ajouterrendezvous', [OneeController::class, 'ajouterrendezvous'])->name('ajouterrendezvous');
-route::get('/rendez', [CenterController::class, 'showrendez'])->name('showrendez');
-route::get('/mesrendez', [OneeController::class, 'showmesrendez'])->name('showmesrendez');
-route::get('/recla',[CenterController::class,'showreclamations'])->name('showrec');
-route::get('/reclamationaffectee',[OneeController::class,'showreclamation'])->name('showaffecte');
-route::post('/reclamationonee', [OneeController::class, 'ajoutreclama'])->name('ajoutreclama');
-route::post('/reclamatraitee', [OneeController::class, 'ajoutreclamatraitee'])->name('ajoutreclamatraitee');
-route::get('/reclamationtraitee',[OneeController::class,'showreclamationtraitee'])->name('showreclamationtraitee');
- route::post('/searchaff',[OneeController::class,'searchaff'])->name('searchaff');
-  route::post('/searchtraitee',[OneeController::class,'searchtraitee'])->name('searchtraitee');
+
+    Route::delete('/events/{id}',  [OneeController::class, 'destroy'])->name('destroyrendez');  
+
+    route::post('/ajouterrendezvous', [OneeController::class, 'ajouterrendezvous'])->name('ajouterrendezvous');
+
+    route::get('/rendez', [CenterController::class, 'showrendez'])->name('showrendez');
+
+    route::get('/mesrendez', [OneeController::class, 'showmesrendez'])->name('showmesrendez');
+
+    route::get('/recla',[CenterController::class,'showreclamations'])->name('showrec');
+
+    route::get('/reclamationaffectee',[OneeController::class,'showreclamation'])->name('showaffecte');
+
+    route::post('/reclamationonee', [OneeController::class, 'ajoutreclama'])->name('ajoutreclama');
+
+    route::post('/reclamatraitee', [OneeController::class, 'ajoutreclamatraitee'])->name('ajoutreclamatraitee');
+
+    route::get('/reclamationtraitee',[OneeController::class,'showreclamationtraitee'])->name('showreclamationtraitee');
+ 
+    route::post('/searchaff',[OneeController::class,'searchaff'])->name('searchaff');
+  
+    route::post('/searchtraitee',[OneeController::class,'searchtraitee'])->name('searchtraitee');
  
 Route::get ('/dashboard', [ToDoController:: class, 'index'])->name('dashboard');
 

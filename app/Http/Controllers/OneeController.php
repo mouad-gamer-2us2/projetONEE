@@ -66,7 +66,7 @@ class OneeController extends Controller
         
             
             $reclamations->fill([
-                'ETAT' => 'traite',
+                'ETAT' => 'traitée',
                 
             ]);
             $reclamations->save();

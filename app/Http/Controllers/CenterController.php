@@ -18,9 +18,9 @@ class CenterController extends Controller
 {//-------------------------------------------------------------------------------
     public function showclients()
     {
-        $clients=clients::paginate(5);
-        return view('clients',compact('clients'));}
-
+        $clients = clients::orderBy('created_at', 'desc')->paginate(5);
+        return view('clients', compact('clients'));
+    }
         public function createcl()
         {return view('createcl');}   
         
@@ -127,16 +127,15 @@ public function showrecla()
         'service:ID_SERVICE,NOM_SERVICE',
         'categorie_reclamation:ID_CATEGORIE,NOM_CATEGORIE',
         'agent_centre.user:id,name' 
-    ])
-    ->paginate(5);
+    ]) ->orderBy('created_at', 'desc')->paginate(5);
 
     return view('reclamations', compact('reclamations'));
 }
 
 public function showreclamations()
 {
-    // Supposons que $idService contient l'ID de votre service
-   $user = Auth::id(); // Ou tout autre moyen de récupérer l'ID du service actuel
+    
+   $user = Auth::id(); 
     $agentonee=agentonee::findOrFail($user);
     $idService = $agentonee->ID_SER;
     $reclamations = reclamations::with([
@@ -146,7 +145,7 @@ public function showreclamations()
         'agent_centre.user:id,name' 
     ])
     ->where('ETAT', 'pas encore traitée')
-    ->where('ID_SERV', $idService) // Filtrer par l'ID de votre service
+    ->where('ID_SERV', $idService) 
     ->paginate(5);
 
     return view('recla', compact('reclamations'));
@@ -176,7 +175,7 @@ public function showreclamations()
                 'etat' => 'required'
             ]);
     
-            reclamations::create([
+            $reclamation=reclamations::create([
                 'DESCRIPTION'=> $request->description,
                 'URGENCE'=> $request->urgence,
                 'ETAT'=> $request->etat,
@@ -186,9 +185,11 @@ public function showreclamations()
                 'ID_SERV'=> $request->id_serv
             ]
             );
+
+            $newReclamationId = $reclamation->ID_RECLAMATION;
              
             
-            return redirect()->route('showclients')->with('message','la réclamation a été ajoutée');
+            return redirect()->route('showclients')->with('new','la réclamation a été ajoutée avec le numero :' . $newReclamationId);
         }
 
         public function destroyrecla(Request $request, $ID_RECLAMATION)
@@ -305,7 +306,8 @@ public function showreclamations()
             'client:NUM_CONTRAT,NOM_CLIENT', 
             'service:ID_SERVICE,NOM_SERVICE',
             'agent_centre.user:id,name' 
-        ])->select('demande_rendez_vouses.*') 
+        ])
+        ->orderByDesc('created_at')
         ->paginate(5);
     
         return view('rendezvous', compact('rendezvous'));
@@ -424,14 +426,14 @@ public function showreclamations()
             $NOM_CLIENT = clients::where('NUM_CONTRAT', $NUM_CONTRAT)->value('NOM_CLIENT');
 
         
-            // Retrieve reclamations with related data
+            
             $reclamations = reclamations::with([
                 'client:NUM_CONTRAT,NOM_CLIENT',
                 'service:ID_SERVICE,NOM_SERVICE',
                 'agent_centre.user:id,name'
             ])->where('ID_CLI', $NUM_CONTRAT)->paginate(3);
         
-            // Retrieve rendez-vous with related client, service, and agent data
+           
             $rendezvous = demande_rendez_vous::with([
                 'client:NUM_CONTRAT,NOM_CLIENT',
                 'service:ID_SERVICE,NOM_SERVICE',
@@ -441,6 +443,10 @@ public function showreclamations()
             
             return view('showrecla-rdv', compact('reclamations', 'rendezvous','NOM_CLIENT','NUM_CONTRAT'));
         }
+
+        
+
+
         
         
         

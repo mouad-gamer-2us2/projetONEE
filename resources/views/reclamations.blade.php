@@ -139,7 +139,7 @@
         <div class="content-wrapper">
           <div class="container d-flex justify-content-center align-items-center">
             <div class="page-header text-center">
-                <h3 class="page-title">Les Réclamations</h3>
+                
                 
             </div>
         </div>
@@ -150,7 +150,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-4">
-                      <h4 class="card-title">Informations Sur les réclamations </h4>
+                      <h4 class="card-title">Informations Sur les réclamations :</h4>
                   </div>
                   <div class="col-md-8">
                     <form method="POST" action="{{ route('searchrecla') }}" class="form-inline">
@@ -167,21 +167,22 @@
                     </form>
                   </div>
                       </div>
+                      <br>
 
                   
                   <div class="table-responsive">
                     <table class="table">
                       <thead>
                         <tr>
-                          <th class="text-center"> ID </th>
-                          <th class="text-center"> Client </th>
-                          <th class="text-center"> Categorie </th>
-                          <th class="text-center"> Agent Centre </th>
-                          <th class="text-center"> Service responsable</th>
-                          <th class="text-center"> Description </th>
-                          <th class="text-center"> URGENCE </th>
-                          <th class="text-center"> Etat </th>
-                          <th class="text-center" colspan="2"> Action</th>
+                          <th class="text-center col-1"> ID </th>
+                          <th class="text-center col-2"> Client </th>
+                          <th class="text-center col-2"> Categorie </th>
+                          <th class="text-center col-2"> Agent Centre </th>
+                          <th class="text-center col-2"> Service responsable</th>
+                          <th class="text-center col-2"> Description </th>
+                          <th class="text-center col-1"> URGENCE </th>
+                          <th class="text-center col-1"> Etat </th>
+                          <th class="text-center col-1" colspan="2"> Action</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -213,6 +214,7 @@
                               {{ $recla->URGENCE }}
                           </td>
                               <td class="text-center text-wrap">{{ $recla->ETAT}}</td>
+                              @if( $recla->ETAT != 'traitée' && $recla->ETAT !='en cours')
                               <td >
                                    
                                        
@@ -249,6 +251,12 @@
                             
                       
                              </td>
+                             
+                                 
+                             @else
+                                 <td></td>
+                                 <td></td>
+                             @endif
                         @endforeach
  
                       </tbody>
@@ -279,8 +287,9 @@
           icon: "success",
           title: "{{ Session::get('message') }}",
           showConfirmButton: false,
-          timer: 1500
+          
       });
+      
 
     </script>
   @endif

@@ -42,7 +42,7 @@ class reclamations extends Model
 
     public function reclamationAffectees()
     {
-        return $this->hasMany(Reclamation_Affectee::class, 'ID_REC_AFF');
+        return $this->hasMany(reclamationaffectee::class, 'ID_REC_AFF');
     }
 
     

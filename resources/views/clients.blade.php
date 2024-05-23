@@ -140,7 +140,7 @@
         <div class="content-wrapper">
           <div class="container d-flex justify-content-center align-items-center">
             <div class="page-header text-center">
-                <h3 class="page-title" style="font-size: 24px; font-family: monospace, sans-serif;">Espace clients</h3>
+                
                 
             </div>
         </div>
@@ -180,6 +180,7 @@
                             </a>
                         </div>
                     </div>
+                    <br>
                     
                     
                   <div class="table-responsive">
@@ -195,90 +196,92 @@
                       <tbody>
                         @foreach ($clients as $client)
                         <tr>
-                            <td class="text-center text-wrap">{{ $client->NUM_CONTRAT }}</td>
-                            <td class="text-center text wrap">{{ $client->NOM_CLIENT}}</td>
-                            <td class="text-center text wrap">{{ $client->TEL }}</td>
-                            <td class="text-center" >
-                              <div class="row">
-                                <div class="col-auto">
-                                    <form action="{{ route('editcl',$client->NUM_CONTRAT) }}" method="GET">
-                                       
-                                        
-                                    <button type="submit" class="btn btn-info btn-sm" title="Modifier info client">
-                                        <script src="https://cdn.lordicon.com/lordicon.js"></script>
-                                        <lord-icon
-                                            src="https://cdn.lordicon.com/pflszboa.json"
-                                            trigger="hover"
-                                            colors="primary:#ffffff"
-                                            style="width:18px;height:18px">
-                                        </lord-icon>
-                                    </button>
-                                    </form>
-                                </div>
-                            </div>
-                            </td>
-
-                            <td>
+                          <td class="text-center text-wrap">{{ $client->NUM_CONTRAT }}</td>
+                          <td class="text-center text wrap">{{ $client->NOM_CLIENT}}</td>
+                          <td class="text-center text wrap">{{ $client->TEL }}</td>
+                          <td class="text-center">
                               <div class="row">
                                   <div class="col-auto">
-                                      <form action="{{ route('destroycl',$client->NUM_CONTRAT) }}" method="POST">
-                                          @method('DELETE')
-                                          @csrf
-                                  
-                                      <button type="submit" class="btn verybad btn-sm" title="Supprimer Le client">
-                                          <script src="https://cdn.lordicon.com/lordicon.js"></script>
-                                          <lord-icon
-                                              src="https://cdn.lordicon.com/wpyrrmcq.json"
-                                              trigger="hover"
-                                              colors="primary:#ffffff"
-                                              style="width:18px;height:18px">
-                                          </lord-icon>
-                                      </button>
+                                      <form action="{{ route('editcl',$client->NUM_CONTRAT) }}" method="GET">    
+                                          <button type="submit" class="btn btn-info btn-sm" title="Modifier info client">
+                                              <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                              <lord-icon
+                                                  src="https://cdn.lordicon.com/pflszboa.json"
+                                                  trigger="hover"
+                                                  colors="primary:#ffffff"
+                                                  style="width:18px;height:18px">
+                                              </lord-icon>
+                                          </button>
                                       </form>
                                   </div>
-                                </div>
-                            </td>
-                            
-                            <td>
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <form action="{{ route('voirpluscl', $client->NUM_CONTRAT) }}" method="get">
-                                        
-                                        <button type="submit" class="btn btn-dark btn-sm" title="Voir plus d'info">
-                                            <script src="https://cdn.lordicon.com/lordicon.js"></script>
-                                            <lord-icon
-                                                src="https://cdn.lordicon.com/yxczfiyc.json"
-                                                trigger="hover"
-                                                colors="primary:#ffffff"
-                                                style="width:18px;height:18px">
-                                            </lord-icon>
-                                        </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </td>
-
-                            <td>
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <form action="{{ route('showrecla_rdv',$client->NUM_CONTRAT) }}" method="GET">
-                                        @csrf
-                                        <button type="submit" class="btn btn-warning btn-sm" title="Saisir une reclamation">
-                                            <script src="https://cdn.lordicon.com/lordicon.js"></script>
-                                            <lord-icon
-                                                src="https://cdn.lordicon.com/eouimtlu.json"
-                                                trigger="hover"
-                                                colors="primary:#ffffff"
-                                                style="width:18px;height:18px">
-                                            </lord-icon>
-                                        </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </td>
-
-                           
-                        </tr>
+                              </div>
+                          </td>
+                      
+                          @php
+                              $clientExists = App\Models\reclamations::where('ID_CLI', $client->NUM_CONTRAT)->exists() || 
+                                              App\Models\demande_rendez_vous::where('ID_CLI', $client->NUM_CONTRAT)->exists();
+                          @endphp
+                        <td>
+                          @unless($clientExists)
+                              
+                                  <div class="row">
+                                      <div class="col-auto">
+                                          <form action="{{ route('destroycl',$client->NUM_CONTRAT) }}" method="POST">
+                                              @method('DELETE')
+                                              @csrf
+                                              <button type="submit" class="btn verybad btn-sm" title="Supprimer Le client">
+                                                  <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                                  <lord-icon
+                                                      src="https://cdn.lordicon.com/wpyrrmcq.json"
+                                                      trigger="hover"
+                                                      colors="primary:#ffffff"
+                                                      style="width:18px;height:18px">
+                                                  </lord-icon>
+                                              </button>
+                                          </form>
+                                      </div>
+                                  </div>
+                              
+                          @endunless
+                        </td>
+                          <td>
+                              <div class="row">
+                                  <div class="col-auto">
+                                      <form action="{{ route('voirpluscl', $client->NUM_CONTRAT) }}" method="get">
+                                          <button type="submit" class="btn btn-dark btn-sm" title="Voir plus d'info">
+                                              <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                              <lord-icon
+                                                  src="https://cdn.lordicon.com/yxczfiyc.json"
+                                                  trigger="hover"
+                                                  colors="primary:#ffffff"
+                                                  style="width:18px;height:18px">
+                                              </lord-icon>
+                                          </button>
+                                      </form>
+                                  </div>
+                              </div>
+                          </td>
+                      
+                          <td>
+                              <div class="row">
+                                  <div class="col-auto">
+                                      <form action="{{ route('showrecla_rdv',$client->NUM_CONTRAT) }}" method="GET">
+                                          @csrf
+                                          <button type="submit" class="btn btn-warning btn-sm" title="Saisir une reclamation">
+                                              <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                              <lord-icon
+                                                  src="https://cdn.lordicon.com/eouimtlu.json"
+                                                  trigger="hover"
+                                                  colors="primary:#ffffff"
+                                                  style="width:18px;height:18px">
+                                              </lord-icon>
+                                          </button>
+                                      </form>
+                                  </div>
+                              </div>
+                          </td>
+                      </tr>
+                      
                         @endforeach
                           
                           
@@ -325,6 +328,19 @@
   text: "{{ Session::get('error') }}",
   
 });
+
+    </script>
+  @endif
+
+  @if(Session::has('new'))
+  <script>
+     Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "{{ Session::get('new') }}",
+          showConfirmButton: true,
+          
+      });
 
     </script>
   @endif
