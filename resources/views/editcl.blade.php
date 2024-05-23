@@ -139,7 +139,7 @@
         <div class="content-wrapper">
           <div class="container d-flex justify-content-center align-items-center">
             <div class="page-header text-center">
-                <h3 class="page-title">Informations sur clients </h3>
+              
                 
             </div>
           </div>
@@ -147,52 +147,59 @@
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Ajouter des clients  </h4>
+                  <h4 class="card-title text-center" style="font-size: 24px; font-family: monospace, sans-serif;">Modifier les informations du client </h4>
+                  <br>
                   <form action="{{ route('updatecl',$clients->NUM_CONTRAT) }}" method="POST">
                       @csrf
                       @method('PUT')
                       <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Num du contract </label>
+                        <label for="exampleInputEmail1" class="form-label">Num du contract :</label>
                         <input type="text" class="form-control" name="NUM_CONTRAT" aria-describedby="emailHelp" value="{{ $clients->NUM_CONTRAT}}">
                         @error('NUM_CONTRAT')
                         <div class="text-danger small">
                           {{ $message }}
                         </div>
                         @enderror
+                        <br>
 
-                        <label for="exampleInputEmail1" class="form-label">Nom du client </label>
+                        <label for="exampleInputEmail1" class="form-label">Nom du client :</label>
+                        
                         <input type="text" class="form-control" name="NOM_CLIENT" aria-describedby="emailHelp" value="{{ $clients->NOM_CLIENT }}">
                         @error('NOM_CLIENT')
                         <div class="text-danger small">
                           {{ $message }}
                         </div>
                         @enderror
+                        <br>
 
-                        <label for="exampleInputEmail1" class="form-label">CIN </label>
+                        <label for="exampleInputEmail1" class="form-label">CIN :</label>
                         <input type="text" class="form-control" name="prenomclie" aria-describedby="emailHelp" value="{{ $clients->CIN }}">
                         @error('CIN')
                         <div class="text-danger small">
                           {{ $message }}
                         </div>
                         @enderror
+                        <br>
 
-                        <label for="exampleInputEmail1" class="form-label"> ADRESSE </label>
+                        <label for="exampleInputEmail1" class="form-label"> ADRESSE :</label>
                         <input type="text" class="form-control" name="ADRESSE" aria-describedby="emailHelp" value="{{ $clients->ADRESSE }}">
                         @error('ADRESSE')
                         <div class="text-danger small">
                           {{ $message }}
                         </div>
                         @enderror
+                        <br>
 
-                        <label for="exampleInputEmail1" class="form-label">TEL</label>
+                        <label for="exampleInputEmail1" class="form-label">TEL :</label>
                         <input type="text" class="form-control" name="TEL" aria-describedby="emailHelp" value="{{ $clients->TEL }}">
                         @error('TEL')
                         <div class="text-danger small">
                           {{ $message }}
                         </div>
                         @enderror
+                        <br>
 
-                        <label for="exampleInputEmail1" class="form-label">EMAIL</label>
+                        <label for="exampleInputEmail1" class="form-label">EMAIL :</label>
                         <input type="email" class="form-control"name="EMAIL" rows="3" aria-describedby="emailHelp" value="{{ $clients->EMAIL }}">
                         </input>
                         @error('EMAIL')
@@ -200,6 +207,7 @@
                           {{ $message }}
                         </div>
                         @enderror
+                        <br>
 
                        
                       </div>

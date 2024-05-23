@@ -113,7 +113,7 @@
             <div class="container-fluid">
               <div class="row">
                   <div class="col-auto">
-                      <a class="nav-link color1" href="">
+                      <a class="nav-link color1" href="/chatify">
                         <script src="https://cdn.lordicon.com/lordicon.js"></script>
                         <lord-icon
                             src="https://cdn.lordicon.com/ayhtotha.json"
@@ -124,7 +124,7 @@
                       </a>
                   </div>
                   <div class="col align-self-center">
-                      <a class="nav-link color1" href="">
+                      <a class="nav-link color1" href="/chatify">
                           <span class="menu-title color1">Chat</span> 
                       </a>
                   </div>
@@ -139,7 +139,7 @@
         <div class="content-wrapper">
           <div class="container d-flex justify-content-center align-items-center">
             <div class="page-header text-center">
-                <h3 class="page-title" style="font-size: 25px;">Plus d'informations Sur le client</h3>
+                <h3 class="page-title" style="font-size: 24px; font-family: monospace, sans-serif;">Plus d'informations Sur le client</h3>
                 
             </div>
         </div>
@@ -147,14 +147,18 @@
           <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
-                <h1 class="card-header custom-header" >Profile de {{ $client->NOM_CLIENT }}</h1>
+                <h1 class="card-header custom-header" style="font-size: 24px; font-family: monospace, sans-serif;">Profile : {{ $client->NOM_CLIENT }}</h1>
                 <div class="card-body">
-                  <p class="card-title " style="font-size: 22px;" >Plus d'information:</p>
                   <p class="card-text" style="font-size: 18px;"> <strong> Numéro de Contrat: </strong> {{ $client->NUM_CONTRAT }} </p>
+                  
                   <p class="card-text" style="font-size: 18px;"> <strong> CIN: </strong> {{ $client->CIN }} </p>
+                  
                   <p class="card-text" style="font-size: 18px;"> <strong> Adresse: </strong> {{ $client->ADRESSE }} </p>
+                  
                   <p class="card-text" style="font-size: 18px;"> <strong> Numéro de téléphone: </strong> {{ $client->TEL }} </p>
-                  <p class="card-text" style="font-size: 18px;"> <strong> Email:</strong> {{ $client->EMAIL }} </p> </br>
+                  
+                  <p class="card-text" style="font-size: 18px;"> <strong> Email:</strong> {{ $client->EMAIL }} </p> 
+                    </br>
                   <a href="{{ route('showclients', ['NUM_CONTRAT' => $client->NUM_CONTRAT]) }}" class="btn btn-dark">Retour</a>
                 </div>
               </div>

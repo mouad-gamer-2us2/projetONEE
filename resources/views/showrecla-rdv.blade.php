@@ -140,7 +140,7 @@
             <div class="content-wrapper">
                 <div class="container d-flex justify-content-center align-items-center">
                     <div class="page-header text-center">
-                        <h3 class="page-title">Client : {{ $NOM_CLIENT }} / contrat n°: {{ $NUM_CONTRAT }}</h3>
+                        <h3 class="page-title" style="font-size: 24px; font-family: monospace, sans-serif;">Client : {{ $NOM_CLIENT }} / contrat n°: {{ $NUM_CONTRAT }}</h3>
                     </div>
                 </div>
                 
@@ -166,14 +166,14 @@
                                         
                                         <thead>
                                             <tr>
-                                                <th class="text-center"> ID </th>
-                                                <th class="text-center"> Categorie </th>
-                                                <th class="text-center"> Agent Centre </th>
-                                                <th class="text-center"> Service responsable</th>
-                                                <th class="text-center"> Description </th>
-                                                <th class="text-center"> URGENCE </th>
-                                                <th class="text-center"> Etat </th>
-                                                <th class="text-center" colspan="2"> Action</th>
+                                                <th class="text-center col-1"> ID </th>
+                                                <th class="text-center col-2"> Categorie </th>
+                                                <th class="text-center col-2"> Agent Centre </th>
+                                                <th class="text-center col-2"> Service responsable</th>
+                                                <th class="text-center col-2"> Description </th>
+                                                <th class="text-center col-1"> URGENCE </th>
+                                                <th class="text-center col-1"> Etat </th>
+                                                <th class="text-center col-1" colspan="2"> Action</th>
                                             </tr>
                                         </thead>
         
@@ -241,12 +241,12 @@
                                         
                                         <thead>
                                             <tr>
-                                                <th class="text-center"> ID </th>
-                                                <th class="text-center"> Informations </th>
-                                                <th class="text-center"> Agent Centre </th>
-                                                <th class="text-center"> Service responsable</th>
-                                                <th class="text-center"> Date de la demande </th>
-                                                <th class="text-center" colspan="2"> Action</th>
+                                                <th class="text-center col-1"> ID </th>
+                                                <th class="text-center col-3"> Informations </th>
+                                                <th class="text-center col-2"> Agent Centre </th>
+                                                <th class="text-center col-3"> Service responsable</th>
+                                                <th class="text-center col-2"> Date de la demande </th>
+                                                <th class="text-center col-1" colspan="2"> Action</th>
                                             </tr>
                                         </thead>
         

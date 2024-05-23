@@ -142,10 +142,13 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-10">
                             <div class="card">
-                                <div class="card-body" style="margin-top: 20px; min-height: 300px;">
-                                    <h4 class="card-title">Veuillez choisir réclamation, rendez-vous :</h4>
+                                <div class="card-body" style="margin-top: 20px; min-height: 400px;">
+                                    <h4 class="card-title text-center" style="font-size: 24px; font-family: monospace, sans-serif;">Veuillez choisir réclamation, rendez-vous </h4>
                                     <br>
                                     <br>
+                                    <br>
+                                    <br>
+                                    
                                     <div class="row justify-content-center">
                                         <div class="col-md-4">
                                             <form action="{{ route('createrecla', $NUM_CONTRAT) }}" method="POST">
