@@ -21,7 +21,7 @@
             <div class="container-fluid">
               <div class="row">
                   <div class="col-auto">
-                      <a class="nav-link color1" href="{{ route('showclients') }}">
+                      <a class="nav-link color1" href="{{ route('showaffecte') }}">
                         <script src="https://cdn.lordicon.com/lordicon.js"></script>
                         <lord-icon
                             src="https://cdn.lordicon.com/hrjifpbq.json"
@@ -31,20 +31,20 @@
                         </lord-icon>
                       </a>
                   </div>
-                  <div class="col align-self-center">
-                      <a class="nav-link color1" href="{{ route('showclients') }}">
-                          <span class="menu-title color1">Espace clients</span> 
+                  <div class="col-8 align-self-center">
+                      <a class="nav-link color1" href="{{ route('showaffecte') }}">
+                          <span class="menu-title color1">Mes réclamations</span> 
                       </a>
                   </div>
               </div>
-          </div>
+            </div>
           
           </li>
           <li class="nav-item">
             <div class="container-fluid">
               <div class="row">
                   <div class="col-auto">
-                      <a class="nav-link color1" href="{{ route('showrecla') }}">
+                      <a class="nav-link color1" href="recla">
                         <script src="https://cdn.lordicon.com/lordicon.js"></script>
                         <lord-icon
                             src="https://cdn.lordicon.com/abvsilxn.json"
@@ -55,7 +55,7 @@
                       </a>
                   </div>
                   <div class="col align-self-center">
-                      <a class="nav-link color1" href="{{ route('showrecla') }}">
+                      <a class="nav-link color1" href="recla">
                           <span class="menu-title color1">Réclamations</span> 
                       </a>
                   </div>
@@ -67,7 +67,7 @@
             <div class="container-fluid">
               <div class="row">
                   <div class="col-auto">
-                      <a class="nav-link color1" href="{{ route('showhistorique') }}">
+                      <a class="nav-link color1" href="{{ route('showreclamationtraitee') }}">
                         <script src="https://cdn.lordicon.com/lordicon.js"></script>
                         <lord-icon
                             src="https://cdn.lordicon.com/dafdkyyt.json"
@@ -78,7 +78,7 @@
                       </a>
                   </div>
                   <div class="col align-self-center">
-                      <a class="nav-link color1" href="{{ route('showhistorique') }}">
+                      <a class="nav-link color1" href="{{ route('showreclamationtraitee') }}">
                           <span class="menu-title color1">Historique</span> 
                       </a>
                   </div>
@@ -90,7 +90,7 @@
             <div class="container-fluid">
               <div class="row">
                   <div class="col-auto">
-                      <a class="nav-link color1" href="{{ route('showrendezvous') }}">
+                      <a class="nav-link color1" href="{{ route('showrendez') }}">
                         <script src="https://cdn.lordicon.com/lordicon.js"></script>
                         <lord-icon
                             src="https://cdn.lordicon.com/wmlleaaf.json"
@@ -101,12 +101,35 @@
                       </a>
                   </div>
                   <div class="col align-self-center">
-                      <a class="nav-link color1" href="{{ route('showrendezvous') }}">
-                          <span class="menu-title color1">rendez-vous</span> 
+                      <a class="nav-link color1" href="{{ route('showrendez') }}">
+                          <span class="menu-title color1">Rendez-vous</span> 
                       </a>
                   </div>
               </div>
           </div>
+          
+          </li>
+            <li class="nav-item">
+            <div class="container-fluid">
+              <div class="row">
+                  <div class="col-auto">
+                      <a class="nav-link color1" href="{{ route('showaffecte') }}">
+                        <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                        <lord-icon
+                            src="https://cdn.lordicon.com/hrjifpbq.json"
+                            trigger="hover"
+                            colors="primary:#0e46a3"
+                            style="width:18px;height:18px">
+                        </lord-icon>
+                      </a>
+                  </div>
+                  <div class="col-8 align-self-center">
+                      <a class="nav-link color1" href="{{ route('showmesrendez') }}">
+                          <span class="menu-title color1">Mes rendez-vous</span> 
+                      </a>
+                  </div>
+              </div>
+            </div>
           
           </li>
           <li class="nav-item">
@@ -132,16 +155,14 @@
           </div>
           
           </li>
+            
         </ul>
       </nav>
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="container d-flex justify-content-center align-items-center">
-            <div class="page-header text-center">
-                <h3 class="page-title">Les Réclamations</h3>
-                
-            </div>
+            
         </div>
           
           <div class="row">
@@ -150,22 +171,9 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-4">
-                      <h4 class="card-title">Informations Sur les réclamations </h4>
+                      <h4 class="card-title">Mes réclamations </h4>
                   </div>
-                  <div class="col-md-8">
-                    <form method="POST" action="{{ route('searchrecla') }}" class="form-inline">
-                      @csrf
-                      <input class="form-control mr-sm-2" type="search" name="ID_RECLAMATION"placeholder="chercher par ID de reclamation" aria-label="Search">
-                      <button class="btn btn-dark btn-sm" type="submit"> 
-                        <script src="https://cdn.lordicon.com/lordicon.js"></script>
-                        <lord-icon
-                            src="https://cdn.lordicon.com/kkvxgpti.json"
-                            trigger="hover"
-                            colors="primary:#ffffff"
-                            style="width:18px;height:18px">
-                        </lord-icon></button>
-                    </form>
-                  </div>
+                  
                       </div>
 
                   
@@ -186,15 +194,16 @@
                       </thead>
                       <tbody>
                         
-                        @foreach ($reclamations as $recla)
+                       @foreach($reclamationAffectees as $reclamationAffectee)
+                       @if($reclamationAffectee->reclamation->ETAT=="en cours")
                         <tr>
-                            <td class="text-center text-wrap">{{ $recla->ID_RECLAMATION }}</td>
-                            <td class="text-center text-wrap">{{ $recla->client->NOM_CLIENT}}</td>
-                            <td class="text-center text-wrap">{{ $recla->categorie_reclamation->NOM_CATEGORIE }}</td>
-                            <td class="text-center text-wrap">{{ $recla->agent_centre->user->name }}</td>
-                            <td class="text-center text-wrap">{{ $recla->service->NOM_SERVICE }}</td>
-                            <td class="text-center text-wrap">{{ $recla->DESCRIPTION }}</td>
-                            <td class="text-center text-wrap @switch($recla->URGENCE)
+                            <td class="text-center text-wrap" name="id_reclamations">{{$reclamationAffectee->ID_RECLAMATION}}</td>
+                            <td class="text-center text-wrap" >{{ $reclamationAffectee->reclamation->client->NOM_CLIENT}}</td>
+                            <td class="text-center text-wrap">{{ $reclamationAffectee->reclamation->categorie_reclamation->NOM_CATEGORIE }}</td>
+                            <td class="text-center text-wrap">{{ $reclamationAffectee->reclamation->agent_centre->user->name }}</td>
+                            <td class="text-center text-wrap">{{ $reclamationAffectee->reclamation->service->NOM_SERVICE }}</td>
+                            <td class="text-center text-wrap">{{ $reclamationAffectee->reclamation->DESCRIPTION }}</td>
+                            <td class="text-center text-wrap @switch($reclamationAffectee->reclamation->URGENCE)
                               @case('Très élevé')
                                   verybad
                                   @break
@@ -210,52 +219,61 @@
                               @default
                                   verylow
                           @endswitch">
-                              {{ $recla->URGENCE }}
+                              {{  $reclamationAffectee->reclamation->URGENCE }}
                           </td>
-                              <td class="text-center text-wrap">{{ $recla->ETAT}}</td>
-                              <td >
-                                   
-                                       
-                                <form action="{{ route('editrecla',$recla->ID_RECLAMATION) }}" method="GET">
-                                 @csrf
-                                    
-                                    <button type="submit" class="btn blue btn-sm" title="Modifier">
-                                        <script src="https://cdn.lordicon.com/lordicon.js"></script>
-                                        <lord-icon
-                                            src="https://cdn.lordicon.com/pflszboa.json"
-                                            trigger="hover"
-                                            colors="primary:#ffffff"
-                                            style="width:18px;height:18px">
-                                        </lord-icon>
-                                    </button>
-                                </form>
-                            </td>
+                         
+                              <td class="text-center text-wrap">{{ $reclamationAffectee->reclamation->ETAT}}</td>
+                          
                             <td>       
-                                <form action="{{ route('destroyrecla',$recla->ID_RECLAMATION) }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                            
-                                    <button type="submit" class="btn verybad btn-sm" title="Supprimer">
-                                        <script src="https://cdn.lordicon.com/lordicon.js"></script>
-                                        <lord-icon
-                                            src="https://cdn.lordicon.com/wpyrrmcq.json"
-                                            trigger="hover"
-                                            colors="primary:#ffffff"
-                                            style="width:18px;height:18px">
-                                        </lord-icon>
+                           
+                                 <form action="{{ route('ajoutreclamatraitee', $reclamationAffectee->reclamation->ID_RECLAMATION) }}" method="POST">
+                                     @csrf
+                                   <input type="hidden" name="ID_RECLAMATION" value="{{  $reclamationAffectee->reclamation->ID_RECLAMATION }}">
+                                  <!-- Button trigger modal -->
+                                    <button type="button" class="btn blue btn-sm" data-toggle="modal" data-target="#exampleModal">
+            
+                                      <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                                                            <lord-icon
+                                                                                src="https://cdn.lordicon.com/pflszboa.json"
+                                                                                trigger="hover"
+                                                                                colors="primary:#ffffff"
+                                                                                style="width:18px;height:18px">
+                                                                            </lord-icon>
                                     </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel" name="procedure">Procedure</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <textarea name="procedure" id="procedure" cols=53 rows=10></textarea>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="submit" title="Modifier" class="btn btn-primary">Enregistrer</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                
+                                    
+                                   
                                 </form>
-                       
                             
-                      
                              </td>
+                        @endif
                         @endforeach
  
                       </tbody>
 
                     </table>
                     <br>
-                    {{ $reclamations->links() }}
+                    
                   </div>
                   </div>
                 </div>
@@ -272,6 +290,7 @@
     </div>
  
   </div>
+
   @if(Session::has('message'))
   <script>
      Swal.fire({
@@ -301,5 +320,8 @@
 
  
 </x-app-layout>
+
+
+ 
 
 

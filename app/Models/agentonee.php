@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\services;
+use App\Models\reclamations;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class agent_onee extends Model
+class agentonee extends Model
 {
     use HasFactory;
-
-    
-    protected $primaryKey ='ID_AONEE';
+      protected $primaryKey = 'ID_AONEE';
+     protected $table = 'agent_onees';
     protected $fillable = [
         'ID_AONEE',
         'ID_SER',
@@ -26,7 +28,9 @@ class agent_onee extends Model
         return $this->belongsTo(services::class, 'ID_SER', 'ID_SERVICE');
     }
 
-
-
+    public function reclamations()
+    {
+        return $this->hasMany(reclamations::class, 'ID_A_ONEE', 'ID_AONEE');
+    }
 
 }
