@@ -118,9 +118,9 @@
           <div class="content-wrapper">
             <div class="container d-flex justify-content-center align-items-center">
               <div class="page-header text-center">
-                  <h3 class="page-title">Vos services</h3>
-                  
-              </div>
+                <h2 class="page-title" style="font-size: 24px; font-family: monospace, sans-serif;">services</h2>
+            </div>
+            
           </div>
             
             <div class="row">
@@ -130,7 +130,7 @@
                     <div class="row">
                         <div class="col">
                             <!-- -->
-                            <h4 class="card-title">Les Services de l'ONEE</h4>
+                            <h4 class="card-title " >Les Services de l'ONEE :</h4>
                         </div>
                         <div class="col-auto">
                            
@@ -163,11 +163,11 @@
                             
                             @foreach ($SERVICES as $S)
                             <tr>
-                                <td class="text-center text-wrap">{{ $S->ID_SERVICE }}</td>
-                                <td class="text-center text-wrap">{{ $S->NOM_SERVICE }}</td>
-                                <td class="text-center text-wrap">{{ $S->CATEGORIE_SERVICE }}</td>
-                                <td class="text-center text-wrap">{{ $S->DESCRIPTION }}</td>
-                                <td class="text-center text-wrap">{{ $S->APPARTENANCE }}</td>
+                                <td class="text-center text-wrap col-1">{{ $S->ID_SERVICE }}</td>
+                                <td class="text-center text-wrap col-3">{{ $S->NOM_SERVICE }}</td>
+                                <td class="text-center text-wrap col-3">{{ $S->CATEGORIE_SERVICE }}</td>
+                                <td class="text-center text-wrap col-3">{{ $S->DESCRIPTION }}</td>
+                                <td class="text-center text-wrap col-2">{{ $S->APPARTENANCE }}</td>
                                 <td class="text-center">
                                     <div class="row">
                                         <div class="col-auto">

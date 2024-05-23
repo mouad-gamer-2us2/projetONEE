@@ -117,7 +117,7 @@
           <div class="content-wrapper">
             <div class="container d-flex justify-content-center align-items-center">
               <div class="page-header text-center">
-                  <h3 class="page-title">Vos Catégories Réclamation </h3>
+                  <h3 class="page-title" style="font-size: 24px; font-family: monospace, sans-serif;"> Catégories Réclamation </h3>
                   
               </div>
           </div>
@@ -129,7 +129,7 @@
                     <div class="row">
                         <div class="col">
                             <!-- -->
-                            <h4 class="card-title">Les Catégories Réclamation</h4>
+                            <h4 class="card-title">Les Catégories Réclamation :</h4>
                         </div>
                         <div class="col-auto">
                            
@@ -150,16 +150,16 @@
                             <thead>
                                 <tr>
                                     <th class="text-center"> # </th>
-                                    <th class="text-center" style="width: 60%;"> Categories Réclamation </th>
+                                    <th class="text-center"> Categories Réclamation </th>
                                     <th class="text-center" colspan="2"> Actions </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($CAT_REC as $CR)
                                 <tr>
-                                    <td class="text-center">{{ $CR->ID_CATEGORIE }}</td>
-                                    <td class="text-center">{{ $CR->NOM_CATEGORIE }}</td>
-                                    <td>
+                                    <td class="text-center col-4">{{ $CR->ID_CATEGORIE }}</td>
+                                    <td class="text-center col-4">{{ $CR->NOM_CATEGORIE }}</td>
+                                    <td class="text-center col-2">
                                         <div class="text-end">
                                             <form action="{{ route('editREC',$CR->ID_CATEGORIE) }}" method="GET">
                                                 <button type="submit" class="btn blue btn-sm" title="Modifier">
@@ -174,7 +174,7 @@
                                             </form>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td class="text-center col-2">
                                         <div class="text-start">
                                             <form action="{{ route('destroyREC',$CR->ID_CATEGORIE) }}" method="POST">
                                                 @method('DELETE')
@@ -244,124 +244,3 @@
 
 
 
-<script>
-
-$(document).ready(function () {
-
-    $.ajaxSetup({
-        headers:{
-            'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    var calendar = $('#calendar').fullCalendar({
-        editable:true,
-        header:{
-            left:'prev,next today',
-            center:'title',
-            right:'month,agendaWeek,agendaDay'
-        },
-        events:'/full-calender',
-        selectable:true,
-        selectHelper: true,
-        select:function(start, end, allDay)
-        {
-            var title = prompt('Event Title:');
-
-            if(title)
-            {
-                var start = $.fullCalendar.formatDate(start, 'Y-MM-DD HH:mm:ss');
-
-                var end = $.fullCalendar.formatDate(end, 'Y-MM-DD HH:mm:ss');
-
-                $.ajax({
-                    url:"/full-calender/action",
-                    type:"POST",
-                    data:{
-                        title: title,
-                        start: start,
-                        end: end,
-                        type: 'add'
-                    },
-                    success:function(data)
-                    {
-                        calendar.fullCalendar('refetchEvents');
-                        alert("Event Created Successfully");
-                    }
-                })
-            }
-        },
-        editable:true,
-        eventResize: function(event, delta)
-        {
-            var start = $.fullCalendar.formatDate(event.start, 'Y-MM-DD HH:mm:ss');
-            var end = $.fullCalendar.formatDate(event.end, 'Y-MM-DD HH:mm:ss');
-            var title = event.title;
-            var id = event.id;
-            $.ajax({
-                url:"/full-calender/action",
-                type:"POST",
-                data:{
-                    title: title,
-                    start: start,
-                    end: end,
-                    id: id,
-                    type: 'update'
-                },
-                success:function(response)
-                {
-                    calendar.fullCalendar('refetchEvents');
-                    alert("Event Updated Successfully");
-                }
-            })
-        },
-        eventDrop: function(event, delta)
-        {
-            var start = $.fullCalendar.formatDate(event.start, 'Y-MM-DD HH:mm:ss');
-            var end = $.fullCalendar.formatDate(event.end, 'Y-MM-DD HH:mm:ss');
-            var title = event.title;
-            var id = event.id;
-            $.ajax({
-                url:"/full-calender/action",
-                type:"POST",
-                data:{
-                    title: title,
-                    start: start,
-                    end: end,
-                    id: id,
-                    type: 'update'
-                },
-                success:function(response)
-                {
-                    calendar.fullCalendar('refetchEvents');
-                    alert("Event Updated Successfully");
-                }
-            })
-        },
-
-        eventClick:function(event)
-        {
-            if(confirm("Are you sure you want to remove it?"))
-            {
-                var id = event.id;
-                $.ajax({
-                    url:"/full-calender/action",
-                    type:"POST",
-                    data:{
-                        id:id,
-                        type:"delete"
-                    },
-                    success:function(response)
-                    {
-                        calendar.fullCalendar('refetchEvents');
-                        alert("Event Deleted Successfully");
-                    }
-                })
-            }
-        }
-    });
-
-});
-  
-</script>
-  
