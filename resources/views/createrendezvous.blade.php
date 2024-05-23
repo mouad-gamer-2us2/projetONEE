@@ -139,28 +139,30 @@
         <div class="content-wrapper">
           <div class="container d-flex justify-content-center align-items-center">
             <div class="page-header text-center">
-                <h3 class="page-title">Saisie des Rendez-Vous </h3>
-                
             </div>
           </div>
           <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Ajouter Un rendez-vous</h4>
+                  <h4 class="card-title text-center" style="font-size: 24px; font-family: monospace, sans-serif;">Ajouter Un rendez-vous</h4>
+                  <br>
                   <form action="{{ route('storerendezvous') }}" method="POST">
                       @csrf
               
                       <div class="mb-3">
-                          <label for="exampleInputEmail1" class="form-label">Info Rendez-vous</label>
+                          <label for="exampleInputEmail1" class="form-label">Description du Rendez-vous :</label>
+                          <br>
                           <textarea type="text" class="form-control" name="info_rendezvous" aria-describedby="emailHelp"></textarea>
                           @error('info_rendezvous')
                               <div class="text-danger small">{{ $message }}</div>
                           @enderror
+                          <br>
               
                           <input type="text" class="form-control d-none" name="id_A_centre"  value="{{ $id }}" aria-describedby="emailHelp">
               
-                          <label for="exampleInputEmail1" class="form-label">Services</label>
+                          <label for="exampleInputEmail1" class="form-label">Services :</label>
+                          <br>
                           <select class="form-control" name="id_serv" aria-describedby="emailHelp">
                               @foreach ( $services as $ser)
                                   <option value="{{ $ser->ID_SERVICE }}">{{ $ser->NOM_SERVICE }}</option>
@@ -169,11 +171,12 @@
                           @error('id_serv')
                               <div class="text-danger small">{{ $message }}</div>
                           @enderror
+                          <br>
               
                           <input type="text" class="form-control d-none" name="id_cli"  value="{{ $NUM_CONTRAT }}" aria-describedby="emailHelp">
                       </div>
               
-                      <button type="submit" class="btn btn-success mr-2">Ajouter</button>  
+                      <button type="submit" class="btn btn-success">Ajouter</button>  
                   </form>
 
                   <br>

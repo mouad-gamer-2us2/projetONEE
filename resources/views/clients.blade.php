@@ -140,7 +140,7 @@
         <div class="content-wrapper">
           <div class="container d-flex justify-content-center align-items-center">
             <div class="page-header text-center">
-                <h3 class="page-title">Clients</h3>
+                <h3 class="page-title" style="font-size: 24px; font-family: monospace, sans-serif;">Espace clients</h3>
                 
             </div>
         </div>
@@ -149,9 +149,9 @@
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <h4 class="card-title">Informations Sur les clients</h4>
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-md-3 ">
+                            <h4 class="card-title">Informations Sur les clients :</h4>
                         </div>
                         <div class="col-md-5 d-flex justify-content-center">
                             <form method="POST" action="{{ route('searchcli') }}" class="form-inline">
@@ -186,18 +186,18 @@
                     <table class="table">
                       <thead>
                         <tr>
-                          <th class="text-center"> Num de Contract </th>
-                          <th class="text-center"> Nom du client </th>
-                          <th class="text-center"> Telephone</th>
-                          <th class="text-center" colspan="4"> Actions </th>
+                          <th class="text-center col-2"> Num de Contract </th>
+                          <th class="text-center col-4"> Nom du client </th>
+                          <th class="text-center col-4"> Telephone</th>
+                          <th class="text-center col-2" colspan="4"> Actions </th>
                         </tr>
                       </thead>
                       <tbody>
                         @foreach ($clients as $client)
                         <tr>
-                            <td class="text-center">{{ $client->NUM_CONTRAT }}</td>
-                            <td class="text-center">{{ $client->NOM_CLIENT}}</td>
-                            <td class="text-center">{{ $client->TEL }}</td>
+                            <td class="text-center text-wrap">{{ $client->NUM_CONTRAT }}</td>
+                            <td class="text-center text wrap">{{ $client->NOM_CLIENT}}</td>
+                            <td class="text-center text wrap">{{ $client->TEL }}</td>
                             <td class="text-center" >
                               <div class="row">
                                 <div class="col-auto">
