@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\clients;
-use App\Models\categorie_reclamation;
-use App\Models\agent_centre;
-use App\Models\demande_rendez_vous;
-use App\Models\reclamations;
-use App\Models\services;
 use Exception;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Models\clients;
+use App\Models\services;
+use App\Models\agentonee;
+use App\Models\agent_centre;
+use App\Models\reclamations;
+use Illuminate\Http\Request;
+use App\Models\demande_rendez_vous;
 use Illuminate\Support\Facades\Auth;
+use App\Models\categorie_reclamation;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 class CenterController extends Controller
 {//-------------------------------------------------------------------------------
     public function showclients()
@@ -125,9 +127,29 @@ public function showrecla()
         'service:ID_SERVICE,NOM_SERVICE',
         'categorie_reclamation:ID_CATEGORIE,NOM_CATEGORIE',
         'agent_centre.user:id,name' 
-    ])->paginate(5);
+    ])
+    ->paginate(5);
 
     return view('reclamations', compact('reclamations'));
+}
+
+public function showreclamations()
+{
+    // Supposons que $idService contient l'ID de votre service
+   $user = Auth::id(); // Ou tout autre moyen de récupérer l'ID du service actuel
+    $agentonee=agentonee::findOrFail($user);
+    $idService = $agentonee->ID_SER;
+    $reclamations = reclamations::with([
+        'client:NUM_CONTRAT,NOM_CLIENT', 
+        'service:ID_SERVICE,NOM_SERVICE',
+        'categorie_reclamation:ID_CATEGORIE,NOM_CATEGORIE',
+        'agent_centre.user:id,name' 
+    ])
+    ->where('ETAT', 'pas encore traitée')
+    ->where('ID_SERV', $idService) // Filtrer par l'ID de votre service
+    ->paginate(5);
+
+    return view('recla', compact('reclamations'));
 }
 
 
@@ -288,6 +310,24 @@ public function showrecla()
     
         return view('rendezvous', compact('rendezvous'));
     }
+
+    public function showrendez()
+{
+    $user = Auth::id();
+    $agentonee = agentonee::findOrFail($user);
+    $idService = $agentonee->ID_SER;
+
+    // Récupérer les ID des rendez-vous associés à l'agent mais qui ne se trouvent pas dans la table events
+    $rendezvous = demande_rendez_vous::where('ID_SER', $idService)
+        ->whereNotIn('ID_RENDEZ_VOUS', function($query) {
+            $query->select('id_rendezvous')
+                  ->from('events');
+        })
+        ->with(['client:NUM_CONTRAT,NOM_CLIENT', 'service:ID_SERVICE,NOM_SERVICE', 'agent_centre.user:id,name'])
+        ->paginate(5);
+
+    return view('rendez', compact('rendezvous'));
+}
 
     public function createrendezvous(Request $request){
 

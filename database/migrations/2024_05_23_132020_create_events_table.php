@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
-            $table->string("title");
-            $table->string("start");
-            $table->string("end");
-            $table->unsignedBigInteger('client_id'); 
-            $table->foreign('client_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('id_agent');
+            $table->unsignedBigInteger('id_rendezvous');
+            $table->dateTime('date_et_heure');
             $table->timestamps();
+
+            // Foreign key constraints
+            $table->foreign('id_agent')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_rendezvous')->references('ID_RENDEZ_VOUS')->on('demande_rendez_vouses')->onDelete('cascade');
         });
     }
 
