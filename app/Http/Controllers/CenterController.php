@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Models\demande_rendez_vous;
 use Illuminate\Support\Facades\Auth;
 use App\Models\categorie_reclamation;
+use App\Models\reclamationtraitee;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CenterController extends Controller
@@ -106,8 +107,11 @@ class CenterController extends Controller
         }
 
         public function showhistorique()
-        {
-            return view('historique');
+        {   
+            $reclamationAffectees = reclamationtraitee::with('reclamation', 'agentOnee')->paginate(5);
+
+             
+            return view('historique',compact('reclamationAffectees'));
         }
 
         public function voirpluscl(Request $request)

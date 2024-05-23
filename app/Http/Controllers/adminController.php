@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\informationEmail;
 use App\Mail\updateEmail;
 use App\Models\agent_onee;
+use App\Models\agentonee;
 use Illuminate\Console\View\Components\Info as ComponentsInfo;
 use Illuminate\Foundation\Auth\User as AuthUser;
 
@@ -337,7 +338,7 @@ class adminController extends Controller
             'ID_SER' =>'required',
         ]);
 
-        agent_onee::create([
+        agentonee::create([
             'ID_AONEE'=>$ID_AONEE,
             'ID_SER'=>$ID_SER,
         ]);
@@ -362,7 +363,7 @@ class adminController extends Controller
 
         
 
-        $affectation = agent_onee::find($ID_AONEE);
+        $affectation = agentonee::find($ID_AONEE);
 
         $affectation->fill([
             'ID_SER'=>$ID_SER,

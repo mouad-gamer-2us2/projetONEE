@@ -149,9 +149,9 @@
               <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                      <div class="row justify-content-center align-items-center">
-                          <div class="col-md-3 ">
-                              <h4 class="card-title">Informations Sur les clients :</h4>
+                      <div class="row ">
+                          <div class="col-auto">
+                              <h4 class="card-title">Historique des Réclamations traitée :</h4>
                           </div>
                           
                       </div>
@@ -162,13 +162,50 @@
                       <table class="table">
                         <thead>
                           <tr>
-                            <th class="text-center col-2"> Num de Contract </th>
-                            <th class="text-center col-4"> Nom du client </th>
-                            <th class="text-center col-4"> Telephone</th>
-                            <th class="text-center col-2" colspan="4"> Actions </th>
+                            <th class="text-center col-1"> ID </th>
+                            <th class="text-center col-1"> Client </th>
+                            <th class="text-center col-1"> Categorie réclamation </th>
+                            <th class="text-center col-1"> Agent centre</th>
+                            <th class="text-center col-2"> Service responsable </th>
+                            <th class="text-center col-3"> Description </th>
+                            <th class="text-center col-1"> Urgence </th>
+                            <th class="text-center col-2"> procédure </th>
                           </tr>
                         </thead>
                         <tbody>
+                          @foreach($reclamationAffectees as $reclamationAffectee)
+                  
+                          <tr>
+                              <td class="text-center text-wrap" >{{$reclamationAffectee->ID_REC_AFF}}</td>
+                              <td class="text-center text-wrap" >{{ $reclamationAffectee->reclamation->client->NOM_CLIENT}}</td>
+                              <td class="text-center text-wrap">{{ $reclamationAffectee->reclamation->categorie_reclamation->NOM_CATEGORIE }}</td>
+                              <td class="text-center text-wrap">{{ $reclamationAffectee->reclamation->agent_centre->user->name }}</td>
+                              <td class="text-center text-wrap">{{ $reclamationAffectee->reclamation->service->NOM_SERVICE }}</td>
+                              <td class="text-center text-wrap">{{ $reclamationAffectee->reclamation->DESCRIPTION }}</td>
+                              <td class="text-center text-wrap @switch($reclamationAffectee->reclamation->URGENCE)
+                                @case('Très élevé')
+                                    verybad
+                                    @break
+                                @case('élevé')
+                                    bad
+                                    @break
+                                @case('moyenne')
+                                    normal
+                                    @break
+                                @case('faible')
+                                    low
+                                    @break
+                                @default
+                                    verylow
+                            @endswitch">
+                                {{  $reclamationAffectee->reclamation->URGENCE }}
+                            </td>
+                           
+                               
+                            <td class="text-center text-wrap">
+                                  {{ $reclamationAffectee->Procedure}}
+                            </td>
+                          @endforeach
                           
                             
                             
@@ -178,6 +215,8 @@
                        
                       </table>
                       <br>
+                      {{ $reclamationAffectees->links() }}
+                      
                       
                     </div>
                   </div>
