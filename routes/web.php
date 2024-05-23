@@ -110,7 +110,9 @@ route::put('/admindash1/{ID_SERVICE}',[adminController::class,'updateSER'])->nam
 
     route::get('/admindash3/{id}/editAF',[adminController::class,'editAF'])->name('editAF');
 
-    route::put('/admindash3/{id}',[adminController::class,'updateAF'])->name('updateAF');});
+    route::put('/admindash3/{id}',[adminController::class,'updateAF'])->name('updateAF');
+
+    route::get('/admindash3/searchPER',[adminController::class,'searchPER'])->name('searchPER');});
 
 //--------------------------------------------------------------------------------------------------------
 
