@@ -190,8 +190,8 @@
                           <th class="text-center col-1"> Categorie </th>
                           <th class="text-center col-1"> Agent Centre </th>
                           <th class="text-center col-1"> Service responsable</th>
-                          <th class="text-center col-5"> Description </th>
-                          <th class="text-center col-1"> URGENCE </th>
+                          <th class="text-center col-6"> Description </th>
+                          
                 
                            <th class="text-center col-1"> Action </th>
                                    
@@ -200,38 +200,18 @@
                       </thead>
                       <tbody>
                         
-                       @foreach($reclamationAffectees as $reclamationAffectee)
+                       @foreach($reclamations as $rec)
                   
                         <tr>
-                            <td class="text-center text-wrap" name="id_reclamations">{{$reclamationAffectee->ID_RECLAMATION}}</td>
-                            <td class="text-center text-wrap" >{{ $reclamationAffectee->reclamation->client->NOM_CLIENT}}</td>
-                            <td class="text-center text-wrap">{{ $reclamationAffectee->reclamation->categorie_reclamation->NOM_CATEGORIE }}</td>
-                            <td class="text-center text-wrap">{{ $reclamationAffectee->reclamation->agent_centre->user->name }}</td>
-                            <td class="text-center text-wrap">{{ $reclamationAffectee->reclamation->service->NOM_SERVICE }}</td>
-                            <td class="text-center text-wrap">{{ $reclamationAffectee->reclamation->DESCRIPTION }}</td>
-                            <td class="text-center text-wrap @switch($reclamationAffectee->reclamation->URGENCE)
-                              @case('Très élevé')
-                                  verybad
-                                  @break
-                              @case('élevé')
-                                  bad
-                                  @break
-                              @case('moyenne')
-                                  normal
-                                  @break
-                              @case('faible')
-                                  low
-                                  @break
-                              @default
-                                  verylow
-                          @endswitch">
-                              {{  $reclamationAffectee->reclamation->URGENCE }}
-                          </td>
+                            <td class="text-center text-wrap" name="id_reclamations">{{$rec->ID_RECLAMATION}}</td>
+                            <td class="text-center text-wrap" >{{ $rec->CLIENT}}</td>
+                            <td class="text-center text-wrap">{{ $rec->AGENT_CENTRE }}</td>
+                            <td class="text-center text-wrap">{{ $rec->CATEGORIE_RECLAMATION}}</td>
+                            <td class="text-center text-wrap">{{ $rec->SERVICE_RESPONSABLE}}</td>
+                            <td class="text-center text-wrap">{{ $rec->DESCRIPTION}}</td>
+                          <td class="text-center text-wrap">
                          
-                             
-                              <td class="text-center text-wrap">
-                         
-                          <button type="button" class="btn blue btn-sm" data-toggle="modal" data-target="#exampleModal{{ $reclamationAffectee->ID_RECLAMATION }}">
+                          <button type="button" class="btn blue btn-sm" data-toggle="modal" data-target="#exampleModal{{ $rec->ID_RECLAMATION }}">
                                             <script src="https://cdn.lordicon.com/lordicon.js"></script>
                                             <lord-icon
                                                 src="https://cdn.lordicon.com/yxczfiyc.json"
@@ -240,7 +220,7 @@
                                                 style="width:18px;height:18px">
                                             </lord-icon>
                           </button>
-                            <div class="modal fade" id="exampleModal{{ $reclamationAffectee->ID_RECLAMATION }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="exampleModal{{ $rec->ID_RECLAMATION }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                           <div class="modal-header">
@@ -250,7 +230,7 @@
                                             </button>
                                           </div>
                                           <div class="modal-body">
-                                            <p >{{ $reclamationAffectee->Procedure}}</p>
+                                            <p >{{ $rec->PROCEDURE}}</p>
                                           </div>
                                           <div class="modal-footer">
                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -265,7 +245,7 @@
 
                     </table>
                     <br>
-                    {{ $reclamationAffectees->links() }}
+                    {{ $reclamations->links() }}
                   </div>
                   </div>
                 </div>

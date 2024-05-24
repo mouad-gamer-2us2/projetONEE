@@ -12,13 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('reclamation_traitee', function (Blueprint $table) {
-            $table->id('ID_RECLAMATION');
-            $table->text('Procedure');
-            $table->unsignedBigInteger('ID_REC_AFF');
-            $table->unsignedBigInteger('ID_A_ONEE');
-            $table->foreign('ID_A_ONEE')->references('ID_AONEE')->on('agent_onees');
-            $table->foreign('ID_REC_AFF')->references('ID_RECLAMATION')->on('reclamations');
-                $table->timestamps();
+            $table->bigInteger('ID_RECLAMATION')->primary();
+            $table->string('CLIENT');
+            $table->string('AGENT_CENTRE');
+            $table->string('CATEGORIE_RECLAMATION');
+            $table->string('SERVICE_RESPONSABLE');
+            $table->string('DESCRIPTION');
+            $table->string('PROCEDURE');
+            $table->timestamps();
         });
     }
 

@@ -63,6 +63,9 @@ class CenterController extends Controller
                 return redirect()->route('showclients')->with('error', 'client not found.');
             }
         
+            if ($clients->reclamations->isNotEmpty() && $clients->reclamations->contains('ETAT', 'en cours')) {
+                return redirect()->back()->with('error', 'le client a une reclamation en cours');
+            }
             
             $clients->delete();
         
@@ -108,10 +111,10 @@ class CenterController extends Controller
 
         public function showhistorique()
         {   
-            $reclamationAffectees = reclamationtraitee::with('reclamation', 'agentOnee')->paginate(5);
+            $reclamations = ReclamationTraitee::paginate(6);
 
              
-            return view('historique',compact('reclamationAffectees'));
+            return view('historique',compact('reclamations'));
         }
 
         public function voirpluscl(Request $request)
@@ -197,31 +200,46 @@ public function showreclamations()
         }
 
         public function destroyrecla(Request $request, $ID_RECLAMATION)
-    {
+        {
+            $reclamation = Reclamations::find($ID_RECLAMATION);
         
-        $reclamations = reclamations::find($ID_RECLAMATION);
-    
+            if (!$reclamation) {
+                return redirect()->route('showrecla')->with('error', 'Reclamation not found.');
+            }
         
-        if (!$reclamations) {
-            
-            return redirect()->route('showrecla')->with('error', 'reclamation not found.');
+            if ($reclamation->ETAT === 'en cours') {
+                return redirect()->back()->with('error', 'La reclamation n a pas été supprimée. elle est en cours ');
+            }
+
+            if ($reclamation->ETAT === 'traitée') {
+                return redirect()->back()->with('error', 'la réclamation n a pas été supprimée. elle est deja traitée');
+            }
+        
+            $reclamation->delete();
+        
+            return redirect()->route('showrecla')->with('message', 'La reclamation a été supprimée.');
         }
-    
         
-        $reclamations->delete();
-    
-        
-        return redirect()->route('showrecla')->with('message','la reclamation a été suprimée');
-    }
 
     public function editrecla(Request $request,$ID_RECLAMATION)
     {
+        
+
         $reclamations = reclamations::with([
             'client:NUM_CONTRAT,NOM_CLIENT', 
             'service:ID_SERVICE,NOM_SERVICE',
             'categorie_reclamation:ID_CATEGORIE,NOM_CATEGORIE',
             'agent_centre.user:id,name' 
         ])->find($ID_RECLAMATION);
+
+        if ($reclamations->ETAT === 'en cours') {
+            return redirect()->back()->with('error', 'la réclamation ne peut pas étre modifier . elle est en cours ');
+        }
+
+        if ($reclamations->ETAT === 'traitée') {
+            return redirect()->back()->with('error', 'la réclamation ne peut pas étre modifier . elle est deja traitée');
+        }
+
 
         $categories = categorie_reclamation::all();
         $services=services::all();

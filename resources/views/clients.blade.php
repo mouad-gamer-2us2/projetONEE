@@ -217,34 +217,32 @@
                               </div>
                           </td>
                       
-                          @php
-                              $clientExists = App\Models\reclamations::where('ID_CLI', $client->NUM_CONTRAT)->exists() || 
-                                              App\Models\demande_rendez_vous::where('ID_CLI', $client->NUM_CONTRAT)->exists();
-                          @endphp
-                        <td>
-                          @unless($clientExists)
+                          
+                        <td class="text-center text wrap">
+                          
+                          <div class="row">
+                              <div class="col-auto">
+                                  <form action="{{ route('destroycl', $client->NUM_CONTRAT) }}" method="POST">
+                                      @method('DELETE')
+                                      @csrf
+                                      <button type="submit" class="btn verybad btn-sm" title="Supprimer Le client">
+                                          <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                          <lord-icon
+                                              src="https://cdn.lordicon.com/wpyrrmcq.json"
+                                              trigger="hover"
+                                              colors="primary:#ffffff"
+                                              style="width:18px;height:18px">
+                                          </lord-icon>
+                                      </button>
+                                  </form>
+                              </div>
+                          </div>
+                     
+                      
                               
-                                  <div class="row">
-                                      <div class="col-auto">
-                                          <form action="{{ route('destroycl',$client->NUM_CONTRAT) }}" method="POST">
-                                              @method('DELETE')
-                                              @csrf
-                                              <button type="submit" class="btn verybad btn-sm" title="Supprimer Le client">
-                                                  <script src="https://cdn.lordicon.com/lordicon.js"></script>
-                                                  <lord-icon
-                                                      src="https://cdn.lordicon.com/wpyrrmcq.json"
-                                                      trigger="hover"
-                                                      colors="primary:#ffffff"
-                                                      style="width:18px;height:18px">
-                                                  </lord-icon>
-                                              </button>
-                                          </form>
-                                      </div>
-                                  </div>
-                              
-                          @endunless
+                         
                         </td>
-                          <td>
+                          <td class="text-center text wrap">
                               <div class="row">
                                   <div class="col-auto">
                                       <form action="{{ route('voirpluscl', $client->NUM_CONTRAT) }}" method="get">
@@ -262,7 +260,7 @@
                               </div>
                           </td>
                       
-                          <td>
+                          <td class="text-center text wrap">
                               <div class="row">
                                   <div class="col-auto">
                                       <form action="{{ route('showrecla_rdv',$client->NUM_CONTRAT) }}" method="GET">

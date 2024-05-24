@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\agent_centre;
+use App\Models\categorie_reclamation;
+use App\Models\clients;
 use App\Models\Event;
 use App\Models\reclamations;
 use Illuminate\Http\Request;
 use App\Models\reclamationtraitee;
 use App\Models\reclamationaffectee;
+use App\Models\services;
 use Illuminate\Support\Facades\Auth;
 
 class OneeController extends Controller
@@ -60,40 +64,61 @@ class OneeController extends Controller
                 'procedure'=>'required',
             ]);
             if (Auth::check()) {
-            $task = new reclamationtraitee();
-            $task->ID_REC_AFF  = $request->ID_RECLAMATION;
-            $task->Procedure  = $request->procedure;
-            $clientId = Auth::user()->id; 
-            $task->ID_A_ONEE = $clientId;
-            $task->save();
-            $reclamations =reclamations::findOrFail($request->ID_RECLAMATION);
-        
-            
-            $reclamations->fill([
-                'ETAT' => 'traitée',
-                
-            ]);
-            $reclamations->save();
+             
+            $reclamationAffectee = ReclamationAffectee::where('ID_REC_AFF', $request->ID_RECLAMATION)->first();
 
-             $recla =reclamationaffectee::where('ID_REC_AFF', $request->ID_REC_AFF)->delete();
+            
+            
+
+            
+            $reclamation = Reclamations::find($request->ID_RECLAMATION);
+
+            $reclamation->ETAT = 'traitée';
+
+            $reclamation->save();
+
+            
+            $client = clients::where('NUM_CONTRAT', $reclamation->ID_CLI)->first();
+
+            
+            $categorie = categorie_reclamation::find($reclamation->ID_CAT);
+
+            
+            $service = services::find($reclamation->ID_SERV);
+
+            
+            $agentCentre = agent_centre::find($reclamation->ID_A_CENTRE);
+
+            
+            $agentName = $agentCentre->user->name;
+
+
+            reclamationtraitee::create([
+                'ID_RECLAMATION' => $request->ID_RECLAMATION,
+                'CLIENT'=> $client->NOM_CLIENT,
+                'AGENT_CENTRE'=>$agentName,
+                'CATEGORIE_RECLAMATION'=> $categorie->NOM_CATEGORIE,
+                'SERVICE_RESPONSABLE'=>$service->NOM_SERVICE,
+                'DESCRIPTION'=>$reclamation->DESCRIPTION,
+                'PROCEDURE'=>$request->procedure,
+            ]);
+
+            
+
+             reclamationaffectee::where('ID_REC_AFF', $request->ID_RECLAMATION)->delete();
 
             
          
             }
-             return redirect()->route('showreclamationtraitee')->with('message','Reclamation ajoutée');
-
+             return redirect()->route('showreclamationtraitee')->with('message','la reclamation a ete ajoutee a votre liste de traitement');
         
     }
 
     public function showreclamationtraitee()
 {
-    $reclamationAffectees = ReclamationTraitee::whereHas('agentOnee', function ($query) {
-            $query->where('ID_A_ONEE', auth()->id());
-        })
-        ->with('reclamation', 'agentOnee')
-        ->paginate(6);
+    $reclamations = ReclamationTraitee::paginate(6);
 
-    return view('reclamationtraite', compact('reclamationAffectees'));
+    return view('reclamationtraite', compact('reclamations'));
 }
 
       public function showmesrendez()

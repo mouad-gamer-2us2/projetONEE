@@ -167,46 +167,52 @@
                             <th class="text-center col-1"> Categorie réclamation </th>
                             <th class="text-center col-1"> Agent centre</th>
                             <th class="text-center col-1"> Service responsable </th>
-                            <th class="text-center col-3"> Description </th>
-                            <th class="text-center col-1"> Urgence </th>
+                            <th class="text-center col-4"> Description </th>
+                            
                             <th class="text-center col-4"> procédure </th>
                           </tr>
                         </thead>
                         <tbody>
-                          @foreach($reclamationAffectees as $reclamationAffectee)
+                          @foreach($reclamations as $rec)
                   
-                          <tr>
-                              <td class="text-center text-wrap" >{{$reclamationAffectee->ID_REC_AFF}}</td>
-                              <td class="text-center text-wrap" >{{ $reclamationAffectee->reclamation->client->NOM_CLIENT}}</td>
-                              <td class="text-center text-wrap">{{ $reclamationAffectee->reclamation->categorie_reclamation->NOM_CATEGORIE }}</td>
-                              <td class="text-center text-wrap">{{ $reclamationAffectee->reclamation->agent_centre->user->name }}</td>
-                              <td class="text-center text-wrap">{{ $reclamationAffectee->reclamation->service->NOM_SERVICE }}</td>
-                              <td class="text-center text-wrap">{{ $reclamationAffectee->reclamation->DESCRIPTION }}</td>
-                              <td class="text-center text-wrap @switch($reclamationAffectee->reclamation->URGENCE)
-                                @case('Très élevé')
-                                    verybad
-                                    @break
-                                @case('élevé')
-                                    bad
-                                    @break
-                                @case('moyenne')
-                                    normal
-                                    @break
-                                @case('faible')
-                                    low
-                                    @break
-                                @default
-                                    verylow
-                            @endswitch">
-                                {{  $reclamationAffectee->reclamation->URGENCE }}
-                            </td>
-                           
-                               
-                            <td class="text-center text-wrap">
-                                  {{ $reclamationAffectee->Procedure}}
-                            </td>
-                          @endforeach
-                          
+                        <tr>
+                            <td class="text-center text-wrap" name="id_reclamations">{{$rec->ID_RECLAMATION}}</td>
+                            <td class="text-center text-wrap" >{{ $rec->CLIENT}}</td>
+                            <td class="text-center text-wrap">{{ $rec->AGENT_CENTRE }}</td>
+                            <td class="text-center text-wrap">{{ $rec->CATEGORIE_RECLAMATION}}</td>
+                            <td class="text-center text-wrap">{{ $rec->SERVICE_RESPONSABLE}}</td>
+                            <td class="text-center text-wrap">{{ $rec->DESCRIPTION}}</td>
+                          <td class="text-center text-wrap">
+                         
+                          <button type="button" class="btn blue btn-sm" data-toggle="modal" data-target="#exampleModal{{ $rec->ID_RECLAMATION }}">
+                                            <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                            <lord-icon
+                                                src="https://cdn.lordicon.com/yxczfiyc.json"
+                                                trigger="hover"
+                                                colors="primary:#ffffff"
+                                                style="width:18px;height:18px">
+                                            </lord-icon>
+                          </button>
+                            <div class="modal fade" id="exampleModal{{ $rec->ID_RECLAMATION }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel" name="procedure">procédure de résolution :</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <p >{{ $rec->PROCEDURE}}</p>
+                                          </div>
+                                          <div class="modal-footer">
+                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                            </div>
+                        </td>
+                        @endforeach
                             
                             
                            
@@ -215,7 +221,7 @@
                        
                       </table>
                       <br>
-                      {{ $reclamationAffectees->links() }}
+                      {{ $reclamations->links() }}
                       
                       
                     </div>

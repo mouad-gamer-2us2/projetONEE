@@ -194,7 +194,7 @@
                       </thead>
                       <tbody>
                         
-                       @foreach($reclamationAffectees as $reclamationAffectee)
+                     @foreach($reclamationAffectees as $reclamationAffectee)
                        @if($reclamationAffectee->reclamation->ETAT=="en cours")
                         <tr>
                             <td class="text-center text-wrap" name="id_reclamations">{{$reclamationAffectee->ID_REC_AFF}}</td>
@@ -225,7 +225,7 @@
                           
                               <td class="text-center text-wrap">      
                            
-                                 <form action="{{ route('ajoutreclamatraitee', $reclamationAffectee->reclamation->ID_RECLAMATION) }}" method="POST">
+                               <form action="{{ route('ajoutreclamatraitee', $reclamationAffectee->reclamation->ID_RECLAMATION) }}" method="POST">
                                      @csrf
                                    <input type="hidden" name="ID_RECLAMATION" value="{{  $reclamationAffectee->reclamation->ID_RECLAMATION }}">
                                   <!-- Button trigger modal -->

@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-         Schema::create('reclamation_affectees', function (Blueprint $table) {
+        Schema::create('reclamation_affectees', function (Blueprint $table) {
             $table->id('ID_RECLAMATION');
-
+    
             $table->unsignedBigInteger('ID_REC_AFF');
             $table->unsignedBigInteger('ID_A_ONEE');
-            $table->foreign('ID_A_ONEE')->references('ID_AONEE')->on('agent_onees');
-            $table->foreign('ID_REC_AFF')->references('ID_RECLAMATION')->on('reclamations');
+    
+            $table->foreign('ID_A_ONEE')->references('ID_AONEE')->on('agent_onees')->onDelete('cascade');
+            $table->foreign('ID_REC_AFF')->references('ID_RECLAMATION')->on('reclamations')->onDelete('cascade');
+    
             $table->timestamps();
         });
     }
