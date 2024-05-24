@@ -185,16 +185,16 @@
                     <table class="table">
                       <thead>
                         <tr>
-                          <th class="text-center"> ID </th>
-                          <th class="text-center"> Client </th>
-                          <th class="text-center"> Categorie </th>
-                          <th class="text-center"> Agent Centre </th>
-                          <th class="text-center"> Service responsable</th>
-                          <th class="text-center"> Description </th>
-                          <th class="text-center"> URGENCE </th>
+                          <th class="text-center col-1"> ID </th>
+                          <th class="text-center col-1"> Client </th>
+                          <th class="text-center col-1"> Categorie </th>
+                          <th class="text-center col-1"> Agent Centre </th>
+                          <th class="text-center col-1"> Service responsable</th>
+                          <th class="text-center col-5"> Description </th>
+                          <th class="text-center col-1"> URGENCE </th>
                 
-                           <th class="text-center"> Action </th>
-                                    <!-- Modal -->
+                           <th class="text-center col-1"> Action </th>
+                                   
                                     
                         </tr>
                       </thead>
@@ -229,7 +229,7 @@
                           </td>
                          
                              
-                              <td>
+                              <td class="text-center text-wrap">
                          
                           <button type="button" class="btn blue btn-sm" data-toggle="modal" data-target="#exampleModal{{ $reclamationAffectee->ID_RECLAMATION }}">
                                             <script src="https://cdn.lordicon.com/lordicon.js"></script>
@@ -244,7 +244,7 @@
                                       <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                           <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel" name="procedure">Procedure</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel" name="procedure">procédure de résolution :</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                               <span aria-hidden="true">&times;</span>
                                             </button>
@@ -265,7 +265,7 @@
 
                     </table>
                     <br>
-                    
+                    {{ $reclamationAffectees->links() }}
                   </div>
                   </div>
                 </div>

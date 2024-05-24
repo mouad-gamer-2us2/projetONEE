@@ -175,7 +175,7 @@
                   <div class="card-body">
                     <div class="row">
                       <div class="col-md-4">
-                        <h4 class="card-title"> Rendez-Vous </h4>
+                        <h4 class="card-title"> les Rendez-Vous du service :</h4>
                     </div>
                    
                         </div>
@@ -185,14 +185,14 @@
                       <table class="table">
                         <thead>
                           <tr>
-                            <th class="text-center"> ID </th>
-                            <th class="text-center"> Informations Rendez-Vous </th>
-                            <th class="text-center"> Agent Centre </th>
-                            <th class="text-center"> Service responsable</th>
-                            <th class="text-center"> Client </th>
-                            <th class="text-center"> N° contrat </th>
-                            <th class="text-center"> Date de demande </th>
-                            <th class="text-center" colspan="2"> Action</th>
+                            <th class="text-center col-1"> ID </th>
+                            <th class="text-center col-2"> Informations Rendez-Vous </th>
+                            <th class="text-center col-2"> Agent Centre </th>
+                            <th class="text-center col-2"> Service responsable</th>
+                            <th class="text-center col-2"> Client </th>
+                            <th class="text-center col-1"> N° contrat </th>
+                            <th class="text-center col-1"> Date de demande </th>
+                            <th class="text-center col-1"> Action</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -208,7 +208,7 @@
                               <td class="text-center text-wrap">{{ $R->created_at}}</td>
   
                                      
-                              <td>
+                              <td class="text-center text-wrap">
                                   
                                    <form action="{{ route('ajouterrendezvous',$R->ID_RENDEZ_VOUS ) }}" method="POST">
                                      @csrf
@@ -217,12 +217,12 @@
                                     <button type="button" class="btn blue btn-sm" data-toggle="modal" data-target="#exampleModal">
             
                                       <script src="https://cdn.lordicon.com/lordicon.js"></script>
-                                                                            <lord-icon
-                                                                                src="https://cdn.lordicon.com/pflszboa.json"
-                                                                                trigger="hover"
-                                                                                colors="primary:#ffffff"
-                                                                                style="width:18px;height:18px">
-                                                                            </lord-icon>
+                                      <lord-icon
+                                          src="https://cdn.lordicon.com/wmlleaaf.json"
+                                          trigger="hover"
+                                          colors="primary:#ffffff"
+                                          style="width:18px;height:18px">
+                                      </lord-icon>
                                     </button>
 
                                     <!-- Modal -->
@@ -236,11 +236,11 @@
                                             </button>
                                           </div>
                                           <div class="modal-body">
-                                            <label for="date_et_heure">Date et heure:</label>
+                                            <label for="date_et_heure">choisir Date et heure:</label>
                                            <input type="datetime-local" name="date_et_heure" id="date_et_heure" class="form-control">
                                           </div>
                                           <div class="modal-footer">
-                                            <button type="submit" title="Modifier" class="btn btn-primary">Enregistrer</button>
+                                            <button type="submit" title="Modifier" class="btn btn-success">Enregistrer</button>
                                           </div>
                                         </div>
                                       </div>

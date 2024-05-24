@@ -172,7 +172,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-4">
-                      <h4 class="card-title">Mes réclamations </h4>
+                      <h4 class="card-title">Mes réclamations : </h4>
                   </div>
                   
                       </div>
@@ -182,15 +182,14 @@
                     <table class="table">
                       <thead>
                         <tr>
-                          <th class="text-center"> ID </th>
-                          <th class="text-center"> Client </th>
-                          <th class="text-center"> Categorie </th>
-                          <th class="text-center"> Agent Centre </th>
-                          <th class="text-center"> Service responsable</th>
-                          <th class="text-center"> Description </th>
-                          <th class="text-center"> URGENCE </th>
-                          <th class="text-center"> Etat </th>
-                          <th class="text-center" colspan="2"> Action</th>
+                          <th class="text-center col-1"> ID </th>
+                          <th class="text-center col-1"> Client </th>
+                          <th class="text-center col-1"> Categorie </th>
+                          <th class="text-center col-1"> Agent Centre </th>
+                          <th class="text-center col-5"> Description </th>
+                          <th class="text-center col-1"> URGENCE </th>
+                          <th class="text-center col-1"> Etat </th>
+                          <th class="text-center col-1"> Action</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -198,11 +197,10 @@
                        @foreach($reclamationAffectees as $reclamationAffectee)
                        @if($reclamationAffectee->reclamation->ETAT=="en cours")
                         <tr>
-                            <td class="text-center text-wrap" name="id_reclamations">{{$reclamationAffectee->ID_RECLAMATION}}</td>
+                            <td class="text-center text-wrap" name="id_reclamations">{{$reclamationAffectee->ID_REC_AFF}}</td>
                             <td class="text-center text-wrap" >{{ $reclamationAffectee->reclamation->client->NOM_CLIENT}}</td>
                             <td class="text-center text-wrap">{{ $reclamationAffectee->reclamation->categorie_reclamation->NOM_CATEGORIE }}</td>
                             <td class="text-center text-wrap">{{ $reclamationAffectee->reclamation->agent_centre->user->name }}</td>
-                            <td class="text-center text-wrap">{{ $reclamationAffectee->reclamation->service->NOM_SERVICE }}</td>
                             <td class="text-center text-wrap">{{ $reclamationAffectee->reclamation->DESCRIPTION }}</td>
                             <td class="text-center text-wrap @switch($reclamationAffectee->reclamation->URGENCE)
                               @case('Très élevé')
@@ -225,21 +223,21 @@
                          
                               <td class="text-center text-wrap">{{ $reclamationAffectee->reclamation->ETAT}}</td>
                           
-                            <td>       
+                              <td class="text-center text-wrap">      
                            
                                  <form action="{{ route('ajoutreclamatraitee', $reclamationAffectee->reclamation->ID_RECLAMATION) }}" method="POST">
                                      @csrf
                                    <input type="hidden" name="ID_RECLAMATION" value="{{  $reclamationAffectee->reclamation->ID_RECLAMATION }}">
                                   <!-- Button trigger modal -->
-                                    <button type="button" class="btn blue btn-sm" data-toggle="modal" data-target="#exampleModal">
+                                    <button type="button" class="btn blue btn-sm" data-toggle="modal" data-target="#exampleModal" title="enregistrer la procedure de traitement">
             
                                       <script src="https://cdn.lordicon.com/lordicon.js"></script>
-                                                                            <lord-icon
-                                                                                src="https://cdn.lordicon.com/pflszboa.json"
-                                                                                trigger="hover"
-                                                                                colors="primary:#ffffff"
-                                                                                style="width:18px;height:18px">
-                                                                            </lord-icon>
+                                          <lord-icon
+                                              src="https://cdn.lordicon.com/oqdmuxru.json"
+                                              trigger="hover"
+                                              colors="primary:#ffffff"
+                                              style="width:18px;height:18px">
+                                          </lord-icon>
                                     </button>
 
                                     <!-- Modal -->
@@ -247,7 +245,7 @@
                                       <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                           <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel" name="procedure">Procedure</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel" name="procedure">procédure de résolution :</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                               <span aria-hidden="true">&times;</span>
                                             </button>
@@ -256,7 +254,7 @@
                                             <textarea name="procedure" id="procedure" cols=53 rows=10></textarea>
                                           </div>
                                           <div class="modal-footer">
-                                            <button type="submit" title="Modifier" class="btn btn-primary">Enregistrer</button>
+                                            <button type="submit" title="Modifier" class="btn btn-success">Enregistrer</button>
                                           </div>
                                         </div>
                                       </div>

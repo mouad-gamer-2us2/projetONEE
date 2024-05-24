@@ -172,7 +172,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-4">
-                      <h4 class="card-title">Les réclamations </h4>
+                      <h4 class="card-title">Les réclamations du service : </h4>
                   </div>
                  
                       </div>
@@ -182,15 +182,15 @@
                     <table class="table">
                       <thead>
                         <tr>
-                          <th class="text-center"> ID </th>
-                          <th class="text-center"> Client </th>
-                          <th class="text-center"> Categorie </th>
-                          <th class="text-center"> Agent Centre </th>
+                          <th class="text-center col-1"> ID </th>
+                          <th class="text-center col-1"> Client </th>
+                          <th class="text-center col-1"> Categorie </th>
+                          <th class="text-center col-1"> Agent Centre </th>
                         
-                          <th class="text-center"> Description </th>
-                          <th class="text-center"> URGENCE </th>
-                          <th class="text-center"> Etat </th>
-                          <th class="text-center" colspan="2"> Action</th>
+                          <th class="text-center col-5"> Description </th>
+                          <th class="text-center col-1"> URGENCE </th>
+                          <th class="text-center col-1"> Etat </th>
+                          <th class="text-center col-1"> Action</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -225,7 +225,7 @@
                          
                               <td class="text-center text-wrap">{{ $recla->ETAT}}</td>
                           
-                            <td>       
+                            <td class="text-center">       
                            
                                  <form action="{{ route('ajoutreclama', $recla->ID_RECLAMATION) }}" method="POST">
                                      @csrf
@@ -233,14 +233,14 @@
 
                                 
                                     
-                                    <button type="submit" class="btn blue btn-sm" title="Modifier">
-                                        <script src="https://cdn.lordicon.com/lordicon.js"></script>
-                                          <lord-icon
-                                              src="https://cdn.lordicon.com/oqdmuxru.json"
-                                              trigger="hover"
-                                              colors="primary:#ffffff"
-                                              style="width:18px;height:18px">
-                                          </lord-icon>
+                                    <button type="submit" class="btn blue btn-sm" title="Ajouter a votre liste de traitement">
+                                      <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                      <lord-icon
+                                          src="https://cdn.lordicon.com/vdjwmfqs.json"
+                                          trigger="hover"
+                                          colors="primary:#ffffff"
+                                          style="width:18px;height:18px">
+                                      </lord-icon>
                                     </button>
                                 </form>
                             

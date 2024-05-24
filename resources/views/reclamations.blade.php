@@ -176,10 +176,10 @@
                         <tr>
                           <th class="text-center col-1"> ID </th>
                           <th class="text-center col-2"> Client </th>
-                          <th class="text-center col-2"> Categorie </th>
-                          <th class="text-center col-2"> Agent Centre </th>
-                          <th class="text-center col-2"> Service responsable</th>
-                          <th class="text-center col-2"> Description </th>
+                          <th class="text-center col-1"> Categorie </th>
+                          <th class="text-center col-1"> Agent Centre </th>
+                          <th class="text-center col-1"> Service responsable</th>
+                          <th class="text-center col-5"> Description </th>
                           <th class="text-center col-1"> URGENCE </th>
                           <th class="text-center col-1"> Etat </th>
                           <th class="text-center col-1" colspan="2"> Action</th>

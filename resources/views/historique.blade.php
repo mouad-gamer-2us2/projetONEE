@@ -166,10 +166,10 @@
                             <th class="text-center col-1"> Client </th>
                             <th class="text-center col-1"> Categorie réclamation </th>
                             <th class="text-center col-1"> Agent centre</th>
-                            <th class="text-center col-2"> Service responsable </th>
+                            <th class="text-center col-1"> Service responsable </th>
                             <th class="text-center col-3"> Description </th>
                             <th class="text-center col-1"> Urgence </th>
-                            <th class="text-center col-2"> procédure </th>
+                            <th class="text-center col-4"> procédure </th>
                           </tr>
                         </thead>
                         <tbody>

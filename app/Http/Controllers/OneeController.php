@@ -39,13 +39,17 @@ class OneeController extends Controller
         
     }
 
-       public function showreclamation()
+    public function showreclamation()
     {
-        $reclamationAffectees = reclamationaffectee::with('reclamation', 'agentOnee')
-        ->get();
-
+        $reclamationAffectees = ReclamationAffectee::whereHas('agentOnee', function ($query) {
+                $query->where('ID_A_ONEE', auth()->id());
+            })
+            ->with('reclamation', 'agentOnee')
+            ->get();
+    
         return view('reclamation_affectees', compact('reclamationAffectees'));
     }
+    
         
 
      public function ajoutreclamatraitee(Request $request)
@@ -81,15 +85,20 @@ class OneeController extends Controller
         
     }
 
-       public function showreclamationtraitee()
-    {
-        $reclamationAffectees = reclamationtraitee::with('reclamation', 'agentOnee')->get();
+    public function showreclamationtraitee()
+{
+    $reclamationAffectees = ReclamationTraitee::whereHas('agentOnee', function ($query) {
+            $query->where('ID_A_ONEE', auth()->id());
+        })
+        ->with('reclamation', 'agentOnee')
+        ->paginate(6);
 
-        return view('reclamationtraite', compact('reclamationAffectees'));
-    }
+    return view('reclamationtraite', compact('reclamationAffectees'));
+}
+
       public function showmesrendez()
     {
-       $rendezvous = Event::with('agent', 'rendezvous')->get();
+       $rendezvous = Event::with('agent', 'rendezvous')->paginate(6);
         return view('mesrendez', compact('rendezvous'));
     }
 

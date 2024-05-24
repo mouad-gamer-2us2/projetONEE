@@ -172,7 +172,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-4">
-                      <h4 class="card-title">Mes rendez-vous </h4>
+                      <h4 class="card-title">Mes rendez-vous :</h4>
                   </div>
                  
                       </div>
@@ -182,13 +182,13 @@
                       <table class="table">
                         <thead>
                           <tr>
-                            <th class="text-center"> ID </th>
-                            <th class="text-center"> Informations Rendez-Vous </th>
-                            <th class="text-center"> Agent Centre </th>
-                            <th class="text-center"> Client </th>
-                            <th class="text-center"> N° contrat </th>
-                            <th class="text-center"> Date de rendez-vous </th>
-                            <th class="text-center" colspan="2"> Action</th>
+                            <th class="text-center col-1"> ID </th>
+                            <th class="text-center col-2"> Informations Rendez-Vous </th>
+                            <th class="text-center col-2"> Agent Centre </th>
+                            <th class="text-center col-2"> Client </th>
+                            <th class="text-center col-2"> N° contrat </th>
+                            <th class="text-center col-2"> Date de rendez-vous </th>
+                            <th class="text-center col-1"> Action</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -204,7 +204,7 @@
                               <td class="text-center text-wrap">{{ $R->date_et_heure}}</td>
   
                                      
-                              <td>
+                              <td class="text-center text-wrap">
                                   
                                    <form action="{{route('destroyrendez', $R->id) }}" method="POST">
                                      @csrf

@@ -164,9 +164,9 @@
                             @foreach ($SERVICES as $S)
                             <tr>
                                 <td class="text-center text-wrap col-1">{{ $S->ID_SERVICE }}</td>
-                                <td class="text-center text-wrap col-3">{{ $S->NOM_SERVICE }}</td>
-                                <td class="text-center text-wrap col-3">{{ $S->CATEGORIE_SERVICE }}</td>
-                                <td class="text-center text-wrap col-3">{{ $S->DESCRIPTION }}</td>
+                                <td class="text-center text-wrap col-2">{{ $S->NOM_SERVICE }}</td>
+                                <td class="text-center text-wrap col-2">{{ $S->CATEGORIE_SERVICE }}</td>
+                                <td class="text-center text-wrap col-5">{{ $S->DESCRIPTION }}</td>
                                 <td class="text-center text-wrap col-2">{{ $S->APPARTENANCE }}</td>
                                 <td class="text-center">
                                     <div class="row">
