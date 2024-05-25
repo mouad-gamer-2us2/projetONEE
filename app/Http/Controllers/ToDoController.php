@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\TODO;
+use App\Models\agentonee;
 use App\Models\Reclamation;
 use App\Models\reclamations;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class ToDoController extends Controller
@@ -15,9 +17,25 @@ class ToDoController extends Controller
      $todos = TODO::select('todo.*')
             ->where('todo.client_id', $user->id)
             ->get();
-    $reclamations = reclamations::select('reclamations.*')
-            ->get();
-    return view( "dashboard",['todos' => $todos,'reclamations' => $reclamations]);
+     $user = Auth::id(); 
+    $agentonee=agentonee::findOrFail($user);
+    $idService = $agentonee->ID_SER;
+    $reclamation = reclamations::
+    where('ETAT', 'pas encore traitée')
+    ->where('ID_SERV', $idService) ;
+
+    $reclamations = reclamations::select('urgence', DB::raw('count(*) as total'))
+     ->where('ID_SERV', $idService) 
+        ->groupBy('urgence')
+        ->pluck('total', 'urgence')
+        ->toArray();
+    $reclamationetat = reclamations::select('etat', DB::raw('count(*) as total'))
+     ->where('ID_SERV', $idService) 
+        ->groupBy('etat')
+        ->pluck('total', 'etat')
+        ->toArray();
+    
+    return view( "dashboard",['todos' => $todos, 'reclamations' => $reclamations,'reclamationetat' => $reclamationetat,'reclamation' => $reclamation]);
    }
 
 
