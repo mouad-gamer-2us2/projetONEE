@@ -15,6 +15,28 @@
           <li class="nav-item nav-profile">
            
           </li>
+          <li class="nav-item">
+            <div class="container-fluid">
+              <div class="row">
+                  <div class="col-auto">
+                      <a class="nav-link color1" href="/dashboard">
+                        <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                        <lord-icon
+                            src="https://cdn.lordicon.com/jyjslctx.json"
+                            trigger="hover"
+                            colors="primary:#0e46a3"
+                            style="width:18px;height:18px">
+                        </lord-icon>
+                      </a>
+                  </div>
+                  <div class="col align-self-center">
+                      <a class="nav-link color1" href="/dashboard">
+                          <span class="menu-title color1">Dashboard</span> 
+                      </a>
+                  </div>
+              </div>
+          </div>
+          </li>
           
           <li class="nav-item">
             <div class="container-fluid">
@@ -37,7 +59,7 @@
                   </div>
               </div>
           </div>
-          
+          </li>
           <li class="nav-item">
             <div class="container-fluid">
               <div class="row">
@@ -150,6 +172,29 @@
                   <div class="col align-self-center">
                       <a class="nav-link color1" href="/chatify">
                           <span class="menu-title color1">Chat</span> 
+                      </a>
+                  </div>
+              </div>
+          </div>
+          
+          </li>
+          <li class="nav-item">
+            <div class="container-fluid">
+              <div class="row">
+                  <div class="col-auto">
+                      <a class="nav-link color1" href="{{ route('modify') }}">
+                        <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                        <lord-icon
+                            src="https://cdn.lordicon.com/wkvacbiw.json"
+                            trigger="hover"
+                            colors="primary:#0e46a3"
+                            style="width:18px;height:18px">
+                        </lord-icon>
+                      </a>
+                  </div>
+                  <div class="col align-self-center">
+                      <a class="nav-link color1" href="{{ route('modify') }}">
+                          <span class="menu-title color1">Profile</span> 
                       </a>
                   </div>
               </div>
@@ -294,6 +339,17 @@
 
     </script>
   @endif
+
+  <script>
+    @if($reclamations->isEmpty())
+    Swal.fire({
+        title: "Remarque",
+        text: "Pas de reclamations pour le moment",
+        icon: "warning",
+        confirmButtonColor: '#ff0000'
+    });
+  @endif
+   </script>
  
 
 

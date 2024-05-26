@@ -305,7 +305,16 @@
 
     </script>
   @endif
- 
+<script>
+  @if($reclamations->isEmpty())
+  Swal.fire({
+      title: "Remarque",
+      text: "Pas de reclamations.",
+      icon: "warning",
+      confirmButtonColor: '#ff0000'
+  });
+@endif
+ </script>
 
 
  

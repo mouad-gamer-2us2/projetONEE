@@ -6,12 +6,15 @@ use App\Models\agent_centre;
 use App\Models\categorie_reclamation;
 use App\Models\clients;
 use App\Models\Event;
+use App\Models\info;
 use App\Models\reclamations;
 use Illuminate\Http\Request;
 use App\Models\reclamationtraitee;
 use App\Models\reclamationaffectee;
 use App\Models\services;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class OneeController extends Controller
 {
@@ -190,5 +193,55 @@ public function destroy($id)
 
     return redirect()->route('showmesrendez')->with('message', 'Rendez-vous passé avec succès');
 }
+
+public function modify()
+{
+    
+    $personne = User::join('infos', 'users.id', '=', 'infos.ID_USER')
+            ->where('users.id', Auth::id())
+            ->first();
+
+
+    return view('editmonprofile',compact('personne'));
+}
+
+public function update(Request $request)
+    {   $id=$request->id;
+        $nom= $request->name;
+        $mail=$request->email;
+        $passwd=$request->password;
+        $passwdh=Hash::make($passwd);
+        
+
+        $request->validate([
+            'name' =>'required|min:3|max:40',
+            'email' =>'required|email|min:3|max:40',
+            'password'=>'required|min:9|max:40|confirmed',
+        ]);
+
+        $updatedUser  = User::find($id);
+
+        
+
+        $updatedUser->fill([
+            'name' => $nom,
+            'email' => $mail,
+            'password' => $passwdh,
+        ])->save();
+
+        
+
+        $updatedInfo = info::where('ID_USER',$id )->first();
+        
+
+        $updatedInfo->fill([
+            'PWD' => $passwd, 
+        ])->save();
+
+        
+
+        return redirect()->route('showrec')->with('message','informations modifiées');
+    }
+
 
 }

@@ -72,6 +72,10 @@ Route::get('full-calender', [FullCalendarController::class, 'index']);
 
 Route::post('full-calender/action', [FullCalendarController::class, 'action']);
 
+route::get('/modify',[OneeController::class,'modify'])->name('modify');
+
+route::put('/update/{id}',[OneeController::class,'update'])->name('updatemy');
+
 });
 
 

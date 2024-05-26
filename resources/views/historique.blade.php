@@ -276,6 +276,17 @@
   
       </script>
     @endif
+
+    <script>
+      @if($reclamations->isEmpty())
+      Swal.fire({
+          title: "Remarque",
+          text: "rien n a été enregistré",
+          icon: "warning",
+          confirmButtonColor: '#ff0000'
+      });
+    @endif
+     </script>
   
   
   

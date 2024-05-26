@@ -263,6 +263,17 @@
   
       </script>
     @endif
+
+    <script>
+      @if($rendezvous->isEmpty())
+      Swal.fire({
+          title: "Remarque",
+          text: "Pas de rendez-vous pour le moment",
+          icon: "warning",
+          confirmButtonColor: '#ff0000'
+      });
+    @endif
+     </script>
    
   
   

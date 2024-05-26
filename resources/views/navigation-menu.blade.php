@@ -5,9 +5,9 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center col-md-7">
-                    <a href="{{ route('dashboard') }}">
+                    
                         <img src="{{ asset('LogoONEE.png') }}" class="img-fluid">
-                    </a>
+                    
                 </div>
 
                 <!-- Navigation Links -->

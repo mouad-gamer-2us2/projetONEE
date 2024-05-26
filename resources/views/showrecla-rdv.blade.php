@@ -341,6 +341,35 @@
   
       </script>
     @endif
+    <script>
+        @if($reclamations->isEmpty())
+            Swal.fire({
+                title: "Remarque",
+                text: "Pas de réclamations pour ce client.",
+                icon: "warning",
+                confirmButtonColor: '#ff0000'
+            }).then(() => {
+                @if($rendezvous->isEmpty())
+                    Swal.fire({
+                        title: "Remarque",
+                        text: "Pas de rendez-vous pour ce client.",
+                        icon: "warning",
+                        confirmButtonColor: '#ff0000'
+                    });
+                @endif
+            });
+        @else
+            @if($rendezvous->isEmpty())
+                Swal.fire({
+                    title: "Remarque",
+                    text: "Pas de rendez-vous pour ce client.",
+                    icon: "warning",
+                    confirmButtonColor: '#ff0000'
+                });
+            @endif
+        @endif
+    </script>
+    
   
   
    
