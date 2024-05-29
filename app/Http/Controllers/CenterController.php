@@ -117,6 +117,23 @@ class CenterController extends Controller
             return view('historique',compact('reclamations'));
         }
 
+        public function searchHISTORY(Request $request)
+    {
+        $ID = $request->ID;
+        if (empty($ID)) {
+            return redirect()->route('showhistorique');
+        }
+
+        $reclamations = reclamationtraitee::where('ID_RECLAMATION', $ID)->paginate(1);
+
+        if ($reclamations->isEmpty()) {
+            
+            return redirect()->route('showhistorique')->with('error', 'la réclamation n a pas été trouvée');
+        }
+
+        return view('historique', compact('reclamations')); 
+    }
+
         public function voirpluscl(Request $request)
         {
 

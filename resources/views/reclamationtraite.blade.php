@@ -218,12 +218,26 @@
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <div class="row">
+                  <div class="row ">
                     <div class="col-md-4">
-                      <h4 class="card-title">Historique des réclamations </h4>
-                  </div>
-                  
-                      </div>
+                        <h4 class="card-title">Historique des Réclamations traitée </h4>
+                    </div>
+                    <div class="col-md-6">
+                      <form method="POST" action="{{ route('searchtraitee') }}" class="form-inline">
+                        @csrf
+                        <input class="form-control mr-sm-2" type="search" name="ID"placeholder="chercher par ID" aria-label="Search">
+                        <button class="btn btn-dark btn-sm" type="submit"> 
+                          <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                          <lord-icon
+                              src="https://cdn.lordicon.com/kkvxgpti.json"
+                              trigger="hover"
+                              colors="primary:#ffffff"
+                              style="width:18px;height:18px">
+                          </lord-icon></button>
+                      </form>
+                    </div>
+                    
+                </div>
 
                   
                   <div class="table-responsive">
@@ -250,8 +264,8 @@
                         <tr>
                             <td class="text-center text-wrap" name="id_reclamations">{{$rec->ID_RECLAMATION}}</td>
                             <td class="text-center text-wrap" >{{ $rec->CLIENT}}</td>
-                            <td class="text-center text-wrap">{{ $rec->AGENT_CENTRE }}</td>
                             <td class="text-center text-wrap">{{ $rec->CATEGORIE_RECLAMATION}}</td>
+                            <td class="text-center text-wrap">{{ $rec->AGENT_CENTRE }}</td>
                             <td class="text-center text-wrap">{{ $rec->SERVICE_RESPONSABLE}}</td>
                             <td class="text-center text-wrap">{{ $rec->DESCRIPTION}}</td>
                           <td class="text-center text-wrap">

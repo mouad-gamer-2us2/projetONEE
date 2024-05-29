@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\appointementEmail;
 use App\Models\agent_centre;
 use App\Models\categorie_reclamation;
 use App\Models\clients;
@@ -15,6 +16,7 @@ use App\Models\services;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class OneeController extends Controller
 {
@@ -149,19 +151,19 @@ class OneeController extends Controller
 
          public function searchtraitee(Request $request)
         {
-            $ID_RECLAMATION = $request->ID_RECLAMATION;
+            $ID = $request->ID;
+        if (empty($ID)) {
+            return redirect()->route('showreclamationtraitee');
+        }
+
+        $reclamations = reclamationtraitee::where('ID_RECLAMATION', $ID)->paginate(1);
+
+        if ($reclamations->isEmpty()) {
+            
+            return redirect()->route('showreclamationtraitee')->with('error', 'la réclamation n a pas été trouvée');
+        }
         
-            if (empty($ID_RECLAMATION)) {
-                return redirect()->route('showtraitee');
-            }
-        
-            $reclamationAffectees = reclamationtraitee::with('reclamation', 'agentOnee')->where('ID_RECLAMATION', $ID_RECLAMATION)->paginate(1);
-        
-            if ($reclamationAffectees->isEmpty()) {
-                return redirect()->route('showtraitee')->with('error', 'La réclamation n a pas été trouvée');
-            }
-        
-            return view('reclamationtraite', compact('reclamationAffectees'));
+            return view('reclamationtraite', compact('reclamations'));
         }
 
         
@@ -171,6 +173,7 @@ class OneeController extends Controller
 
            request()->validate([
                 'ID_RENDEZ' => 'required',
+                'ID_CLI'=>'required',
             ]);
             if (Auth::check()) {
             $task = new Event();
@@ -179,8 +182,20 @@ class OneeController extends Controller
             $clientId = Auth::user()->id; 
             $task->id_agent = $clientId;
             $task->save();
-            
+            $client = clients::find($request->ID_CLI);
+            $mail = $client->EMAIL; 
+            $Name = Auth::user()->name;
+            $date= $request->date_et_heure;
+
+            try {
+                Mail::to($mail)->send(new appointementEmail($Name, $date ));
+            } catch (\Exception $e) {
+                
+                return redirect()->route('showmesrendez')->with('error', 'l email n a pas été envoyé , verifier votre connection et informer le client manuellement');
+            }
              return redirect()->route('showmesrendez')->with('message','Rendez-vous ajoutée');
+            
+         
 
         
     }

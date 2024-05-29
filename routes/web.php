@@ -81,14 +81,14 @@ route::put('/update/{id}',[OneeController::class,'update'])->name('updatemy');
 
 
 
-//routes accessible only by admin:
+
 Route::middleware(['auth', 'role:Admin'])->group(function () {
     
     //--------------------------------------------------------------------------------------------------------------------------------
 
     route::get('/admindash1',[adminController::class,'showservices'])->name('showservices');
 
-route::get('/admindash1/createSER',[adminController::class,'createSER'])->name('createSER');
+    route::get('/admindash1/createSER',[adminController::class,'createSER'])->name('createSER');
 
     route::post('/admindash1/storeSER',[adminController::class,'storeSER'])->name('storeSER');
 
@@ -96,7 +96,9 @@ route::get('/admindash1/createSER',[adminController::class,'createSER'])->name('
 
     route::get('/admindash1/{ID_SERVICE}/editSER',[adminController::class,'editSER'])->name('editSER');
 
-route::put('/admindash1/{ID_SERVICE}',[adminController::class,'updateSER'])->name('updateSER');
+    route::put('/admindash1/{ID_SERVICE}',[adminController::class,'updateSER'])->name('updateSER');
+
+    route::post('/admindash1/searchSER',[adminController::class,'searchSER'])->name('searchSER');
 
     //--------------------------------------------------------------------------------------------------------------------------------
 
@@ -179,6 +181,8 @@ Route::middleware(['auth', 'role:agent Centre'])->group(function () {
 
     route::post('/clients/searchcli',[CenterController::class,'searchcli'])->name('searchcli');
 
+    route::post('/searchHISTORY',[CenterController::class,'searchHISTORY'])->name('searchHISTORY');
+
     
 
     //--------------------------------------Rendez-vous---------------------------------------------------------
@@ -202,7 +206,6 @@ Route::middleware(['auth', 'role:agent Centre'])->group(function () {
 });
 
 
-  //--------------------------------------Centre Onee---------------------------------------------------------
 
 
  

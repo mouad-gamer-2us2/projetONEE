@@ -150,8 +150,22 @@
                 <div class="card">
                   <div class="card-body">
                       <div class="row ">
-                          <div class="col-auto">
-                              <h4 class="card-title">Historique des Réclamations traitée :</h4>
+                          <div class="col-md-4">
+                              <h4 class="card-title">Historique des Réclamations traitée </h4>
+                          </div>
+                          <div class="col-md-6">
+                            <form method="POST" action="{{ route('searchHISTORY') }}" class="form-inline">
+                              @csrf
+                              <input class="form-control mr-sm-2" type="search" name="ID"placeholder="chercher par nom de service" aria-label="Search">
+                              <button class="btn btn-dark btn-sm" type="submit"> 
+                                <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                <lord-icon
+                                    src="https://cdn.lordicon.com/kkvxgpti.json"
+                                    trigger="hover"
+                                    colors="primary:#ffffff"
+                                    style="width:18px;height:18px">
+                                </lord-icon></button>
+                            </form>
                           </div>
                           
                       </div>

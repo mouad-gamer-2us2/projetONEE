@@ -255,9 +255,10 @@
                                      
                               <td class="text-center text-wrap">
                                   
-                                   <form action="{{ route('ajouterrendezvous',$R->ID_RENDEZ_VOUS ) }}" method="POST">
+                                   <form action="{{ route('ajouterrendezvous',$R->ID_RENDEZ_VOUS,$R->ID_CLI ) }}" method="POST">
                                      @csrf
                                    <input type="hidden" name="ID_RENDEZ" value="{{ $R->ID_RENDEZ_VOUS }}">
+                                   <input type="hidden" name="ID_CLI" value="{{ $R->ID_CLI }}">
                                   <!-- Button trigger modal -->
                                     <button type="button" class="btn blue btn-sm" data-toggle="modal" data-target="#exampleModal">
             

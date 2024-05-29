@@ -24,6 +24,25 @@ class adminController extends Controller
         $SERVICES=services::paginate(6);
         return view('admindash1',compact('SERVICES'));}
 
+
+    public function searchSER(Request $request)
+    {
+        $NOM = $request->NOM_SERVICE;
+        if (empty($NOM)) {
+            return redirect()->route('showservices');
+        }
+
+        $SERVICES = services::where('NOM_SERVICE', $NOM)->paginate(1);
+
+        if ($SERVICES->isEmpty()) {
+            
+            return redirect()->route('showservices')->with('error', 'le service n a pas été trouvé');
+        }
+
+        return view('admindash1', compact('SERVICES')); 
+    }
+
+
     public function createSER()
     {return view('createSER');}   
     
@@ -247,9 +266,13 @@ class adminController extends Controller
             ]);
          }
 
-         Mail::to($mail)->send(new informationEmail($mail, $passwd));
-
-         return redirect()->route('showpersonnels')->with('message','l\'agent a été ajoutée');
+         try {
+            Mail::to($mail)->send(new informationEmail($mail, $passwd));
+        } catch (\Exception $e) {
+            
+            return redirect()->route('showpersonnels')->with('error', 'l email n a pas été envoyé , verifier votre connection et informer l agent manuellement');
+        }
+         return redirect()->route('showpersonnels')->with('message','l agent a été ajoutée');
     }
 
     public function destroyPER(Request $request, $id)
@@ -267,7 +290,7 @@ class adminController extends Controller
         $personne->delete();
     
         
-        return redirect()->route('showpersonnels')->with('message','l\'agent a été supprimée');
+        return redirect()->route('showpersonnels')->with('message','l agent a été supprimée');
     }
 
     public function editPER(Request $request,$ID_USER)
@@ -314,9 +337,16 @@ class adminController extends Controller
             'PWD' => $passwd, 
         ])->save();
 
-        Mail::to($mail)->send(new updateEmail($mail, $passwd));
+        
 
-        return redirect()->route('showpersonnels')->with('message','l\'agent a été modifiée');
+        try {
+            Mail::to($mail)->send(new updateEmail($mail, $passwd));
+        } catch (\Exception $e) {
+            
+            return redirect()->route('showpersonnels')->with('error', 'l email n a pas été envoyé , verifier votre connection et informer l agent manuellement');
+        }
+
+        return redirect()->route('showpersonnels')->with('message','l agent a été modifiée');
     }
 
 

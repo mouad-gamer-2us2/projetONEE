@@ -222,7 +222,7 @@
                             <div class="flex-grow-1">
                                 <input  name="title" type="text" class="form-control todo-list-input" placeholder="What do you need to do today?">
                             </div>
-                            <button type="submit" class="add btn btn-gradient-primary font-weight-bold ml-2" id="add-task">Add</button>
+                            <button type="submit" class="add btn btn-success font-weight-bold ml-2" id="add-task">Add</button>
                         </form>
                         
                     <div class="table-responsive">

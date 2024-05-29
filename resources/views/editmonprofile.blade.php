@@ -15,101 +15,193 @@
             <li class="nav-item nav-profile">
              
             </li>
-            
+            <li class="nav-item">
+              <div class="container-fluid">
+                <div class="row">
+                    <div class="col-auto">
+                        <a class="nav-link color1" href="/dashboard">
+                          <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                          <lord-icon
+                              src="https://cdn.lordicon.com/jyjslctx.json"
+                              trigger="hover"
+                              colors="primary:#0e46a3"
+                              style="width:18px;height:18px">
+                          </lord-icon>
+                        </a>
+                    </div>
+                    <div class="col align-self-center">
+                        <a class="nav-link color1" href="/dashboard">
+                            <span class="menu-title color1">Dashboard</span> 
+                        </a>
+                    </div>
+                </div>
+            </div>
+            </li>
             
             <li class="nav-item">
               <div class="container-fluid">
                 <div class="row">
                     <div class="col-auto">
-                        <a class="nav-link color1" href="{{ route('showservices') }}">
-                            <script src="https://cdn.lordicon.com/lordicon.js"></script>
-                            <lord-icon
-                                src="https://cdn.lordicon.com/sbrtyqxj.json"
-                                trigger="hover"
-                                colors="primary:#0e46a3"
-                                style="width: 18px; height: 18px;">
-                            </lord-icon>
+                        <a class="nav-link color1" href="recla">
+                          <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                          <lord-icon
+                              src="https://cdn.lordicon.com/abvsilxn.json"
+                              trigger="hover"
+                              colors="primary:#0e46a3"
+                              style="width:18px;height:18px">
+                          </lord-icon>
                         </a>
                     </div>
                     <div class="col align-self-center">
-                        <a class="nav-link color1" href="{{ route('showservices') }}">
-                            <span class="menu-title color1">Services</span> 
+                        <a class="nav-link color1" href="recla">
+                            <span class="menu-title color1">Réclamations</span> 
                         </a>
                     </div>
                 </div>
             </div>
-            
             </li>
             <li class="nav-item">
               <div class="container-fluid">
                 <div class="row">
                     <div class="col-auto">
-                        <a class="nav-link color1" href="{{route('showcategories')}}">
-                            <script src="https://cdn.lordicon.com/lordicon.js"></script>
-                            <lord-icon
-                                src="https://cdn.lordicon.com/keaiyjcx.json"
-                                trigger="hover"
-                                colors="primary:#0e46a3"
-                                style="width: 18px; height: 18px;">
-                            </lord-icon>
+                        <a class="nav-link color1" href="{{ route('showaffecte') }}">
+                          <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                          <lord-icon
+                              src="https://cdn.lordicon.com/hrjifpbq.json"
+                              trigger="hover"
+                              colors="primary:#0e46a3"
+                              style="width:18px;height:18px">
+                          </lord-icon>
                         </a>
                     </div>
-                    <div class="col align-self-center">
-                        <a class="nav-link color1"href="{{route('showcategories')}}">
-                            <span class="menu-title color1">Catégories</span> 
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            </li>
-            <li class="nav-item">
-              <div class="container-fluid">
-                <div class="row">
-                    <div class="col-auto">
-                        <a class="nav-link color1" href="{{route('showpersonnels')}}">
-                            <script src="https://cdn.lordicon.com/lordicon.js"></script>
-                            <lord-icon
-                                src="https://cdn.lordicon.com/iazmohzf.json"
-                                trigger="hover"
-                                colors="primary:#0e46a3"
-                                style="width: 18px; height: 18px;">
-                            </lord-icon>
-                        </a>
-                    </div>
-                    <div class="col align-self-center">
-                        <a class="nav-link color1" href="{{route('showpersonnels')}}">
-                            <span class="menu-title color1">Personnels</span> 
+                    <div class="col-8 align-self-center">
+                        <a class="nav-link color1" href="{{ route('showaffecte') }}">
+                            <span class="menu-title color1">Mes réclamations</span> 
                         </a>
                     </div>
                 </div>
-            </div>
-            
-            </li>
-            <li class="nav-item">
-                <div class="container-fluid">
-                  <div class="row">
-                      <div class="col-auto">
-                          <a class="nav-link color1" href="/chatify">
-                            <script src="https://cdn.lordicon.com/lordicon.js"></script>
-                            <lord-icon
-                                src="https://cdn.lordicon.com/ayhtotha.json"
-                                trigger="hover"
-                                colors="primary:#0e46a3"
-                                style="width:18px;height:18px">
-                            </lord-icon>
-                          </a>
-                      </div>
-                      <div class="col align-self-center">
-                          <a class="nav-link color1" href="/chatify">
-                              <span class="menu-title color1">Chat</span> 
-                          </a>
-                      </div>
-                  </div>
               </div>
-              
-              </li>
             
+            </li>
+            
+            
+            </li>
+            <li class="nav-item">
+              <div class="container-fluid">
+                <div class="row">
+                    <div class="col-auto">
+                        <a class="nav-link color1" href="{{ route('showreclamationtraitee') }}">
+                          <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                          <lord-icon
+                              src="https://cdn.lordicon.com/dafdkyyt.json"
+                              trigger="hover"
+                              colors="primary:#0e46a3"
+                              style="width:18px;height:18px">
+                          </lord-icon>  
+                        </a>
+                    </div>
+                    <div class="col align-self-center">
+                        <a class="nav-link color1" href="{{ route('showreclamationtraitee') }}">
+                            <span class="menu-title color1">Historique</span> 
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            </li>
+            <li class="nav-item">
+              <div class="container-fluid">
+                <div class="row">
+                    <div class="col-auto">
+                        <a class="nav-link color1" href="{{ route('showrendez') }}">
+                          <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                          <lord-icon
+                              src="https://cdn.lordicon.com/wmlleaaf.json"
+                              trigger="hover"
+                              colors="primary:#0e46a3"
+                              style="width:18px;height:18px">
+                          </lord-icon>
+                        </a>
+                    </div>
+                    <div class="col align-self-center">
+                        <a class="nav-link color1" href="{{ route('showrendez') }}">
+                            <span class="menu-title color1">Rendez-vous</span> 
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            </li>
+              <li class="nav-item">
+              <div class="container-fluid">
+                <div class="row">
+                    <div class="col-auto">
+                        <a class="nav-link color1" href="{{ route('showaffecte') }}">
+                          <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                          <lord-icon
+                              src="https://cdn.lordicon.com/hrjifpbq.json"
+                              trigger="hover"
+                              colors="primary:#0e46a3"
+                              style="width:18px;height:18px">
+                          </lord-icon>
+                        </a>
+                    </div>
+                    <div class="col-8 align-self-center">
+                        <a class="nav-link color1" href="{{ route('showmesrendez') }}">
+                            <span class="menu-title color1">Mes rendez-vous</span> 
+                        </a>
+                    </div>
+                </div>
+              </div>
+            
+            </li>
+            <li class="nav-item">
+              <div class="container-fluid">
+                <div class="row">
+                    <div class="col-auto">
+                        <a class="nav-link color1" href="/chatify">
+                          <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                          <lord-icon
+                              src="https://cdn.lordicon.com/ayhtotha.json"
+                              trigger="hover"
+                              colors="primary:#0e46a3"
+                              style="width:18px;height:18px">
+                          </lord-icon>
+                        </a>
+                    </div>
+                    <div class="col align-self-center">
+                        <a class="nav-link color1" href="/chatify">
+                            <span class="menu-title color1">Chat</span> 
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            </li>
+            <li class="nav-item">
+              <div class="container-fluid">
+                <div class="row">
+                    <div class="col-auto">
+                        <a class="nav-link color1" href="{{ route('modify') }}">
+                          <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                          <lord-icon
+                              src="https://cdn.lordicon.com/wkvacbiw.json"
+                              trigger="hover"
+                              colors="primary:#0e46a3"
+                              style="width:18px;height:18px">
+                          </lord-icon>
+                        </a>
+                    </div>
+                    <div class="col align-self-center">
+                        <a class="nav-link color1" href="{{ route('modify') }}">
+                            <span class="menu-title color1">Profile</span> 
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            </li>
+              
           </ul>
         </nav>
         <!-- partial -->
