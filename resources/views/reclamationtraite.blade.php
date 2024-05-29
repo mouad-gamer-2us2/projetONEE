@@ -279,8 +279,8 @@
                                               <span aria-hidden="true">&times;</span>
                                             </button>
                                           </div>
-                                          <div class="modal-body">
-                                            <p >{{ $rec->PROCEDURE}}</p>
+                                          <div class="modal-body" >
+                                            <textarea class="form-control" readonly>{{ $rec->PROCEDURE }}</textarea>
                                           </div>
                                           <div class="modal-footer">
                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>

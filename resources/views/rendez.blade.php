@@ -229,10 +229,10 @@
                         <thead>
                           <tr>
                             <th class="text-center col-1"> ID </th>
-                            <th class="text-center col-2"> Informations Rendez-Vous </th>
-                            <th class="text-center col-2"> Agent Centre </th>
-                            <th class="text-center col-2"> Service responsable</th>
-                            <th class="text-center col-2"> Client </th>
+                            <th class="text-center col-5"> Informations Rendez-Vous </th>
+                            <th class="text-center col-1"> Agent Centre </th>
+                            <th class="text-center col-1"> Service responsable</th>
+                            <th class="text-center col-1"> Client </th>
                             <th class="text-center col-1"> N° contrat </th>
                             <th class="text-center col-1"> Date de demande </th>
                             <th class="text-center col-1"> Action</th>
