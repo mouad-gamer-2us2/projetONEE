@@ -5,16 +5,12 @@
        
       </div>
     </div>
-    <!-- partial:partials/_navbar.html -->
-  
-    <!-- partial -->
+
     <div class="container-fluid page-body-wrapper">
-      <!-- partial:partials/_sidebar.html -->
+    
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
-          <li class="nav-item nav-profile">
-           
-          </li>
+          
           
           
           <li class="nav-item">

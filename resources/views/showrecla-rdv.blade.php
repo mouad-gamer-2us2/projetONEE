@@ -6,11 +6,9 @@
          
         </div>
       </div>
-      <!-- partial:partials/_navbar.html -->
-    
-      <!-- partial -->
+
       <div class="container-fluid page-body-wrapper">
-        <!-- partial:partials/_sidebar.html -->
+       
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
                 <li class="nav-item nav-profile">
@@ -151,7 +149,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <h4 class="card-title">Les reclamations du client : </h4>
+                                        <h4 class="card-title">réclamations du client </h4>
                                     </div>
                                     <div class="col-auto">
                                         <a href="{{ route('choix',$NUM_CONTRAT) }}" class="btn btn-success" title="Ajouter une reclamation ou rendez-vous">
@@ -239,7 +237,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <h4 class="card-title">Les rendez-vous du client :</h4>
+                                        <h4 class="card-title">rendez-vous du client </h4>
                                     </div>
                                 </div>
         

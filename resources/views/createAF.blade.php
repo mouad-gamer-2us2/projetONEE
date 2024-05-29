@@ -5,11 +5,9 @@
          
         </div>
       </div>
-      <!-- partial:partials/_navbar.html -->
-    
-      <!-- partial -->
+ 
       <div class="container-fluid page-body-wrapper">
-        <!-- partial:partials/_sidebar.html -->
+       
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item nav-profile">
@@ -128,7 +126,7 @@
                     <form action="{{ route('storeAF') }}" method="POST">
                         @csrf
                         <div class="mb-3">
-                          <label for="exampleInputEmail1" class="form-label">les services de l'ONEE :</label>
+                          <label for="exampleInputEmail1" class="form-label">Services de l'ONEE </label>
                           <br>
                           <select class="form-select" name="ID_SER" aria-label="Default select example">
                             
@@ -167,8 +165,5 @@
 
 
 
-<script>
 
-  
-</script>
   

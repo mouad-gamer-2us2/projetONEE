@@ -5,11 +5,9 @@
          
         </div>
       </div>
-      <!-- partial:partials/_navbar.html -->
-    
-      <!-- partial -->
+
       <div class="container-fluid page-body-wrapper">
-        <!-- partial:partials/_sidebar.html -->
+   
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item nav-profile">
@@ -220,7 +218,7 @@
                   <div class="card-body">
                     <div class="row">
                       <div class="col-md-4">
-                        <h4 class="card-title"> les Rendez-Vous du service :</h4>
+                        <h4 class="card-title"> les Rendez-Vous du service </h4>
                     </div>
                    
                         </div>
@@ -259,7 +257,7 @@
                                      @csrf
                                    <input type="hidden" name="ID_RENDEZ" value="{{ $R->ID_RENDEZ_VOUS }}">
                                    <input type="hidden" name="ID_CLI" value="{{ $R->ID_CLI }}">
-                                  <!-- Button trigger modal -->
+                               
                                     <button type="button" class="btn blue btn-sm" data-toggle="modal" data-target="#exampleModal">
             
                                       <script src="https://cdn.lordicon.com/lordicon.js"></script>
@@ -271,7 +269,7 @@
                                       </lord-icon>
                                     </button>
 
-                                    <!-- Modal -->
+                               
                                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <div class="modal-dialog" role="document">
                                         <div class="modal-content">

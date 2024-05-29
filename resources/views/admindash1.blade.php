@@ -6,11 +6,11 @@
          
         </div>
       </div>
-      <!-- partial:partials/_navbar.html -->
+     
     
-      <!-- partial -->
+      
       <div class="container-fluid page-body-wrapper">
-        <!-- partial:partials/_sidebar.html -->
+        
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item nav-profile">
@@ -164,11 +164,11 @@
                       <table class="table">
                         <thead>
                           <tr>
-                            <th class="text-center"> # </th>
-                            <th class="text-center"> Nom Services </th>
-                            <th class="text-center"> Categories </th>
-                            <th class="text-center"> Description </th>
-                            <th class="text-center"> Appartenance </th>
+                            <th class="text-center col-1"> # </th>
+                            <th class="text-center col-1"> Nom Services </th>
+                            <th class="text-center col-2"> Categories </th>
+                            <th class="text-center col-5"> Description </th>
+                            <th class="text-center col-1"> Appartenance </th>
                             <th class="text-center" colspan="2"> Actions </th>
                           </tr>
                         </thead>
@@ -178,11 +178,11 @@
                             
                             @foreach ($SERVICES as $S)
                             <tr>
-                                <td class="text-center text-wrap col-1">{{ $S->ID_SERVICE }}</td>
-                                <td class="text-center text-wrap col-2">{{ $S->NOM_SERVICE }}</td>
-                                <td class="text-center text-wrap col-2">{{ $S->CATEGORIE_SERVICE }}</td>
-                                <td class="text-center text-wrap col-5">{{ $S->DESCRIPTION }}</td>
-                                <td class="text-center text-wrap col-2">{{ $S->APPARTENANCE }}</td>
+                                <td class="text-center text-wrap ">{{ $S->ID_SERVICE }}</td>
+                                <td class="text-center text-wrap ">{{ $S->NOM_SERVICE }}</td>
+                                <td class="text-center text-wrap ">{{ $S->CATEGORIE_SERVICE }}</td>
+                                <td class="text-center text-wrap ">{{ $S->DESCRIPTION }}</td>
+                                <td class="text-center text-wrap ">{{ $S->APPARTENANCE }}</td>
                                 <td class="text-center">
                                     <div class="row">
                                         <div class="col-auto">

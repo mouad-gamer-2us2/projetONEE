@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\appointementEmail;
 use App\Models\agent_centre;
+use App\Models\agentonee;
 use App\Models\categorie_reclamation;
 use App\Models\clients;
 use App\Models\Event;
@@ -120,11 +121,22 @@ class OneeController extends Controller
     }
 
     public function showreclamationtraitee()
-{
-    $reclamations = ReclamationTraitee::paginate(6);
-
-    return view('reclamationtraite', compact('reclamations'));
-}
+    {
+        
+        $authId = auth()->id();
+    
+      
+        $idSer = agentonee::where('ID_AONEE', $authId)->value('ID_SER');
+    
+      
+        $nomService = services::where('ID_SERVICE', $idSer)->value('NOM_SERVICE');
+    
+       
+        $reclamations = ReclamationTraitee::where('SERVICE_RESPONSABLE', $nomService)->paginate(6);
+    
+        return view('reclamationtraite', compact('reclamations'));
+    }
+    
 
       public function showmesrendez()
     {
@@ -150,14 +162,23 @@ class OneeController extends Controller
         }
 
          public function searchtraitee(Request $request)
-        {
+        {   
+            $authId = auth()->id();
+
+            $idSer = AgentOnee::where('ID_AONEE', $authId)->value('ID_SER');
+        
+            $nomService = services::where('ID_SERVICE', $idSer)->value('NOM_SERVICE');
+        
             $ID = $request->ID;
-        if (empty($ID)) {
+
+            if (empty($ID)) {
             return redirect()->route('showreclamationtraitee');
         }
 
-        $reclamations = reclamationtraitee::where('ID_RECLAMATION', $ID)->paginate(1);
-
+            $reclamations = ReclamationTraitee::where('ID_RECLAMATION', $ID)
+            ->where('SERVICE_RESPONSABLE', $nomService)
+            ->paginate(1);
+            
         if ($reclamations->isEmpty()) {
             
             return redirect()->route('showreclamationtraitee')->with('error', 'la réclamation n a pas été trouvée');

@@ -5,16 +5,12 @@
        
       </div>
     </div>
-    <!-- partial:partials/_navbar.html -->
-  
-    <!-- partial -->
+
     <div class="container-fluid page-body-wrapper">
-      <!-- partial:partials/_sidebar.html -->
+  
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
-          <li class="nav-item nav-profile">
-           
-          </li>
+
           <li class="nav-item">
             <div class="container-fluid">
               <div class="row">
@@ -208,10 +204,7 @@
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="container d-flex justify-content-center align-items-center">
-            <div class="page-header text-center">
-                
-                
-            </div>
+           
         </div>
           
           <div class="row">
@@ -238,7 +231,7 @@
                     </div>
                     
                 </div>
-
+                <br>
                   
                   <div class="table-responsive">
                     <table class="table">
@@ -248,11 +241,10 @@
                           <th class="text-center col-1"> Client </th>
                           <th class="text-center col-1"> Categorie </th>
                           <th class="text-center col-1"> Agent Centre </th>
-                          <th class="text-center col-1"> Service responsable</th>
                           <th class="text-center col-6"> Description </th>
                           
                 
-                           <th class="text-center col-1"> Action </th>
+                           <th class="text-center col-2"> Action </th>
                                    
                                     
                         </tr>
@@ -266,7 +258,6 @@
                             <td class="text-center text-wrap" >{{ $rec->CLIENT}}</td>
                             <td class="text-center text-wrap">{{ $rec->CATEGORIE_RECLAMATION}}</td>
                             <td class="text-center text-wrap">{{ $rec->AGENT_CENTRE }}</td>
-                            <td class="text-center text-wrap">{{ $rec->SERVICE_RESPONSABLE}}</td>
                             <td class="text-center text-wrap">{{ $rec->DESCRIPTION}}</td>
                           <td class="text-center text-wrap">
                          

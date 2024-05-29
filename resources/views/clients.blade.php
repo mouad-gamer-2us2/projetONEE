@@ -6,11 +6,9 @@
        
       </div>
     </div>
-    <!-- partial:partials/_navbar.html -->
-  
-    <!-- partial -->
+
     <div class="container-fluid page-body-wrapper">
-      <!-- partial:partials/_sidebar.html -->
+   
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item nav-profile">
@@ -151,7 +149,7 @@
                 <div class="card-body">
                     <div class="row justify-content-center align-items-center">
                         <div class="col-md-3 ">
-                            <h4 class="card-title">Informations Sur les clients :</h4>
+                            <h4 class="card-title">Informations Sur les clients </h4>
                         </div>
                         <div class="col-md-5 d-flex justify-content-center">
                             <form method="POST" action="{{ route('searchcli') }}" class="form-inline">

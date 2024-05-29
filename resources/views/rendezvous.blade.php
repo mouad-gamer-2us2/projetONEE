@@ -5,11 +5,9 @@
          
         </div>
       </div>
-      <!-- partial:partials/_navbar.html -->
     
-      <!-- partial -->
       <div class="container-fluid page-body-wrapper">
-        <!-- partial:partials/_sidebar.html -->
+  
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item nav-profile">
@@ -138,10 +136,7 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="container d-flex justify-content-center align-items-center">
-              <div class="page-header text-center">
-                  
-                  
-              </div>
+             
           </div>
             
             <div class="row">
@@ -150,7 +145,7 @@
                   <div class="card-body">
                     <div class="row">
                       <div class="col-md-4">
-                        <h4 class="card-title">Informations Sur les Rendez-Vous :</h4>
+                        <h4 class="card-title">Informations Sur les Rendez-Vous </h4>
                     </div>
                    
                         </div>

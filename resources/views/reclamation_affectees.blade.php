@@ -5,11 +5,9 @@
        
       </div>
     </div>
-    <!-- partial:partials/_navbar.html -->
-  
-    <!-- partial -->
+
     <div class="container-fluid page-body-wrapper">
-      <!-- partial:partials/_sidebar.html -->
+
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item nav-profile">
@@ -217,7 +215,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-4">
-                      <h4 class="card-title">Mes réclamations : </h4>
+                      <h4 class="card-title">Mes réclamations  </h4>
                   </div>
                   
                       </div>
@@ -273,7 +271,7 @@
                                <form action="{{ route('ajoutreclamatraitee', $reclamationAffectee->reclamation->ID_RECLAMATION) }}" method="POST">
                                      @csrf
                                    <input type="hidden" name="ID_RECLAMATION" value="{{  $reclamationAffectee->reclamation->ID_RECLAMATION }}">
-                                  <!-- Button trigger modal -->
+                                  
                                     <button type="button" class="btn blue btn-sm" data-toggle="modal" data-target="#exampleModal" title="enregistrer la procedure de traitement">
             
                                       <script src="https://cdn.lordicon.com/lordicon.js"></script>
@@ -285,7 +283,7 @@
                                           </lord-icon>
                                     </button>
 
-                                    <!-- Modal -->
+                               
                                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <div class="modal-dialog" role="document">
                                         <div class="modal-content">

@@ -5,11 +5,11 @@
          
         </div>
       </div>
-      <!-- partial:partials/_navbar.html -->
+      
     
-      <!-- partial -->
+     
       <div class="container-fluid page-body-wrapper">
-        <!-- partial:partials/_sidebar.html -->
+     
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item nav-profile">
@@ -129,7 +129,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <!-- -->
-                            <h4 class="card-title"> Personnels de l'ONEE :</h4>
+                            <h4 class="card-title"> Personnels de l'ONEE </h4>
                             
                         </div>
                         <div class="col-md-6">

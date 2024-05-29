@@ -5,16 +5,12 @@
          
         </div>
       </div>
-      <!-- partial:partials/_navbar.html -->
-    
-      <!-- partial -->
+ 
       <div class="container-fluid page-body-wrapper">
-        <!-- partial:partials/_sidebar.html -->
+      
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
-            <li class="nav-item nav-profile">
-             
-            </li>
+           
             
             
             <li class="nav-item">
@@ -138,21 +134,18 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="container d-flex justify-content-center align-items-center">
-              <div class="page-header text-center">
-                  <h3 class="page-title">Saisie des Rendez-Vous </h3>
-                  
-              </div>
+              
             </div>
             <div class="row">
               <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">modifier le rendez-vous</h4>
+                    <h4 class="card-title text-center" style="font-size: 24px; font-family: monospace, sans-serif;">modifier le rendez-vous</h4>
                     <form action="{{ route('updaterendezvous') }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Info Rendez-vous</label>
+                            <label for="exampleInputEmail1" class="form-label">Info Rendez-vous :</label>
                             <textarea type="text" class="form-control" name="info_rendez_vous" aria-describedby="emailHelp">
                                 {{ $rendezvous->INFORMATION_RENDEZ_VOUS }}
                             </textarea>
@@ -162,7 +155,7 @@
                 
                             <input type="text" class="form-control d-none" name="id_A_centre"  value="{{ $id }}" aria-describedby="emailHelp">
                 
-                            <label for="exampleInputEmail1" class="form-label">Services</label>
+                            <label for="exampleInputEmail1" class="form-label">Services :</label>
                             <select class="form-control" name="id_serv" aria-describedby="emailHelp">
                                 @foreach ( $services as $ser)
                                     <option value="{{ $ser->ID_SERVICE }}">{{ $ser->NOM_SERVICE }}</option>
